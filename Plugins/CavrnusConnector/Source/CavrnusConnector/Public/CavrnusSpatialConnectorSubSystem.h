@@ -15,21 +15,28 @@ class USpawnedObjectsManager;
 class UCavrnusAvatarManager;
 class UPDFManager;
 
-// Class definition
 UCLASS(BlueprintType, Blueprintable)
-class CAVRNUSCONNECTOR_API UCavrnusSpatialConnectorSubSystem : public UGameInstanceSubsystem
+class CAVRNUSCONNECTOR_API UCavrnusSpatialConnectorSubSystemProxy : public UObject
 {
 	GENERATED_BODY()
-
 public:
-	// Constructor
-	UCavrnusSpatialConnectorSubSystem();
+	UCavrnusSpatialConnectorSubSystemProxy();
+	virtual ~UCavrnusSpatialConnectorSubSystemProxy();
 
-	// Destructor
-	~UCavrnusSpatialConnectorSubSystem();
+	void Initialize();
+	void Deinitialize();
 
-	virtual void Initialize(FSubsystemCollectionBase& Collection);
-	virtual void Deinitialize();
+	/**
+	* The objects created within the Core will be belong to given object.
+	* If not set, default is transient package.
+	*/
+	void SetObjectOwner(UObject* Owner);
+
+	/**
+	* If pie or standalone mode runs, it sets a game instance.
+	* Requirement is to get the first local player. Editor mode provides its own local player.
+	*/
+	void SetGameInstance(UGameInstance* GameInstance);
 
 	void RegisterCavrnusSpatialConnector(ACavrnusSpatialConnector* CavrnusSpatialConnector);
 
@@ -95,6 +102,12 @@ private:
 	UPROPERTY()
 	UUserWidget* LoadingWidget;
 
+	UPROPERTY()
+	UGameInstance* GameInstance;
+
+	UPROPERTY()
+	UObject* ObjectOwner;
+
 	UFUNCTION()
 	UUserWidget* SpawnWidget(TSubclassOf<UUserWidget> WidgetClass);
 
@@ -106,4 +119,29 @@ private:
 
 	UFUNCTION()
 	void AttachLocalUserComponentToPawn();
+
+};
+
+// Class definition
+UCLASS(BlueprintType, Blueprintable)
+class CAVRNUSCONNECTOR_API UCavrnusSpatialConnectorSubSystem : public UGameInstanceSubsystem
+{
+	GENERATED_BODY()
+
+public:
+	// Constructor
+	UCavrnusSpatialConnectorSubSystem();
+
+	// Destructor
+	~UCavrnusSpatialConnectorSubSystem();
+
+	virtual void Initialize(FSubsystemCollectionBase& Collection);
+	virtual void Deinitialize();
+
+	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
+	UCavrnusSpatialConnectorSubSystemProxy* GetSystemProxy();
+
+private:
+	UPROPERTY()
+	UCavrnusSpatialConnectorSubSystemProxy* SystemProxy;
 };

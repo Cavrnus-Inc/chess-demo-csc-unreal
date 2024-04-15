@@ -23,11 +23,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	FTransform GetTransform();
+	virtual FTransform GetTransform_Implementation() { return FTransform(); }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetTransform(FTransform PropertyValue);
+	virtual void SetTransform_Implementation(FTransform PropertyValue) { }
 
 	UFUNCTION()
 	void TransformPropertyUpdated(FTransform PropertyValue);

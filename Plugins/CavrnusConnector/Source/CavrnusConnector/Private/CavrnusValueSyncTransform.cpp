@@ -67,7 +67,7 @@ void UCavrnusValueSyncTransform::SendPropertyChanges()
 		PropertyValue = lastPostedTransientValue;
 
 	FTransform LocalPropertyValue = GetTransform();
-	if (PropertyValue.GetLocation().Equals(LocalPropertyValue.GetLocation(), 0.001f) && EulersAreEqual(PropertyValue.GetRotation(), LocalPropertyValue.GetRotation(), .1f) && PropertyValue.GetScale3D().Equals(LocalPropertyValue.GetScale3D(), 0.001f))
+	if (PropertyValue.GetLocation().Equals(LocalPropertyValue.GetLocation(), 0.001f) && EulersAreEqual(PropertyValue.GetRotation(), LocalPropertyValue.GetRotation(), 0.00174533f) && PropertyValue.GetScale3D().Equals(LocalPropertyValue.GetScale3D(), 0.001f))
 	{
 		if (liveUpdater == nullptr)
 			return;

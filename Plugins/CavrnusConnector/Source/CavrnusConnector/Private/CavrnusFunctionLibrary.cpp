@@ -10,11 +10,13 @@
 #include "Types/CavrnusLiveStringPropertyUpdate.h"
 #include "Types/CavrnusLiveTransformPropertyUpdate.h"
 #include "Types/CavrnusLiveVectorPropertyUpdate.h"
+#include "RelayModel\CavrnusPropertyValue.h"
 #include "CavrnusSpatialConnectorSubSystem.h"
 #include "RelayModel\CavrnusRelayModel.h"
 #include "RelayModel\RelayCallbackModel.h"
 #include "RelayModel\DataState.h"
 #include "RelayModel\SpacePropertyModel.h"
+#include "RelayModel\PropertyId.h"
 #include "RelayModel\SpacePermissionsModel.h"
 #include "Translation\CavrnusProtoTranslation.h"
 
@@ -61,6 +63,21 @@ void UCavrnusFunctionLibrary::KillDataModel()
 // ============================================
 // Authentication Functions
 // ============================================
+
+UCavrnusSpatialConnectorSubSystemProxy* UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy()
+{
+	TArray<UObject*> Results;
+	GetObjectsOfClass(UCavrnusSpatialConnectorSubSystemProxy::StaticClass(), Results);
+
+	UCavrnusSpatialConnectorSubSystemProxy* SpatialCore = nullptr;
+	if (Results.Num() > 0)
+	{
+		ensure(Results.Num() == 1); // We don't expect more than one spatial core.
+		SpatialCore = Cast<UCavrnusSpatialConnectorSubSystemProxy>(Results.Top());
+	}
+
+	return SpatialCore;
+}
 
 bool UCavrnusFunctionLibrary::IsLoggedIn()
 {
@@ -145,19 +162,32 @@ void UCavrnusFunctionLibrary::ExitSpace(FCavrnusSpaceConnection SpaceConnection)
 void UCavrnusFunctionLibrary::DefineColorPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FLinearColor PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineColorPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::ColorPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineColorPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 FLinearColor UCavrnusFunctionLibrary::GetColorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetColorPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetColorPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindColorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FColorPropertyUpdated PropertyUpdateEvent)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindColorProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+
+	CavrnusColorFunction propUpdateCallback = [PropertyUpdateEvent](const FLinearColor& Color, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Color, ContainerName, PropertyName);
+		};
+
+	return BindColorPropertyValue(SpaceConnection, ContainerName, PropertyName, propUpdateCallback);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindColorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusColorFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindColorProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
 }
 
 UCavrnusLiveColorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientColorPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FLinearColor PropertyValue)
@@ -165,7 +195,7 @@ UCavrnusLiveColorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientColorPro
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveColorPropertyUpdate* res = NewObject<UCavrnusLiveColorPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -173,7 +203,8 @@ UCavrnusLiveColorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientColorPro
 void UCavrnusFunctionLibrary::PostColorPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FLinearColor PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateColorPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::ColorPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateColorPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -183,19 +214,32 @@ void UCavrnusFunctionLibrary::PostColorPropertyUpdate(FCavrnusSpaceConnection Sp
 void UCavrnusFunctionLibrary::DefineBoolPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, bool PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineBoolPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::BoolPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineBoolPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 bool UCavrnusFunctionLibrary::GetBoolPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetBoolPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetBoolPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindBooleanPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FBoolPropertyUpdated PropertyUpdateEvent)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindBoolProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+
+	CavrnusBoolFunction propUpdateCallback = [PropertyUpdateEvent](bool Value, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Value, ContainerName, PropertyName);
+		};
+
+	return BindBooleanPropertyValue(SpaceConnection, ContainerName, PropertyName, propUpdateCallback);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindBooleanPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusBoolFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindBoolProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
 }
 
 UCavrnusLiveBoolPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientBoolPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, bool PropertyValue)
@@ -203,7 +247,7 @@ UCavrnusLiveBoolPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientBoolPrope
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveBoolPropertyUpdate* res = NewObject<UCavrnusLiveBoolPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -211,7 +255,8 @@ UCavrnusLiveBoolPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientBoolPrope
 void UCavrnusFunctionLibrary::PostBoolPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, bool PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateBoolPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::BoolPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateBoolPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -221,19 +266,32 @@ void UCavrnusFunctionLibrary::PostBoolPropertyUpdate(FCavrnusSpaceConnection Spa
 void UCavrnusFunctionLibrary::DefineFloatPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, float PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineFloatPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::FloatPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineFloatPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 float UCavrnusFunctionLibrary::GetFloatPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetFloatPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetFloatPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindFloatPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FFloatPropertyUpdated PropertyUpdateEvent)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindFloatProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+
+	CavrnusFloatFunction propUpdateCallback = [PropertyUpdateEvent](float Value, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Value, ContainerName, PropertyName);
+		};
+
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindFloatProperty(Cavrnus::PropertyId(ContainerName, PropertyName), propUpdateCallback);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindFloatPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusFloatFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindFloatProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
 }
 
 UCavrnusLiveFloatPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientFloatPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, float PropertyValue)
@@ -241,7 +299,7 @@ UCavrnusLiveFloatPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientFloatPro
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveFloatPropertyUpdate* res = NewObject<UCavrnusLiveFloatPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -249,7 +307,8 @@ UCavrnusLiveFloatPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientFloatPro
 void UCavrnusFunctionLibrary::PostFloatPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, float PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateFloatPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::FloatPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateFloatPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -259,28 +318,40 @@ void UCavrnusFunctionLibrary::PostFloatPropertyUpdate(FCavrnusSpaceConnection Sp
 void UCavrnusFunctionLibrary::DefineStringPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FString PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineStringPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::StringPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineStringPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 FString UCavrnusFunctionLibrary::GetStringPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetStringPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetStringPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindStringPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FStringPropertyUpdated PropertyUpdateEvent)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindStringProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+
+	CavrnusStringFunction propUpdateCallback = [PropertyUpdateEvent](const FString& Value, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Value, ContainerName, PropertyName);
+		};
+
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindStringProperty(Cavrnus::PropertyId(ContainerName, PropertyName), propUpdateCallback);
 }
 
+FCavrnusBinding UCavrnusFunctionLibrary::BindStringPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusStringFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindStringProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
+}
 
 UCavrnusLiveStringPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientStringPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FString PropertyValue)
 {
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveStringPropertyUpdate* res = NewObject<UCavrnusLiveStringPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -288,7 +359,8 @@ UCavrnusLiveStringPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientStringP
 void UCavrnusFunctionLibrary::PostStringPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FString PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateStringPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::StringPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateStringPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -298,18 +370,30 @@ void UCavrnusFunctionLibrary::PostStringPropertyUpdate(FCavrnusSpaceConnection S
 void UCavrnusFunctionLibrary::DefineVectorPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FVector4 PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineVectorPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::VectorPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineVectorPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 FVector4 UCavrnusFunctionLibrary::GetVectorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetVectorPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetVectorPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindVectorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FVectorPropertyUpdated PropertyUpdateEvent)
 {
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindVectorProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+	CavrnusVectorFunction propUpdateCallback = [PropertyUpdateEvent](const FVector4& Value, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Value, ContainerName, PropertyName);
+		};
+
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindVectorProperty(Cavrnus::PropertyId(ContainerName, PropertyName), propUpdateCallback);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindVectorPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusVectorFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindVectorProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
 }
 
 UCavrnusLiveVectorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientVectorPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FVector4 PropertyValue)
@@ -317,7 +401,7 @@ UCavrnusLiveVectorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientVectorP
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveVectorPropertyUpdate* res = NewObject<UCavrnusLiveVectorPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -325,7 +409,8 @@ UCavrnusLiveVectorPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientVectorP
 void UCavrnusFunctionLibrary::PostVectorPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FVector4 PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateVectorPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::VectorPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateVectorPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -335,19 +420,32 @@ void UCavrnusFunctionLibrary::PostVectorPropertyUpdate(FCavrnusSpaceConnection S
 void UCavrnusFunctionLibrary::DefineTransformPropertyDefaultValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FTransform PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineTransformPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::TransformPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildDefineTransformPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 FTransform UCavrnusFunctionLibrary::GetTransformPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetTransformPropValue(GetPropId(ContainerName, PropertyName));
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->GetTransformPropValue(Cavrnus::PropertyId(ContainerName, PropertyName));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindTransformPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FTransformPropertyUpdated PropertyUpdateEvent)
 {
 	CheckErrors(SpaceConnection);
-	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindTransformProperty(GetPropId(ContainerName, PropertyName), PropertyUpdateEvent);
+
+	CavrnusTransformFunction propUpdateCallback = [PropertyUpdateEvent](const FTransform& Value, const FString& ContainerName, const FString& PropertyName)
+		{
+			PropertyUpdateEvent.ExecuteIfBound(Value, ContainerName, PropertyName);
+		};
+
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindTransformProperty(Cavrnus::PropertyId(ContainerName, PropertyName), propUpdateCallback);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindTransformPropertyValue(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, const CavrnusTransformFunction& OnPropertyUpdated)
+{
+	CheckErrors(SpaceConnection);
+	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindTransformProperty(Cavrnus::PropertyId(ContainerName, PropertyName), OnPropertyUpdated);
 }
 
 UCavrnusLiveTransformPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientTransformPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FTransform PropertyValue)
@@ -355,7 +453,7 @@ UCavrnusLiveTransformPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientTran
 	CheckErrors(SpaceConnection);
 
 	UCavrnusLiveTransformPropertyUpdate* res = NewObject<UCavrnusLiveTransformPropertyUpdate>();
-	res->Initialize(GetDataModel(), SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue);
+	res->Initialize(GetDataModel(), SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue);
 
 	return res;
 }
@@ -363,7 +461,8 @@ UCavrnusLiveTransformPropertyUpdate* UCavrnusFunctionLibrary::BeginTransientTran
 void UCavrnusFunctionLibrary::PostTransformPropertyUpdate(FCavrnusSpaceConnection SpaceConnection, FString ContainerName, FString PropertyName, FTransform PropertyValue)
 {
 	CheckErrors(SpaceConnection);
-	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateTransformPropMsg(SpaceConnection, GetPropId(ContainerName, PropertyName), PropertyValue));
+	int localChangeId = GetDataModel()->GetSpacePropertyModel(SpaceConnection)->SetLocalPropVal(Cavrnus::PropertyId(ContainerName, PropertyName), Cavrnus::FPropertyValue::TransformPropValue(PropertyValue));
+	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateTransformPropMsg(SpaceConnection, Cavrnus::PropertyId(ContainerName, PropertyName), PropertyValue, localChangeId));
 }
 
 #pragma endregion
@@ -389,13 +488,28 @@ UPARAM(DisplayName = "Disposable")FCavrnusBinding UCavrnusFunctionLibrary::BindS
 
 #pragma region Spawned Objects
 
-FString UCavrnusFunctionLibrary::SpawnObject(FCavrnusSpaceConnection SpaceConnection, FString UniqueIdentifier)
+UPARAM(DisplayName = "Container Name")FString UCavrnusFunctionLibrary::SpawnObject(FCavrnusSpaceConnection SpaceConnection, FString UniqueIdentifier, const FCavrnusSpawnedObjectArrived& spawnedObjectArrived)
+{
+	CheckErrors(SpaceConnection);
+
+	CavrnusSpawnedObjectFunction propUpdateCallback = [spawnedObjectArrived](const FCavrnusSpawnedObject& SpawnedOb)
+	{
+		spawnedObjectArrived.ExecuteIfBound(SpawnedOb);
+	};
+
+	return SpawnObject(SpaceConnection, UniqueIdentifier, propUpdateCallback);
+}
+
+FString UCavrnusFunctionLibrary::SpawnObject(FCavrnusSpaceConnection SpaceConnection, FString UniqueIdentifier, CavrnusSpawnedObjectFunction spawnedObjectArrived)
 {
 	CheckErrors(SpaceConnection);
 
 	FString InstanceId = CreateTransientId();
 
 	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildCreateOp(SpaceConnection, UniqueIdentifier, InstanceId));
+
+	TSharedPtr<CavrnusSpawnedObjectFunction> CallbackPtr = MakeShareable(new CavrnusSpawnedObjectFunction(spawnedObjectArrived));
+	RelayModel->ObjectCreationCallbacks.Add(InstanceId, CallbackPtr);
 
 	return InstanceId;
 }
@@ -409,9 +523,12 @@ void UCavrnusFunctionLibrary::DestroyObject(FCavrnusSpawnedObject SpawnedObject)
 
 FCavrnusSpawnedObject UCavrnusFunctionLibrary::GetIfIsSpawnedObject(FCavrnusSpaceConnection SpaceConnection, AActor* Actor)
 {
-	UGameInstance* GameInstance = Actor->GetGameInstance();
-	UCavrnusSpatialConnectorSubSystem* SpatialConnectorSubsystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>();
-	return SpatialConnectorSubsystem->GetSpawnedObject(Actor);
+	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
+	{
+		return SubProxy->GetSpawnedObject(Actor);
+	}
+
+	return 	FCavrnusSpawnedObject();
 }
 
 #pragma endregion
@@ -435,11 +552,11 @@ TArray<FCavrnusUser> UCavrnusFunctionLibrary::GetCurrentSpaceUsers(FCavrnusSpace
 void UCavrnusFunctionLibrary::AwaitLocalUser(FCavrnusSpaceConnection SpaceConnection, FCavrnusSpaceUserEvent LocalUserArrived)
 {
 	CheckErrors(SpaceConnection);
-	if (GetDataModel()->GetSpacePropertyModel(SpaceConnection)->LocalUser != nullptr) 
+	if (GetDataModel()->GetSpacePropertyModel(SpaceConnection)->LocalUser != nullptr)
 	{
 		LocalUserArrived.ExecuteIfBound(*GetDataModel()->GetSpacePropertyModel(SpaceConnection)->LocalUser);
 	}
-	else 
+	else
 	{
 		GetDataModel()->GetSpacePropertyModel(SpaceConnection)->AwaitLocalUser(LocalUserArrived);
 	}
@@ -451,7 +568,7 @@ FCavrnusBinding UCavrnusFunctionLibrary::BindSpaceUsers(FCavrnusSpaceConnection 
 	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindSpaceUsers(UserAdded, UserRemoved);
 }
 
-UPARAM(DisplayName = "Disposable") FCavrnusBinding UCavrnusFunctionLibrary::BindUserVideoFrames(FCavrnusSpaceConnection SpaceConnection, FCavrnusUser& User, FCavrnusUserVideoFrameEvent OnVideoFrameUpdate)
+UPARAM(DisplayName = "Disposable") FCavrnusBinding UCavrnusFunctionLibrary::BindUserVideoFrames(FCavrnusSpaceConnection SpaceConnection, const FCavrnusUser& User, FCavrnusUserVideoFrameEvent OnVideoFrameUpdate)
 {
 	CheckErrors(SpaceConnection);
 	return GetDataModel()->GetSpacePropertyModel(SpaceConnection)->BindUserVideoTexture(User, OnVideoFrameUpdate);

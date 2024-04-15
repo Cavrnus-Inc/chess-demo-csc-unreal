@@ -18,7 +18,7 @@ namespace Cavrnus
 
 		void SendMessage(const ServerData::RelayClientMessage& message);
 
-		const TArray<ServerData::RelayRemoteMessage> GetRecievedMessages();
+		const TArray<ServerData::RelayRemoteMessage> GetReceivedMessages();
 
 		void DoTick();
 
@@ -48,7 +48,7 @@ namespace Cavrnus
 
 		Cavrnus::RelayNetRunner			RelayNetRunner_;
 
-		std::queue<std::shared_ptr<ServerData::RelayClientMessage> > SendQueue_;
+		ServerData::RelayClientMessageBatch SendMessageBatch;
 
 		typedef std::queue<std::shared_ptr<ServerData::RelayRemoteMessage> > MessageProcessingQueue;
 		MessageProcessingQueue MessageProcessingQueue_;

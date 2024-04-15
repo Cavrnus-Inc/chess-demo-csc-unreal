@@ -21,7 +21,6 @@ USpawnedObjectsManager::~USpawnedObjectsManager()
 
 void USpawnedObjectsManager::RegisterSpawnManager(USpawnedObjectsManager* Manager)
 {
-	check(Manager->GetOuter()->IsA<UGameInstance>());
 	Instance = Manager;
 }
 
@@ -43,17 +42,13 @@ FCavrnusSpawnedObject USpawnedObjectsManager::GetSpawnedObject(AActor* Actor)
 
 void USpawnedObjectsManager::RegisterSpawnedObject(FCavrnusSpawnedObject SpawnedObject)
 {
-	UGameInstance* GameInstance = Cast<UGameInstance>(GetOuter());
-	if (!GameInstance)
+	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
+	{
+		SubProxy->SpawnCavrnusActor(SpawnedObject);
+	}
+	else
 	{
 		UE_LOG(LogCavrnusConnector, Error, TEXT("Attempting to spawn object but Game Instance not found"));
-		return;
-	}
-
-	UCavrnusSpatialConnectorSubSystem* SpatialConnectorSubsystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>();
-	if (SpatialConnectorSubsystem)
-	{
-		SpatialConnectorSubsystem->SpawnCavrnusActor(SpawnedObject);
 	}
 }
 
@@ -66,10 +61,9 @@ void USpawnedObjectsManager::UnregisterSpawnedObject(FCavrnusSpawnedObject Spawn
 		return;
 	}
 
-	UCavrnusSpatialConnectorSubSystem* SpatialConnectorSubsystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>();
-	if (SpatialConnectorSubsystem)
+	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
 	{
-		SpatialConnectorSubsystem->DestroyCavrnusActor(SpawnedObject);
+		SubProxy->DestroyCavrnusActor(SpawnedObject);
 	}
 }
 

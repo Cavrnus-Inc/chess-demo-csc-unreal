@@ -70,4 +70,6 @@ class FCavrnusConnectorEditorModule : public IModuleInterface
 		* Returns root path for the this plugin.
 		*/
 		FString GetPluginPath();
+private:
+	UClass* GetDefaultBlueprint(const FString& Path, UClass* BaseClass) const;
 };

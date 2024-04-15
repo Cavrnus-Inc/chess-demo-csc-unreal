@@ -135,7 +135,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cavrnus")
 	bool Lasers = true;
-
-private:
-	UClass* GetDefaultBlueprint(const FString& Path, UClass* BaseClass) const;
 };

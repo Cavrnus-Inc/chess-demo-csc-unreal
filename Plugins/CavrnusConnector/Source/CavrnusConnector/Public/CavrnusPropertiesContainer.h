@@ -6,7 +6,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FContainerNameUpdated, FString, NewContainerName);
 
 // Class definition
-UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
+UCLASS(BlueprintType, Blueprintable, HideCategories = (Transform, Physics, LOD, Collision, Rendering, ComponentTick), meta = (BlueprintSpawnableComponent))
 class CAVRNUSCONNECTOR_API UCavrnusPropertiesContainer : public USceneComponent
 {
 	GENERATED_BODY()

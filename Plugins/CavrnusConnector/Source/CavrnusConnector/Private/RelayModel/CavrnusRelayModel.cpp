@@ -54,10 +54,10 @@ namespace Cavrnus
 
 		interopLayer->DoTick();
 
-		auto recievedMessages = interopLayer->GetRecievedMessages();
-		for (int i = 0; i < recievedMessages.Num(); i++)
+		auto receivedMessages = interopLayer->GetReceivedMessages();
+		for (int i = 0; i < receivedMessages.Num(); i++)
 		{
-			HandleServerMsg(recievedMessages[i]);
+			HandleServerMsg(receivedMessages[i]);
 		}
 
 		if (PDFManager)
@@ -191,6 +191,12 @@ namespace Cavrnus
 		case ServerData::RelayRemoteMessage::kAllJoinableSpacesResp:
 			callbackModel->HandleServerCallback(msg.alljoinablespacesresp().reqid(), msg);
 			break;
+		case ServerData::RelayRemoteMessage::kLocalPropertyHandledResp:
+			HandleLocalPropHandledResp(msg.localpropertyhandledresp());
+			break;
+		case ServerData::RelayRemoteMessage::kPropMetadataStatus:
+			HandlePropMetadataStatus(msg.propmetadatastatus());
+			break;
 		default:
 			UE_LOG(LogCavrnusConnector, Warning, TEXT("Unhandled server message, message type: %d"), static_cast<int>(msg.Msg_case()));
 			break;
@@ -202,13 +208,13 @@ namespace Cavrnus
 		switch (message.Message_case())
 		{
 		case ServerData::StatusMessage::kLog:
-			UE_LOG(LogCavrnusConnector, Log, TEXT("%s"), message.log().c_str());
+			UE_LOG(LogCavrnusConnector, Log, TEXT("%hs"), message.log().c_str());
 			break;
 		case ServerData::StatusMessage::kWarning:
-			UE_LOG(LogCavrnusConnector, Warning, TEXT("%s"), message.warning().c_str());
+			UE_LOG(LogCavrnusConnector, Warning, TEXT("%hs"), message.warning().c_str());
 			break;
 		case ServerData::StatusMessage::kError:
-			UE_LOG(LogCavrnusConnector, Error, TEXT("%s"), message.error().c_str());
+			UE_LOG(LogCavrnusConnector, Error, TEXT("%hs"), message.error().c_str());
 			break;
 		default:
 			break;
@@ -256,6 +262,11 @@ namespace Cavrnus
 		}
 
 		SpawnedObjectsManager->RegisterSpawnedObject(SpawnedObject);
+
+		if (ObjectCreationCallbacks.Contains(SpawnedObject.PropertiesContainerName)) {
+			(*ObjectCreationCallbacks[SpawnedObject.PropertiesContainerName])(SpawnedObject);
+			ObjectCreationCallbacks.Remove(SpawnedObject.PropertiesContainerName);
+		}
 	}
 
 	void CavrnusRelayModel::HandleSpaceObjectRemoved(const ServerData::ObjectRemoved& ObjectRemoved)
@@ -290,6 +301,20 @@ namespace Cavrnus
 		}
 	}
 
+	void CavrnusRelayModel::HandleLocalPropHandledResp(const ServerData::LocalPropertyHandledResp& localPropHandled)
+	{
+		int spaceConnId = localPropHandled.spaceconn().spaceconnectionid();
+
+		if (!spacePropertyModelLookup.Contains(spaceConnId))
+			spacePropertyModelLookup.Add(spaceConnId, new SpacePropertyModel());
+
+		spacePropertyModelLookup[spaceConnId]->InvalidateLocalPropValue(PropertyId(localPropHandled.propertypath().id().c_str()), localPropHandled.localpropchangeid());
+	}
+
+	void CavrnusRelayModel::HandlePropMetadataStatus(const ServerData::PropMetadataStatus& metadataStatus)
+	{
+	}
+
 	void CavrnusRelayModel::HandleServerPropertyUpdate(const ServerData::PropertyValueStatus& propStatus)
 	{
 		int spaceConnId = propStatus.spaceconn().spaceconnectionid();
@@ -297,28 +322,34 @@ namespace Cavrnus
 		if (!spacePropertyModelLookup.Contains(spaceConnId))
 			spacePropertyModelLookup.Add(spaceConnId, new SpacePropertyModel());
 
+		const FString& propId = propStatus.propertypath().id().c_str();
+
+		FPropertyValue val;
+
 		switch (propStatus.propertyvalue().Value_case())
 		{
-		case ServerData::PropertyValue::kColorVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateColorPropVal(propStatus.propertypath().id().c_str(), Cavrnus::CavrnusProtoTranslation::ToFLinearColor(propStatus.propertyvalue().colorval()));
-			break;
-		case ServerData::PropertyValue::kBoolVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateBoolPropVal(propStatus.propertypath().id().c_str(), propStatus.propertyvalue().boolval());
-			break;
-		case ServerData::PropertyValue::kScalarVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateFloatPropVal(propStatus.propertypath().id().c_str(), propStatus.propertyvalue().scalarval());
-			break;
-		case ServerData::PropertyValue::kStringVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateStringPropVal(propStatus.propertypath().id().c_str(), propStatus.propertyvalue().stringval().c_str());
-			break;
-		case ServerData::PropertyValue::kVectorVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateVectorPropVal(propStatus.propertypath().id().c_str(), Cavrnus::CavrnusProtoTranslation::ToFVector4(propStatus.propertyvalue().vectorval()));
-			break;
-		case ServerData::PropertyValue::kTransformVal:
-			spacePropertyModelLookup[spaceConnId]->UpdateTransformPropVal(propStatus.propertypath().id().c_str(), Cavrnus::CavrnusProtoTranslation::ToFTransform(propStatus.propertyvalue().transformval()));
-			break;
-		default:
-			break;
+			case ServerData::PropertyValue::kColorVal:
+				val = FPropertyValue::ColorPropValue(Cavrnus::CavrnusProtoTranslation::ToFLinearColor(propStatus.propertyvalue().colorval()));
+				break;
+			case ServerData::PropertyValue::kBoolVal:
+				val = FPropertyValue::BoolPropValue(propStatus.propertyvalue().boolval());
+				break;
+			case ServerData::PropertyValue::kScalarVal:
+				val = FPropertyValue::FloatPropValue(propStatus.propertyvalue().scalarval());
+				break;
+			case ServerData::PropertyValue::kStringVal:
+				val = FPropertyValue::StringPropValue(propStatus.propertyvalue().stringval().c_str());
+				break;
+			case ServerData::PropertyValue::kVectorVal:
+				val = FPropertyValue::VectorPropValue(Cavrnus::CavrnusProtoTranslation::ToFVector4(propStatus.propertyvalue().vectorval()));
+				break;
+			case ServerData::PropertyValue::kTransformVal:
+				val = FPropertyValue::TransformPropValue(Cavrnus::CavrnusProtoTranslation::ToFTransform(propStatus.propertyvalue().transformval()));
+				break;
+			default:
+				break;
 		}
+
+		spacePropertyModelLookup[spaceConnId]->UpdateServerPropVal(propId, val);
 	}
 }

@@ -1,16 +1,8 @@
-C:\_Tools\1_DEV\Cavrnus-UE5.0-RelayPlugin-2023.2.469-Dev
-paul.gothard: ue - master [e76201bcee4ff967a1b6f58c02fbe617690235b8]
-Use placeholder class to swap remote avatars based on 'Movement' property
+Cavrnus-UE5.0-RelayPlugin-2023.2.524-Dev
+paul.gothard: ue - master [d2450824573aa4d036c9618377d8cd01eecf7d4e]
+Make spawned object callback optional
 
-	CavrnusPlugin/Content/AvatarStuff/BP_RemoteAvatarLoader.uasset
-	CavrnusPlugin/Content/Maps/AuthenticateWithPasswordSample.umap
-	CavrnusPlugin/Content/Maps/PerformanceTestMap.umap
-	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/BP_BasePawn.uasset
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusAvatarManager.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusPropertiesContainer.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusValueSyncBase.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/SpawnedObjectsManager.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusAvatarManager.h
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusPropertiesContainer.h
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnectorEditor/Private/CavrnusConnectorEditorModule.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusRelayModel.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusFunctionLibrary.h
 

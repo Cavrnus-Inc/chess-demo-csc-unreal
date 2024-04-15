@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "../../Public/Types/CavrnusSpaceConnection.h"
+#include "SpacePropertyModel.h"
 
 #include "CavrnusConnectorModule.h"
 
@@ -22,6 +23,8 @@ namespace ServerData
 	class ObjectAdded;
 	class ObjectRemoved;
 	class PermissionStatus;
+	class LocalPropertyHandledResp;
+	class PropMetadataStatus;
 }
 
 namespace Cavrnus
@@ -50,6 +53,8 @@ namespace Cavrnus
 		void SetPDFManager(UPDFManager* PDFManager);
 		void SendMessage(const ServerData::RelayClientMessage& msg);
 
+		CaseSensitiveMap<FString, TSharedPtr<const CavrnusSpawnedObjectFunction>> ObjectCreationCallbacks;
+
 	private:
 		CavrnusInteropLayer* interopLayer;
 		RelayCallbackModel* callbackModel;
@@ -68,6 +73,8 @@ namespace Cavrnus
 		void HandleSpaceObjectAdded(const ServerData::ObjectAdded& ObjectAdded);
 		void HandleSpaceObjectRemoved(const ServerData::ObjectRemoved& ObjectRemoved);
 		void HandlePermissionStatus(const ServerData::PermissionStatus& PermissionStatus);
+		void HandleLocalPropHandledResp(const ServerData::LocalPropertyHandledResp& localPropHandled);
+		void HandlePropMetadataStatus(const ServerData::PropMetadataStatus& metadataStatus);
 	};
 
 } // namespace CavrnusRelay

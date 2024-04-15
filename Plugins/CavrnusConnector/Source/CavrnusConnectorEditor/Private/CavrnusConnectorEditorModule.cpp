@@ -2,7 +2,7 @@
 #include "CavrnusConnectorEditorModule.h"
 #include "Interfaces/IMainFrameModule.h"
 #include "Editor/EditorEngine.h"
-#include "CavrnusEdMode.h"
+#include "CavrnusEditorMode.h"
 #include "CavrnusEditorStyle.h"
 
 #include <ContentBrowserModule.h>
@@ -29,6 +29,7 @@
 #include <Styling/SlateStyle.h>
 #include <Styling/SlateStyleRegistry.h>
 #include <Tools/Modes.h>
+#include <CavrnusSyncMaterial.h>
 
 #define LOCTEXT_NAMESPACE "CavrnusConnectorEditor"
 
@@ -135,7 +136,8 @@ void FCavrnusConnectorEditorModule::OnBlueprintChanged(UBlueprint* Blueprint)
 	TArray<USCS_Node*> NodesNeedingContainer;
 	for (USCS_Node* Node : BlueprintNodes)
 	{
-		if (!Node->ComponentTemplate->IsA<UCavrnusValueSyncBase>())
+		if (!Node->ComponentTemplate->IsA<UCavrnusValueSyncBase>()
+			&& !Node->ComponentTemplate->IsA<UCavrnusSyncMaterial>())
 		{
 			continue;
 		}
@@ -488,9 +490,9 @@ void FCavrnusConnectorEditorModule::RegisterEditorMode()
 	EditorModeTabStyle->Init(PluginPath);
 
 	// Register Editor Mode.
-	FEditorModeRegistry::Get().RegisterMode<FCavrnusEdMode>
+	FEditorModeRegistry::Get().RegisterMode<FCavrnusEditorMode>
 		(
-			FCavrnusEdMode::EM_CavrnusEditorModeID,
+			FCavrnusEditorMode::EM_CavrnusEditorModeID,
 			LOCTEXT("CavrnusEdModeName", "Cavrnus"),
 			FSlateIcon(EditorModeTabStyle->StyleName, EditorModeTabStyle->TabIcon, EditorModeTabStyle->TabIconSmall),
 			true
@@ -531,6 +533,16 @@ void FCavrnusConnectorEditorModule::AddCavrnusSpatialConnectorToLevel()
 				{
 					CavrnusSpatialConnector->SetIsSpatiallyLoaded(false);
 					CavrnusSpatialConnector->SpawnableIdentifiers = SpawnableIdentifiers;
+					CavrnusSpatialConnector->MemberLoginMenu = GetDefaultBlueprint(TEXT("/CavrnusConnector/HUD/CavrnusCore/WBP_LoginCredentials.WBP_LoginCredentials_C"), UCavrnusLoginWidget::StaticClass());
+					CavrnusSpatialConnector->GuestJoinMenu = GetDefaultBlueprint(TEXT("/CavrnusConnector/HUD/CavrnusCore/WBP_GuestLoginCredentials.WBP_GuestLoginCredentials_C"), UCavrnusGuestLoginWidget::StaticClass());
+					CavrnusSpatialConnector->SpaceJoinMenu = GetDefaultBlueprint(TEXT("/CavrnusConnector/HUD/CavrnusCore/WBP_SpaceSelection.WBP_SpaceSelection_C"), UCavrnusSpaceListWidget::StaticClass());
+					CavrnusSpatialConnector->LoadingWidgetClass = GetDefaultBlueprint(TEXT("/CavrnusConnector/HUD/WBP_LoadingWidget.WBP_LoadingWidget_C"), UUserWidget::StaticClass());
+					CavrnusSpatialConnector->RemoteAvatarClass = GetDefaultBlueprint(TEXT("/CavrnusConnector/Pawns/Blueprints/BP_TouchFlyModePawn.BP_TouchFlyModePawn_C"), AActor::StaticClass());
+					
+					TArray<TSubclassOf<UUserWidget>> WidgetsToLoad;
+					WidgetsToLoad.Add(GetDefaultBlueprint(TEXT("/CavrnusConnector/Menus/WBP_AudioVideoWidget.WBP_AudioVideoWidget_C"), UUserWidget::StaticClass()));
+					WidgetsToLoad.Add(GetDefaultBlueprint(TEXT("/CavrnusConnector/HUD/WBP_UserListWidget.WBP_UserListWidget_C"), UUserWidget::StaticClass()));
+					CavrnusSpatialConnector->WidgetsToLoad = WidgetsToLoad;
 				}
 			}
 			else
@@ -540,6 +552,18 @@ void FCavrnusConnectorEditorModule::AddCavrnusSpatialConnectorToLevel()
 
 		}
 	}
+}
+
+UClass* FCavrnusConnectorEditorModule::GetDefaultBlueprint(const FString& Path, UClass* BaseClass) const
+{
+	// Use BP as default value
+	UClass* LoadedBlueprintClass = StaticLoadClass(BaseClass, nullptr, *Path, nullptr, LOAD_None, nullptr);
+	if (!LoadedBlueprintClass)
+	{
+		UE_LOG(LogCavrnusConnectorEditor, Error, TEXT("Blueprint asset failed to load from path: %s, base class name: %s"), *Path, *BaseClass->GetName());
+	}
+
+	return LoadedBlueprintClass;
 }
 
 FString FCavrnusConnectorEditorModule::GetPluginPath()

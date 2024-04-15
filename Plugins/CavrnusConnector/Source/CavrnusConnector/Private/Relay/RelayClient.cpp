@@ -89,7 +89,7 @@ namespace Cavrnus
 		return true;
 	}
 
-	bool RelayClient::SendMessage(const ServerData::RelayClientMessage& message)
+	bool RelayClient::SendMessage(const ServerData::RelayClientMessageBatch& message)
 	{
 		if (!ClientSocket)
 		{
@@ -133,7 +133,7 @@ namespace Cavrnus
 		return true;
 	}
 
-	bool RelayClient::ReceiveMessage(ServerData::RelayRemoteMessage& message)
+	bool RelayClient::ReceiveMessage(ServerData::RelayRemoteMessageBatch& message)
 	{
 		if (!ClientSocket)
 		{
@@ -189,7 +189,7 @@ namespace Cavrnus
 		// Parse the received message
 		if (!message.ParseFromArray(MessageBuffer.data(), BytesReceived))
 		{
-			UE_LOG(LogCavrnusConnector, Error, TEXT("Failed to parse received data in RelayClient::ReceiveMessage() for message type=%d"), message.Msg_case());
+			UE_LOG(LogCavrnusConnector, Error, TEXT("Failed to parse received data in RelayClient::ReceiveMessage()"));
 			return false;
 		}
 

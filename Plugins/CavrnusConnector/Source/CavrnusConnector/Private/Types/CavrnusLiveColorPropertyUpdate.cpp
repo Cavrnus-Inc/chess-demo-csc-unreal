@@ -10,19 +10,28 @@ UCavrnusLiveColorPropertyUpdate::~UCavrnusLiveColorPropertyUpdate()
 {
 }
 
-void UCavrnusLiveColorPropertyUpdate::Initialize(Cavrnus::CavrnusRelayModel* relayModel, FCavrnusSpaceConnection spaceConn, const FString& propertyId, FLinearColor value)
+void UCavrnusLiveColorPropertyUpdate::Initialize(Cavrnus::CavrnusRelayModel* relayModel, FCavrnusSpaceConnection spaceConn, const Cavrnus::PropertyId& propertyId, FLinearColor value)
 {
 	Super::Initialize(relayModel, spaceConn, propertyId);
 
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildBeginLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::ColorPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildBeginLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }
 
 void UCavrnusLiveColorPropertyUpdate::UpdateWithNewData(FLinearColor value)
 {
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildContinueLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::ColorPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildContinueLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }
 
 void UCavrnusLiveColorPropertyUpdate::Finalize(FLinearColor value)
 {
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildFinalizeLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::ColorPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildFinalizeLiveColorUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }

@@ -61,7 +61,6 @@ void UCavrnusSyncMaterial::SetMaterialInstance_Implementation(UMaterialInstanceD
 
 void UCavrnusSyncMaterial::CreatePropertySyncComponents()
 {
-	UMaterialInterface* Material = MaterialInstance->Parent.Get();
 	for (auto PropertyComponent : SyncedPropertyComponents)
 	{
 		PropertyComponent->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
@@ -69,22 +68,23 @@ void UCavrnusSyncMaterial::CreatePropertySyncComponents()
 	}
 
 	SyncedPropertyComponents.Empty();
+	if (!MaterialInstance)
+		return;
 
 	// get the material properties
 	for (auto& MaterialParamInfo : MaterialSyncMap)
 	{
 		EMaterialParameterType ParamType = (EMaterialParameterType)MaterialParamInfo.Key;
 		TMap<FMaterialParameterInfo, FMaterialParameterMetadata> MaterialParams;
-		Material->GetAllParametersOfType(ParamType, MaterialParams);
+		MaterialInstance->GetAllParametersOfType(ParamType, MaterialParams);
 
 		// Create components for the material
 		for (auto& MaterialParam : MaterialParams)
 		{
-			// Create component
-			UCavrnusValueSyncBase* NewComponent = NewObject<UCavrnusValueSyncBase>(GetOwner(), MaterialParamInfo.Value);
+			UCavrnusValueSyncBase* NewComponent = NewObject<UCavrnusValueSyncBase>(this, MaterialParamInfo.Value);
 			check(NewComponent)
 
-				NewComponent->PropertyName = MaterialParam.Key.Name.ToString();
+			NewComponent->PropertyName = MaterialParam.Key.Name.ToString();
 			NewComponent->SendChanges = SendChanges;
 			NewComponent->RegisterComponent();
 			NewComponent->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);

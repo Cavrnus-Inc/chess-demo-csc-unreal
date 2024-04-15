@@ -43,5 +43,10 @@ FString UCavrnusConnectorSettings::GetRelayNetOptionalParameters() const
 		result = "-v";
 	}
 
+	if (RelayNetLogOutputToFile)
+	{
+		result.Append(result.IsEmpty() ? "-f" : " -f");
+	}
+
 	return result;
 }

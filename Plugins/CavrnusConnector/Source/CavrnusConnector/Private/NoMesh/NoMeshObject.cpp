@@ -30,7 +30,7 @@
 
 // Sets default values
 ANoMeshObject::ANoMeshObject(const FObjectInitializer& ObjectInitializer)
-		: Super(ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	PrimaryActorTick.bCanEverTick = false;
 
@@ -58,13 +58,13 @@ void ANoMeshObject::BeginPlay()
 	ContentMaterial = MeshComponent->GetMaterial(0);
 
 	MainRenderTarget = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-			GetWorld(), UCanvasRenderTarget2D::StaticClass(),
-			1024 * TEXT_RENDER_TARGET_RES_MULTIPLIER, 768 * TEXT_RENDER_TARGET_RES_MULTIPLIER);
+		GetWorld(), UCanvasRenderTarget2D::StaticClass(),
+		1024 * TEXT_RENDER_TARGET_RES_MULTIPLIER, 768 * TEXT_RENDER_TARGET_RES_MULTIPLIER);
 	MainRenderTarget->OnCanvasRenderTargetUpdate.AddDynamic(this, &ANoMeshObject::OnMainRenderTargetUpdated);
 
 	AnnosRenderTarget = Cast<UAnnotationCanvasRenderTarget2D>(UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-			GetWorld(), UAnnotationCanvasRenderTarget2D::StaticClass(),
-			1024 * TEXT_RENDER_TARGET_RES_MULTIPLIER, 768 * TEXT_RENDER_TARGET_RES_MULTIPLIER));
+		GetWorld(), UAnnotationCanvasRenderTarget2D::StaticClass(),
+		1024 * TEXT_RENDER_TARGET_RES_MULTIPLIER, 768 * TEXT_RENDER_TARGET_RES_MULTIPLIER));
 }
 
 void ANoMeshObject::SpaceConnected(FCavrnusSpaceConnection SpaceConn)
@@ -129,9 +129,9 @@ bool ANoMeshObject::IsAnyAnnotationRendered() const
 	TArray<UObject*> Values;
 	ObjectAnnotations.GenerateValueArray(Values);
 	UObject** RenderedAnnotation = Values.FindByPredicate(
-			[](UObject* Element) {
-				return Cast<IAnnotation>(Element)->Rendered;
-			});
+		[](UObject* Element) {
+			return Cast<IAnnotation>(Element)->Rendered;
+		});
 
 	return RenderedAnnotation != nullptr;
 }
@@ -178,14 +178,14 @@ class UObject* ANoMeshObject::CreateTextAnnotationComponent(TextAnnotationData* 
 		TextAnnotationComponent->VisibleAtFrame = Text->VisibleWithingState.Frame;
 
 		TextAnnotationComponent->SetPosition(
-				FVector2D(Text->AnchorPosition.X / AspectRatio, 1.f - Text->AnchorPosition.Y),
-				AnnosRenderTarget->GetSurfaceWidth(),
-				AnnosRenderTarget->GetSurfaceHeight());
+			FVector2D(Text->AnchorPosition.X / AspectRatio, 1.f - Text->AnchorPosition.Y),
+			AnnosRenderTarget->GetSurfaceWidth(),
+			AnnosRenderTarget->GetSurfaceHeight());
 
 		TextAnnotationComponent->SetPosition(
-				FVector2D(
-						TextAnnotationComponent->GetPosition().X,
-						TextAnnotationComponent->GetPosition().Y - AnnosRenderTarget->GetSurfaceHeight() / 30.f));
+			FVector2D(
+				TextAnnotationComponent->GetPosition().X,
+				TextAnnotationComponent->GetPosition().Y - AnnosRenderTarget->GetSurfaceHeight() / 30.f));
 
 		TextAnnotationComponent->SetTextSize(Text->Height);
 		TextAnnotationComponent->SetAnnotationText(Text->Text);
@@ -206,12 +206,12 @@ class UObject* ANoMeshObject::CreateLineAnnotationComponent(LineAnnotationData* 
 	NewLine->VisibleAtFrame = Line->VisibleWithingState.Frame;
 	NewLine->Time = Line->Time;
 	NewLine->Init(
-			Line->Points,
-			Line->Color,
-			Line->Width,
-			AnnosRenderTarget->GetSurfaceWidth(),
-			AnnosRenderTarget->GetSurfaceHeight(),
-			AspectRatio);
+		Line->Points,
+		Line->Color,
+		Line->Width,
+		AnnosRenderTarget->GetSurfaceWidth(),
+		AnnosRenderTarget->GetSurfaceHeight(),
+		AspectRatio);
 
 	return NewLine;
 }
@@ -253,13 +253,13 @@ void ANoMeshObject::SetNewComponentMaterial(FString ComponentId, UMaterialInstan
 
 void ANoMeshObject::Remove()
 {
-	UGameInstance* GameInstance = this->GetGameInstance();
-	UCavrnusSpatialConnectorSubSystem* SpatialConnectorSubsystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>();
-	FCavrnusSpawnedObject SpawnedObject = SpatialConnectorSubsystem->GetSpawnedObject(this);
-
-	if (!SpawnedObject.PropertiesContainerName.IsEmpty())
+	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
 	{
-		UCavrnusFunctionLibrary::DestroyObject(SpawnedObject);
+		FCavrnusSpawnedObject SpawnedObject = SubProxy->GetSpawnedObject(this);
+		if (!SpawnedObject.PropertiesContainerName.IsEmpty())
+		{
+			UCavrnusFunctionLibrary::DestroyObject(SpawnedObject);
+		}
 	}
 }
 

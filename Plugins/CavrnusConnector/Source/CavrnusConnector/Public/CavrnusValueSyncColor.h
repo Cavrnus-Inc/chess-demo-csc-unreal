@@ -23,11 +23,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	FLinearColor GetColor();
+	virtual FLinearColor GetColor_Implementation() { return FLinearColor::Black; }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetColor(FLinearColor PropertyValue);
+	virtual void SetColor_Implementation(FLinearColor PropertyValue) {};
 
 	UFUNCTION()
 	void ColorPropertyUpdated(FLinearColor PropertyValue);

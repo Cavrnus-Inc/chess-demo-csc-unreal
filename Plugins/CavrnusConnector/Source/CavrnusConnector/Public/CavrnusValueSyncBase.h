@@ -11,7 +11,7 @@ class UCavrnusPropertiesContainer;
 class UCavrnusLivePropertyUpdate;
 
 // Class definition
-UCLASS(BlueprintType, abstract)
+UCLASS(BlueprintType, HideCategories=(Transform, Physics, Collision, Rendering), Abstract)
 class CAVRNUSCONNECTOR_API UCavrnusValueSyncBase : public USceneComponent, public IPropertySyncInterface
 {
 	GENERATED_BODY()
@@ -27,6 +27,16 @@ public:
 
 	virtual void BeginPlay();
 	virtual void EndPlay(const EEndPlayReason::Type Reason);
+
+	/**
+	* Set the syncing flag and perform checks.
+	*/
+	virtual void StartSyncing();
+
+	/**
+	* Clear the event poll and unbind property which stops syncing the values.
+	*/
+	virtual void StopSyncing();
 
 	void OnComponentCreated() override;
 	void AutoAttachPropertiesContainer();
@@ -50,10 +60,10 @@ public:
 	UPROPERTY()
 	FString ContainerName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cavrnus")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cavrnus", meta = (ExposeOnSpawn))
 	FString PropertyName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cavrnus")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cavrnus", meta = (ExposeOnSpawn))
 	bool SendChanges = true;
 
 	bool RecvChanges = true;
@@ -67,6 +77,8 @@ protected:
 
 	UPROPERTY()
 	UCavrnusLivePropertyUpdate* liveUpdater = nullptr;
+
+	bool bSyncingValue; // Indicates if sync started or not.
 
 	FString ReportOwnerName() const;
 

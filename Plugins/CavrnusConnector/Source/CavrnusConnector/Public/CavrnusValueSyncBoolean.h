@@ -23,11 +23,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	bool GetBoolean();
+	virtual bool GetBoolean_Implementation() { return false; }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetBoolean(bool bPropertyValue);
+	virtual void SetBoolean_Implementation(bool bPropertyValue) {}
 
 	UFUNCTION()
 	void BooleanPropertyUpdated(bool bPropertyValue);

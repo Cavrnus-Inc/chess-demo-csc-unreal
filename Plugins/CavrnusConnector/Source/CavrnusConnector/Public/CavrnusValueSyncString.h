@@ -23,11 +23,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	FString GetString();
+	virtual FString GetString_Implementation() { return ""; }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetString(const FString& PropertyValue);
+	virtual void SetString_Implementation(const FString& PropertyValue) {}
 
 	UFUNCTION()
 	void StringPropertyUpdated(FString PropertyValue);

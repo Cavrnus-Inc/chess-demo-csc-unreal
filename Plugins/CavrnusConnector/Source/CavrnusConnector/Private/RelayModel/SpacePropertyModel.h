@@ -3,6 +3,8 @@
 #include <Containers/Map.h>
 #include "../../Public/Types/CavrnusBinding.h"
 #include "../../Public/Types/CavrnusCallbackTypes.h"
+#include "PropertyId.h"
+#include "CavrnusPropertyValue.h"
 
 namespace Cavrnus
 {
@@ -31,27 +33,25 @@ namespace Cavrnus
 		SpacePropertyModel();
 		virtual ~SpacePropertyModel();
 
-		void UpdateStringPropVal(FString fullPropertyId, FString value);
-		void UpdateBoolPropVal(FString fullPropertyId, bool value);
-		void UpdateFloatPropVal(FString fullPropertyId, float value);
-		void UpdateColorPropVal(FString fullPropertyId, FLinearColor value);
-		void UpdateVectorPropVal(FString fullPropertyId, FVector4 value);
-		void UpdateTransformPropVal(FString fullPropertyId, FTransform value);
+		void UpdateServerPropVal(PropertyId fullPropertyId, FPropertyValue value);
+		int SetLocalPropVal(PropertyId fullPropertyId, FPropertyValue value);
+		void InvalidateLocalPropValue(PropertyId fullPropertyId, int propValidationId);
+		void UpdatePropMetadata(PropertyId fullPropertyId, bool isReadonly);
 
-		FCavrnusBinding BindStringProperty(FString fullPropertyId, FStringPropertyUpdated callback);
-		FCavrnusBinding BindBoolProperty(FString fullPropertyId, FBoolPropertyUpdated callback);
-		FCavrnusBinding BindFloatProperty(FString fullPropertyId, FFloatPropertyUpdated callback);
-		FCavrnusBinding BindColorProperty(FString fullPropertyId, FColorPropertyUpdated callback);
-		FCavrnusBinding BindVectorProperty(FString fullPropertyId, FVectorPropertyUpdated callback);
-		FCavrnusBinding BindTransformProperty(FString fullPropertyId, FTransformPropertyUpdated callback);
-		FCavrnusBinding BindUserVideoTexture(FCavrnusUser& User, FCavrnusUserVideoFrameEvent callback);
+		FCavrnusBinding BindStringProperty(PropertyId fullPropertyId, const CavrnusStringFunction& callback);
+		FCavrnusBinding BindBoolProperty(PropertyId fullPropertyId, const CavrnusBoolFunction& callback);
+		FCavrnusBinding BindFloatProperty(PropertyId fullPropertyId, const CavrnusFloatFunction& callback);
+		FCavrnusBinding BindColorProperty(PropertyId fullPropertyId, const CavrnusColorFunction& callback);
+		FCavrnusBinding BindVectorProperty(PropertyId fullPropertyId, const CavrnusVectorFunction& callback);
+		FCavrnusBinding BindTransformProperty(PropertyId fullPropertyId, const CavrnusTransformFunction& callback);
+		FCavrnusBinding BindUserVideoTexture(const FCavrnusUser& User, FCavrnusUserVideoFrameEvent callback);
 
-		FString GetStringPropValue(FString fullPropertyId);
-		bool GetBoolPropValue(FString fullPropertyId);
-		float GetFloatPropValue(FString fullPropertyId);
-		FLinearColor GetColorPropValue(FString fullPropertyId);
-		FVector4 GetVectorPropValue(FString fullPropertyId);
-		FTransform GetTransformPropValue(FString fullPropertyId);
+		FString GetStringPropValue(PropertyId fullPropertyId);
+		bool GetBoolPropValue(PropertyId fullPropertyId);
+		float GetFloatPropValue(PropertyId fullPropertyId);
+		FLinearColor GetColorPropValue(PropertyId fullPropertyId);
+		FVector4 GetVectorPropValue(PropertyId fullPropertyId);
+		FTransform GetTransformPropValue(PropertyId fullPropertyId);
 
 		void AddSpaceUser(FCavrnusUser user);
 		void RemoveSpaceUser(FString userId);
@@ -64,21 +64,22 @@ namespace Cavrnus
 		FCavrnusUser* LocalUser;
 
 	private:
-		CaseSensitiveMap<FString, bool> CurrDefinedProps;
+		TMap<PropertyId, bool> CurrDefinedProps;
 
-		CaseSensitiveMap<FString, FString> CurrStringPropValues;
-		CaseSensitiveMap<FString, bool> CurrBoolPropValues;
-		CaseSensitiveMap<FString, float> CurrFloatPropValues;
-		CaseSensitiveMap<FString, FLinearColor> CurrColorPropValues;
-		CaseSensitiveMap<FString, FVector4> CurrVectorPropValues;
-		CaseSensitiveMap<FString, FTransform> CurrTransformPropValues;
+		TMap<PropertyId, FPropertyValue> CurrServerPropValues;
+		TMap<PropertyId, FPropertyValue> CurrLocalPropValues;
 
-		CaseSensitiveMap<FString, TArray<FStringPropertyUpdated>> StringPropBindings;
-		CaseSensitiveMap<FString, TArray<FBoolPropertyUpdated>> BoolPropBindings;
-		CaseSensitiveMap<FString, TArray<FFloatPropertyUpdated>> FloatPropBindings;
-		CaseSensitiveMap<FString, TArray<FColorPropertyUpdated>> ColorPropBindings;
-		CaseSensitiveMap<FString, TArray<FVectorPropertyUpdated>> VectorPropBindings;
-		CaseSensitiveMap<FString, TArray<FTransformPropertyUpdated>> TransformPropBindings;
+		TMap<PropertyId, bool> CurrPropReadonlyMetadata;
+
+		int validationIdIncrementer = 0;
+		TMap<PropertyId, int> LocalPropValidationIds;
+				
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusStringFunction>>> StringPropBindings;
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusBoolFunction>>> BoolPropBindings;
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusFloatFunction>>> FloatPropBindings;
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusColorFunction>>> ColorPropBindings;
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusVectorFunction>>> VectorPropBindings;
+		TMap<PropertyId, TArray<TSharedPtr<const CavrnusTransformFunction>>> TransformPropBindings;
 
 		TArray<FCavrnusSpaceUserEvent> LocalUserArrivedCallbacks;
 
@@ -86,6 +87,10 @@ namespace Cavrnus
 		TArray<FCavrnusSpaceUserEvent> UserRemovedBindings;
 
 		TMap<FString, TArray<FCavrnusUserVideoFrameEvent>> UserVideoFrameBindings;
+
+		FPropertyValue GetCurrentPropValue(PropertyId fullPropertyId);
+		void TryExecPropBindings(PropertyId fullPropertyId);
+		bool PropValueExists(PropertyId fullPropertyId);
 
 		FString GetContainerName(FString fullPropId)
 		{

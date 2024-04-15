@@ -23,11 +23,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	float GetFloat();
+	virtual float GetFloat_Implementation() { return 0.0; }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetFloat(float PropertyValue);
+	virtual void SetFloat_Implementation(float PropertyValue) {};
 
 	UFUNCTION()
 	void FloatPropertyUpdated(float PropertyValue);

@@ -23,20 +23,34 @@ UCavrnusValueSyncBase::~UCavrnusValueSyncBase()
 void UCavrnusValueSyncBase::BeginPlay()
 {
 	Super::BeginPlay();
-
-	ensureAlwaysMsgf(!PropertyName.IsEmpty(), TEXT("Component: %s, Owner: %s - PropertyName not set"), *GetName(), *ReportOwnerName());
+	StartSyncing();
 }
 
 void UCavrnusValueSyncBase::EndPlay(EEndPlayReason::Type EndPlayReason)
 {
-	if (UWorld* World = GetWorld())
+	StopSyncing();
+	Super::EndPlay(EndPlayReason);
+}
+
+void UCavrnusValueSyncBase::StartSyncing()
+{
+	ensureAlwaysMsgf(!PropertyName.IsEmpty(), TEXT("Component: %s, Owner: %s - PropertyName not set"), *GetName(), *ReportOwnerName());
+	bSyncingValue = true;
+}
+
+void UCavrnusValueSyncBase::StopSyncing()
+{
+	if (bSyncingValue)
 	{
-		World->GetTimerManager().ClearTimer(PollTimer);
+		if (UWorld* World = GetWorld())
+		{
+			World->GetTimerManager().ClearTimer(PollTimer);
+		}
+
+		UCavrnusFunctionLibrary::Unbind(PropertyBinding);
 	}
 
-	UCavrnusFunctionLibrary::Unbind(PropertyBinding);
-
-	Super::EndPlay(EndPlayReason);
+	bSyncingValue = false;
 }
 
 // Overridden to automatically force the owning actor to
@@ -47,7 +61,7 @@ void UCavrnusValueSyncBase::EndPlay(EEndPlayReason::Type EndPlayReason)
 void UCavrnusValueSyncBase::OnComponentCreated()
 {
 	Super::OnComponentCreated();
-	
+
 	AutoAttachPropertiesContainer();
 }
 
@@ -93,7 +107,7 @@ bool UCavrnusValueSyncBase::ShouldAutoAddPropertiesContainer() const
 
 				return ParentChildren.FilterByPredicate([](USceneComponent* SceneComponent) {
 					return SceneComponent->IsA<UCavrnusPropertiesContainer>();
-				}).IsEmpty();
+					}).IsEmpty();
 			}
 		}
 	}
@@ -127,7 +141,7 @@ FString UCavrnusValueSyncBase::GetGeneratedContainerName() const
 	{
 		FString ActorClassName = Owner->GetClass()->GetName();
 		ActorClassName.RemoveFromEnd(TEXT("_C"));
-		PropertiesContainerName =  ActorClassName + "/" + PropertiesContainerName;
+		PropertiesContainerName = ActorClassName + "/" + PropertiesContainerName;
 	}
 
 	return PropertiesContainerName;

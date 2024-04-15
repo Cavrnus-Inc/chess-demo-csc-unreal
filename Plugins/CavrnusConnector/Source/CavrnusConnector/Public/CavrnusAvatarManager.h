@@ -27,7 +27,7 @@ public:
 	UFUNCTION()
 	void OnUserLeft(FCavrnusUser User);
 
-	UFUNCTION(BlueprintCallable, Category="Cavrnus")
+	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
 	void SwapAvatars(FCavrnusUser User, TSubclassOf<class AActor> AvatarClass);
 
 	UFUNCTION(BlueprintCallable, Category = "Cavrnus")

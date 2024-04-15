@@ -16,7 +16,7 @@ namespace Cavrnus
 		, Status_(ConnectionStatus::eSTATUS_INIT)
 		, Stop_(false)
 	{
-		//Launch listener thread and have it write to recievedMessages
+		//Launch listener thread and have it write to receivedMessages
 		if (Client_.CreateListenSocket())
 		{
 			SetStatus(ConnectionStatus::eSTATUS_CONNECTED);
@@ -83,13 +83,13 @@ namespace Cavrnus
 		//send queue is lock free but only one thread can send message at a time
 		std::lock_guard<std::mutex> lock(Send_mutex_);
 
-		std::unique_ptr<ServerData::RelayClientMessage> msgPtr(new ServerData::RelayClientMessage(message));
-		SendQueue_.push(std::move(msgPtr));
+		ServerData::RelayClientMessage* BatchMessage = SendMessageBatch.add_messages();
+		BatchMessage->CopyFrom(message);
 	}
 
 
 	//===============================================================
-	const TArray<ServerData::RelayRemoteMessage> CavrnusInteropLayer::GetRecievedMessages()
+	const TArray<ServerData::RelayRemoteMessage> CavrnusInteropLayer::GetReceivedMessages()
 	{
 		std::lock_guard<std::mutex> lock(Receive_mutex_);
 
@@ -141,20 +141,16 @@ namespace Cavrnus
 				SendKeepAlive();
 			}
 
-			std::shared_ptr<ServerData::RelayClientMessage> sendMessage;
-			// Check if there are any messages in the send queue
-			while (!SendQueue_.empty() && !Stop_)
+			//std::shared_ptr<ServerData::RelayClientMessage> sendMessage;
+			if (SendMessageBatch.messages_size() > 0)
 			{
-				{//take the message so the lock is free on sendMessage()
-					std::lock_guard<std::mutex> lock(Send_mutex_);
-
-					sendMessage = SendQueue_.front();
-					SendQueue_.pop();
-				}
-
+				// lock the message queue while we're processing it
+				std::lock_guard<std::mutex> lock(Send_mutex_);
+				
 				// Send the message to the server
-				Client_.SendMessage(*sendMessage);
+				Client_.SendMessage(SendMessageBatch);
 
+				SendMessageBatch.clear_messages();
 			}
 
 			// Sleep for a short time to avoid busy-waiting
@@ -169,12 +165,15 @@ namespace Cavrnus
 		while (!Stop_)
 		{
 			// Receive a message from the server
-			ServerData::RelayRemoteMessage response;
+			ServerData::RelayRemoteMessageBatch response;
 			if (Client_.ReceiveMessage(response))
 			{
 				std::lock_guard<std::mutex> lock(Receive_mutex_);
 
-				MessageProcessingQueue_.push(std::make_shared<ServerData::RelayRemoteMessage>(response));
+				for (int i = 0; i < response.messages_size(); i++)
+				{
+					MessageProcessingQueue_.push(std::make_shared<ServerData::RelayRemoteMessage>(response.messages(i)));
+				}
 			}
 			else
 			{
@@ -203,7 +202,13 @@ namespace Cavrnus
 			// \todo fix for packaged builds
 			FString exeLocation = FPaths::Combine(GetPluginPath(), TEXT("Source"), TEXT("CavrnusConnector")) / settings->RelayNetExecutableRelativeLocation;
 
-			if (RelayNetRunner_.startService(Client_.GetServerPort(), TCHAR_TO_UTF8(*exeLocation), TCHAR_TO_UTF8(*settings->GetRelayNetOptionalParameters())))
+#if UE_BUILD_SHIPPING
+			bool bSilent = true;
+#else
+			bool bSilent = settings->RelayNetSilent;
+#endif
+
+			if (RelayNetRunner_.startService(Client_.GetServerPort(), bSilent, TCHAR_TO_UTF8(*exeLocation), TCHAR_TO_UTF8(*settings->GetRelayNetOptionalParameters())))
 			{
 				RelayNetRunner_.runAsync();
 				ServiceIsStarted = true;

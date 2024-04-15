@@ -10,12 +10,13 @@
 #include "PDFManager.h"
 #include "CavrnusConnectorModule.h"
 #include "CavrnusSpatialConnectorSubSystem.h"
-#include <HAL/PlatformFileManager.h>
+#include "CavrnusFunctionLibrary.h"
 
+#include <HAL/PlatformFileManager.h>
 #include <Async/Async.h>
 
 APDFBoard::APDFBoard(const FObjectInitializer& ObjectInitializer)
-		: ABoardObject(ObjectInitializer)
+	: ABoardObject(ObjectInitializer)
 {
 	// Create default widget components.
 	WidgetDeclarations = {
@@ -38,12 +39,12 @@ void APDFBoard::CreateContent(const FString& ContentPath)
 
 	// Generate new sub folder for PDF
 	FString TempSubDir;
-	do 
+	do
 	{
 		FString SubDirName = FGuid::NewGuid().ToString();
 		TempSubDir = FPaths::Combine(TempDir, SubDirName);
 	} while (PlatformFile.DirectoryExists(*TempSubDir));
-	
+
 	if (!PlatformFile.CreateDirectory(*TempSubDir))
 	{
 		UE_LOG(LogCavrnusConnector, Error, TEXT("PDF conversion - failed to create temp folder: %s"), *TempSubDir);
@@ -61,9 +62,9 @@ void APDFBoard::CreateContent(const FString& ContentPath)
 	CurrentPage = 1;
 	DecryptedContentPath = TempFilePath;
 
-	if(UGameInstance* GameInstance = GetGameInstance())
+	if (UGameInstance* GameInstance = GetGameInstance())
 	{
-		if (UCavrnusSpatialConnectorSubSystem* SubSystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>())
+		if (UCavrnusSpatialConnectorSubSystemProxy* SubSystem = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
 		{
 			if (UPDFManager* PDM = SubSystem->GetPDFManager())
 			{
@@ -120,7 +121,7 @@ void APDFBoard::ChangeToRequestedPage()
 	AsyncTask(ENamedThreads::GameThread, [this]() {
 		UpdateResources();
 		MarkDirty();
-	});
+		});
 }
 
 void APDFBoard::OnActionReceived(FString Action)
@@ -181,6 +182,6 @@ void APDFBoard::OnPDFConverted(class UPDF* Asset)
 		PDFAction->SetPagesCount(Pages.Num());
 		PDFAction->SetCurrentPage(CurrentPage);
 	}
-	
+
 	DestroyDecryptedResources(DecryptedContentPath);
 }

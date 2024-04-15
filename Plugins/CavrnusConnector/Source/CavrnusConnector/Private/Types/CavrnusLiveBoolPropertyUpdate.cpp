@@ -10,19 +10,28 @@ UCavrnusLiveBoolPropertyUpdate::~UCavrnusLiveBoolPropertyUpdate()
 {
 }
 
-void UCavrnusLiveBoolPropertyUpdate::Initialize(Cavrnus::CavrnusRelayModel* relayModel, FCavrnusSpaceConnection spaceConn, const FString& propertyId, bool value)
+void UCavrnusLiveBoolPropertyUpdate::Initialize(Cavrnus::CavrnusRelayModel* relayModel, FCavrnusSpaceConnection spaceConn, const Cavrnus::PropertyId& propertyId, bool value)
 {
 	Super::Initialize(relayModel, spaceConn, propertyId);
 
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildBeginLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::BoolPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildBeginLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }
 
 void UCavrnusLiveBoolPropertyUpdate::UpdateWithNewData(bool value)
 {
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildContinueLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::BoolPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildContinueLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }
 
 void UCavrnusLiveBoolPropertyUpdate::Finalize(bool value)
 {
-	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildFinalizeLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value));
+	int localChangeId = RelayModel->GetSpacePropertyModel(SpaceConn)->SetLocalPropVal(PropertyId, Cavrnus::FPropertyValue::BoolPropValue(value));
+	RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildFinalizeLiveBoolUpdateMsg(SpaceConn, LiveUpdaterId, PropertyId, value, localChangeId));
+
+	lastUpdatedTimeMs = FPlatformTime::ToMilliseconds(FPlatformTime::Cycles());
 }

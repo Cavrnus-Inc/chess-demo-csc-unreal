@@ -16,8 +16,8 @@ namespace Cavrnus
 		bool CreateListenSocket();
 		bool Connect();
 
-		bool SendMessage(const ServerData::RelayClientMessage& message);
-		bool ReceiveMessage(ServerData::RelayRemoteMessage& message);
+		bool SendMessage(const ServerData::RelayClientMessageBatch& message);
+		bool ReceiveMessage(ServerData::RelayRemoteMessageBatch& message);
 
 		void Disconnect();
 

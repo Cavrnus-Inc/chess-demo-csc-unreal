@@ -22,11 +22,13 @@ public:
 	virtual void BeginPlay();
 	virtual void EndPlay(EEndPlayReason::Type Reason);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	FVector GetVector();
+	virtual FVector GetVector_Implementation() { return FVector(); }
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void SetVector(FVector PropertyValue);
+	virtual void SetVector_Implementation(FVector PropertyValue) {}
 
 	UFUNCTION()
 	void VectorPropertyUpdated(FVector PropertyValue);

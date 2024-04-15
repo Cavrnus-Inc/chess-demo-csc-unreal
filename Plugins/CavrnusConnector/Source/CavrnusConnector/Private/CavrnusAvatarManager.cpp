@@ -126,17 +126,14 @@ AActor* UCavrnusAvatarManager::SpawnNewAvatar(TSubclassOf<class AActor> AvatarCl
 
 TSubclassOf<AActor> UCavrnusAvatarManager::GetRemoteAvatarClass() const
 {
-	UGameInstance* GameInstance = GetWorld()->GetGameInstance();
-	UCavrnusSpatialConnectorSubSystem* CavrnusSubSystem = GameInstance->GetSubsystem<UCavrnusSpatialConnectorSubSystem>();
-
 	TSubclassOf<AActor> RemoteAvatarClass = nullptr;
-	if (CavrnusSubSystem)
+	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
 	{
-		ACavrnusSpatialConnector* CavrnusSpatialConnector = CavrnusSubSystem->GetCavrnusSpatialConnector();
-		if (CavrnusSpatialConnector)
+		if (ACavrnusSpatialConnector* CavrnusSpatialConnector = SubProxy->GetCavrnusSpatialConnector())
 		{
 			RemoteAvatarClass = CavrnusSpatialConnector->RemoteAvatarClass;
 		}
 	}
+
 	return RemoteAvatarClass;
 }

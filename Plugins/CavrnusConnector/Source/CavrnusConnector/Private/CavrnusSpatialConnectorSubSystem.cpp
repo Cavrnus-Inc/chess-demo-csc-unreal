@@ -10,50 +10,58 @@
 #include "TimerManager.h"
 #include "Engine/World.h" 
 
-UCavrnusSpatialConnectorSubSystem::UCavrnusSpatialConnectorSubSystem()
+UCavrnusSpatialConnectorSubSystemProxy::UCavrnusSpatialConnectorSubSystemProxy()
 {
+	ObjectOwner = GetTransientPackage();
 }
 
 
-UCavrnusSpatialConnectorSubSystem::~UCavrnusSpatialConnectorSubSystem()
+UCavrnusSpatialConnectorSubSystemProxy::~UCavrnusSpatialConnectorSubSystemProxy()
 {
 	AvatarManager = nullptr;
 	SpawnedObjectsManager = nullptr;
 	PDFManager = nullptr;
 }
 
-void UCavrnusSpatialConnectorSubSystem::Initialize(FSubsystemCollectionBase& Collection)
+void UCavrnusSpatialConnectorSubSystemProxy::Initialize()
 {
-	Super::Initialize(Collection);
-
-	AuthSuccess.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystem, OnAuthSuccess));
-	AuthFailure.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystem, OnAuthFailure));
-	SpaceConnectionSuccess.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystem, OnSpaceConnectionSuccess));
-	SpaceConnectionFailure.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystem, OnSpaceConnectionFailure));
+	AuthSuccess.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnAuthSuccess));
+	AuthFailure.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnAuthFailure));
+	SpaceConnectionSuccess.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnSpaceConnectionSuccess));
+	SpaceConnectionFailure.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnSpaceConnectionFailure));
 
 	GetSpawnedObjectsManager();
 }
 
-void UCavrnusSpatialConnectorSubSystem::Deinitialize()
+void UCavrnusSpatialConnectorSubSystemProxy::Deinitialize()
 {
 	AvatarManager = nullptr;
 	SpawnedObjectsManager = nullptr;
 	PDFManager = nullptr;
 	UCavrnusFunctionLibrary::KillDataModel();
-	Super::Deinitialize();
 }
 
-void UCavrnusSpatialConnectorSubSystem::RegisterCavrnusSpatialConnector(ACavrnusSpatialConnector* CavrnusSpatialConnector)
+void UCavrnusSpatialConnectorSubSystemProxy::SetObjectOwner(UObject* Owner)
+{
+	ObjectOwner = Owner;
+}
+
+void UCavrnusSpatialConnectorSubSystemProxy::SetGameInstance(UGameInstance* GInstance)
+{
+	GameInstance = GInstance;
+}
+
+void UCavrnusSpatialConnectorSubSystemProxy::RegisterCavrnusSpatialConnector(ACavrnusSpatialConnector* CavrnusSpatialConnector)
 {
 	CurrentCavrnusSpatialConnector = CavrnusSpatialConnector;
 }
 
-ACavrnusSpatialConnector* UCavrnusSpatialConnectorSubSystem::GetCavrnusSpatialConnector() const
+ACavrnusSpatialConnector* UCavrnusSpatialConnectorSubSystemProxy::GetCavrnusSpatialConnector() const
 {
 	return CurrentCavrnusSpatialConnector.Get();
 }
 
-void UCavrnusSpatialConnectorSubSystem::AuthenticateAndJoin()
+void UCavrnusSpatialConnectorSubSystemProxy::AuthenticateAndJoin()
 {
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 	if (!CavrnusSpatialConnector)
@@ -71,7 +79,7 @@ void UCavrnusSpatialConnectorSubSystem::AuthenticateAndJoin()
 					CavrnusSpatialConnector->GuestName,
 					AuthSuccess, AuthFailure);
 			}
-			else if(CavrnusSpatialConnector->GuestLoginMethod == ECavrnusGuestLoginMethod::PromptToEnterName)
+			else if (CavrnusSpatialConnector->GuestLoginMethod == ECavrnusGuestLoginMethod::PromptToEnterName)
 			{
 				ShowGuestLoginWidget();
 			}
@@ -111,11 +119,11 @@ void UCavrnusSpatialConnectorSubSystem::AuthenticateAndJoin()
 
 	if (!AvatarManager)
 	{
-		AvatarManager = NewObject<UCavrnusAvatarManager>(GetGameInstance());
+		AvatarManager = NewObject<UCavrnusAvatarManager>(ObjectOwner);
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnAuthSuccess(FCavrnusAuthentication Auth)
+void UCavrnusSpatialConnectorSubSystemProxy::OnAuthSuccess(FCavrnusAuthentication Auth)
 {
 	Authentication = Auth;
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
@@ -141,7 +149,7 @@ void UCavrnusSpatialConnectorSubSystem::OnAuthSuccess(FCavrnusAuthentication Aut
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnAuthFailure(FString ErrorMessage)
+void UCavrnusSpatialConnectorSubSystemProxy::OnAuthFailure(FString ErrorMessage)
 {
 	Authentication = FCavrnusAuthentication();
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
@@ -156,18 +164,17 @@ void UCavrnusSpatialConnectorSubSystem::OnAuthFailure(FString ErrorMessage)
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnSpaceConnectionSuccess(FCavrnusSpaceConnection SpaceConnection)
+void UCavrnusSpatialConnectorSubSystemProxy::OnSpaceConnectionSuccess(FCavrnusSpaceConnection SpaceConnection)
 {
 	bHasSpaceConnection = true;
 
 	// Listen for future controller or pawn changes
-	UGameInstance* GameInstance = GetGameInstance();
 	if (GameInstance)
 	{
-		GameInstance->GetOnPawnControllerChanged().AddDynamic(this, &UCavrnusSpatialConnectorSubSystem::OnPawnControllerChanged);
+		GameInstance->GetOnPawnControllerChanged().AddDynamic(this, &UCavrnusSpatialConnectorSubSystemProxy::OnPawnControllerChanged);
 		if (APlayerController* PlayerController = GameInstance->GetFirstLocalPlayerController())
 		{
-			PlayerController->OnPossessedPawnChanged.AddDynamic(this, &UCavrnusSpatialConnectorSubSystem::OnPossessedPawnChanged);
+			PlayerController->OnPossessedPawnChanged.AddDynamic(this, &UCavrnusSpatialConnectorSubSystemProxy::OnPossessedPawnChanged);
 		}
 	}
 
@@ -188,7 +195,7 @@ void UCavrnusSpatialConnectorSubSystem::OnSpaceConnectionSuccess(FCavrnusSpaceCo
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnPawnControllerChanged(APawn* InPawn, AController* InController)
+void UCavrnusSpatialConnectorSubSystemProxy::OnPawnControllerChanged(APawn* InPawn, AController* InController)
 {
 	if (InController && InController->IsLocalPlayerController() && InPawn)
 	{
@@ -196,7 +203,7 @@ void UCavrnusSpatialConnectorSubSystem::OnPawnControllerChanged(APawn* InPawn, A
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnPossessedPawnChanged(APawn* OldPawn, APawn* NewPawn)
+void UCavrnusSpatialConnectorSubSystemProxy::OnPossessedPawnChanged(APawn* OldPawn, APawn* NewPawn)
 {
 	if (NewPawn)
 	{
@@ -209,16 +216,15 @@ void UCavrnusSpatialConnectorSubSystem::OnPossessedPawnChanged(APawn* OldPawn, A
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::AttachLocalUserComponentToPawn()
+void UCavrnusSpatialConnectorSubSystemProxy::AttachLocalUserComponentToPawn()
 {
-	UGameInstance* GameInstance = GetGameInstance();
-	if (!GameInstance)
+	if (GameInstance == nullptr)
 	{
 		return;
 	}
 
 	APlayerController* PlayerController = GameInstance->GetFirstLocalPlayerController();
-	if (!PlayerController)
+	if (PlayerController == nullptr)
 	{
 		return;
 	}
@@ -240,38 +246,40 @@ void UCavrnusSpatialConnectorSubSystem::AttachLocalUserComponentToPawn()
 	}
 }
 
-UUserWidget* UCavrnusSpatialConnectorSubSystem::SpawnWidget(TSubclassOf<UUserWidget> WidgetClass)
+UUserWidget* UCavrnusSpatialConnectorSubSystemProxy::SpawnWidget(TSubclassOf<UUserWidget> WidgetClass)
 {
+	if (GameInstance == nullptr)
+	{
+		return nullptr; // For now ui only spawns in game.
+	}
+
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 	if ((CavrnusSpatialConnector->WidgetsToLoad.Contains(WidgetClass)) || (WidgetClass == CavrnusSpatialConnector->LoadingWidgetClass))
 	{
-		if (UGameInstance* GameInstance = GetGameInstance())
+		UUserWidget* CreatedWidget = CreateWidget<UUserWidget>(GameInstance, WidgetClass);
+		if (CreatedWidget)
 		{
-			UUserWidget* CreatedWidget = CreateWidget<UUserWidget>(GameInstance, WidgetClass);
-			if (CreatedWidget)
-			{
-				CreatedWidget->AddToViewport();
-			}
-
-			return CreatedWidget;
+			CreatedWidget->AddToViewport();
 		}
+
+		return CreatedWidget;
 	}
 
 	return nullptr;
 }
 
-void UCavrnusSpatialConnectorSubSystem::OnSpaceConnectionFailure(FString ErrorMessage)
+void UCavrnusSpatialConnectorSubSystemProxy::OnSpaceConnectionFailure(FString ErrorMessage)
 {
 	bHasSpaceConnection = false;
 
 	UE_LOG(LogCavrnusConnector, Error, TEXT("Failed to join space, error: %s"), *ErrorMessage);
 }
 
-UCavrnusAvatarManager* UCavrnusSpatialConnectorSubSystem::GetAvatarManager() {
+UCavrnusAvatarManager* UCavrnusSpatialConnectorSubSystemProxy::GetAvatarManager() {
 	return AvatarManager;
 }
 
-void UCavrnusSpatialConnectorSubSystem::AttemptToJoinSpace(FString JoinSpaceId)
+void UCavrnusSpatialConnectorSubSystemProxy::AttemptToJoinSpace(FString JoinSpaceId)
 {
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 	if (CavrnusSpatialConnector->LoadingWidgetClass)
@@ -283,7 +291,7 @@ void UCavrnusSpatialConnectorSubSystem::AttemptToJoinSpace(FString JoinSpaceId)
 	UCavrnusFunctionLibrary::JoinSpace(JoinSpaceId, SpaceConnectionSuccess, SpaceConnectionFailure);
 }
 
-void UCavrnusSpatialConnectorSubSystem::ShowGuestLoginWidget()
+void UCavrnusSpatialConnectorSubSystemProxy::ShowGuestLoginWidget()
 {
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 	if (UWorld* World = GetWorld())
@@ -300,7 +308,7 @@ void UCavrnusSpatialConnectorSubSystem::ShowGuestLoginWidget()
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::ShowLoginWidget()
+void UCavrnusSpatialConnectorSubSystemProxy::ShowLoginWidget()
 {
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 
@@ -319,22 +327,22 @@ void UCavrnusSpatialConnectorSubSystem::ShowLoginWidget()
 	}
 }
 
-USpawnedObjectsManager* UCavrnusSpatialConnectorSubSystem::GetSpawnedObjectsManager()
+USpawnedObjectsManager* UCavrnusSpatialConnectorSubSystemProxy::GetSpawnedObjectsManager()
 {
 	if (!SpawnedObjectsManager)
 	{
-		SpawnedObjectsManager = NewObject<USpawnedObjectsManager>(GetGameInstance());
+		SpawnedObjectsManager = NewObject<USpawnedObjectsManager>(ObjectOwner);
 		USpawnedObjectsManager::RegisterSpawnManager(SpawnedObjectsManager);
 	}
 
 	return SpawnedObjectsManager;
 }
 
-UPDFManager* UCavrnusSpatialConnectorSubSystem::GetPDFManager()
+UPDFManager* UCavrnusSpatialConnectorSubSystemProxy::GetPDFManager()
 {
 	if (!PDFManager)
 	{
-		PDFManager = NewObject<UPDFManager>(GetGameInstance());
+		PDFManager = NewObject<UPDFManager>(ObjectOwner);
 		PDFManager->Init();
 		UCavrnusFunctionLibrary::GetDataModel()->SetPDFManager(PDFManager);
 	}
@@ -342,7 +350,7 @@ UPDFManager* UCavrnusSpatialConnectorSubSystem::GetPDFManager()
 	return PDFManager;
 }
 
-void UCavrnusSpatialConnectorSubSystem::SpawnCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject)
+void UCavrnusSpatialConnectorSubSystemProxy::SpawnCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject)
 {
 	if (ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector())
 	{
@@ -352,12 +360,16 @@ void UCavrnusSpatialConnectorSubSystem::SpawnCavrnusActor(const FCavrnusSpawnedO
 			FTimerDelegate Delegate;
 			Delegate.BindUFunction(SpawnedObjectManager, "SpawnCavrnusActor", SpawnedObject, CavrnusSpatialConnector);
 
-			GetWorld()->GetTimerManager().SetTimer(UnusedHandle, Delegate, .1f, false);
+			if (UWorld* World = GetWorld())
+			{
+				FTimerManager& TimeMan = World->GetTimerManager();
+				TimeMan.SetTimer(UnusedHandle, Delegate, .1f, false);
+			}
 		}
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystem::DestroyCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject)
+void UCavrnusSpatialConnectorSubSystemProxy::DestroyCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject)
 {
 	if (ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector())
 	{
@@ -365,7 +377,7 @@ void UCavrnusSpatialConnectorSubSystem::DestroyCavrnusActor(const FCavrnusSpawne
 	}
 }
 
-FCavrnusSpawnedObject UCavrnusSpatialConnectorSubSystem::GetSpawnedObject(AActor* Actor)
+FCavrnusSpawnedObject UCavrnusSpatialConnectorSubSystemProxy::GetSpawnedObject(AActor* Actor)
 {
 	if (USpawnedObjectsManager* SpawnedObjectManager = GetSpawnedObjectsManager())
 	{
@@ -373,4 +385,43 @@ FCavrnusSpawnedObject UCavrnusSpatialConnectorSubSystem::GetSpawnedObject(AActor
 	}
 
 	return FCavrnusSpawnedObject();
+}
+
+UCavrnusSpatialConnectorSubSystem::UCavrnusSpatialConnectorSubSystem()
+{
+	SystemProxy = nullptr;
+}
+
+UCavrnusSpatialConnectorSubSystem::~UCavrnusSpatialConnectorSubSystem()
+{
+	SystemProxy = nullptr;
+}
+
+void UCavrnusSpatialConnectorSubSystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+
+	if (SystemProxy == nullptr)
+	{
+		if (UGameInstance* GameInstance = GetGameInstance())
+		{
+			SystemProxy = NewObject <UCavrnusSpatialConnectorSubSystemProxy>(GameInstance);
+			SystemProxy->SetGameInstance(GameInstance);
+			SystemProxy->SetObjectOwner(GameInstance);
+			SystemProxy->Initialize();
+		}
+	}
+}
+
+void UCavrnusSpatialConnectorSubSystem::Deinitialize()
+{
+	SystemProxy->Deinitialize();
+	SystemProxy = nullptr;
+
+	Super::Deinitialize();
+}
+
+UCavrnusSpatialConnectorSubSystemProxy* UCavrnusSpatialConnectorSubSystem::GetSystemProxy()
+{
+	return SystemProxy;
 }
