@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include <Containers/Map.h>
-#include "../../Public/Types/CavrnusBinding.h"
-#include "../../Public/Types/CavrnusCallbackTypes.h"
-#include "../Translation/CavrnusProtoTranslation.h"
+#include "Types/CavrnusBinding.h"
+#include "Types/CavrnusCallbackTypes.h"
+#include "Translation/CavrnusProtoTranslation.h"
 #include "DataState.h"
 
 namespace ServerData
@@ -28,16 +28,20 @@ namespace Cavrnus
 
 		void RegisterAuthCallback(FCavrnusAuthRecv onAuth);
 
-		void RegisterBeginLoadingSpaceCallback(FCavrnusSpaceBeginLoading onBeginLoading);
+		void RegisterBeginLoadingSpaceCallback(CavrnusSpaceBeginLoading onBeginLoading);
 		void HandleSpaceBeginLoading(FString spaceId);
 
-		int RegisterJoinSpaceCallback(FCavrnusSpaceConnected onConnected, FCavrnusError onFailure);
+		int RegisterJoinSpaceCallback(CavrnusSpaceConnected onConnected, CavrnusError onFailure);
 
 		int RegisterFetchAvailableSpacesCallback(FCavrnusAllSpacesInfoEvent onAllSpacesArrived);
 
 		int RegisterFetchAudioInputs(FCavrnusAvailableInputDevices onRecvDevices);
 		int RegisterFetchAudioOutputs(FCavrnusAvailableOutputDevices onRecvDevices);
 		int RegisterFetchVideoInputs(FCavrnusAvailableVideoInputDevices onRecvDevices);
+
+		int RegisterFetchAllAvailableContent(CavrnusRemoteContentFunction onfetchedContent);
+
+		int RegisterUploadContent(CavrnusUploadCompleteFunction onUploadComplete);
 
 	private:
 		CavrnusRelayModel* relayModel;
@@ -55,10 +59,10 @@ namespace Cavrnus
 		TMap<int, FCavrnusError> LoginGuestErrorCallbacks;
 		void HandleLoginGuestResponse(int callbackId, ServerData::AuthenticateGuestResp resp);
 
-		TArray<FCavrnusSpaceBeginLoading> BeginLoadingSpaceCallbacks;
+		TArray< TSharedPtr<const CavrnusSpaceBeginLoading>> BeginLoadingSpaceCallbacks;
 		
-		TMap<int, FCavrnusSpaceConnected> JoinSpaceSuccessCallbacks;
-		TMap<int, FCavrnusError> JoinSpaceErrorCallbacks;
+		TMap<int, TSharedPtr<const CavrnusSpaceConnected>> JoinSpaceSuccessCallbacks;
+		TMap<int, TSharedPtr<const CavrnusError>> JoinSpaceErrorCallbacks;
 		void HandleJoinSpaceResponse(int callbackId, ServerData::JoinSpaceFromIdResp resp);
 
 		TMap<int, FCavrnusAllSpacesInfoEvent> AllSpacesInfoCallbacks;
@@ -72,6 +76,12 @@ namespace Cavrnus
 
 		TMap<int, FCavrnusAvailableVideoInputDevices> FetchVideoInputsCallbacks;
 		void HandleVideoInputsResponse(int callbackId, ServerData::GetVideoInputDevicesResp resp);
+
+		TMap<int, TSharedPtr<const CavrnusRemoteContentFunction>> AllRemoteContentCallbacks;
+		void HandleAllRemoteContentRecv(int callbackId, ServerData::FetchAllUploadedContentResp resp);
+
+		TMap<int, TSharedPtr<const CavrnusUploadCompleteFunction>> AllUploadContentCallbacks;
+		void HandleUploadComplete(int callbackId, ServerData::UploadLocalFileResp resp);
 	};
 
 }

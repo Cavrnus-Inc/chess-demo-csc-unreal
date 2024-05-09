@@ -18,7 +18,7 @@ namespace Cavrnus
 
 		void AddSpaceConnection(const FCavrnusSpaceConnection& spaceConnection);
 
-		void AwaitAnySpaceConnection(const FCavrnusSpaceConnected& onConnected);
+		void AwaitAnySpaceConnection(const CavrnusSpaceConnected& onConnected);
 
 		void AddJoinableSpace(FCavrnusSpaceInfo space);
 		void UpdateJoinableSpace(FCavrnusSpaceInfo space);
@@ -29,7 +29,7 @@ namespace Cavrnus
 	private:
 		TArray<FCavrnusSpaceConnection> CurrentSpaceConnections;
 
-		TArray<FCavrnusSpaceConnected> spaceConnectionBindings;
+		TArray<TSharedPtr<const CavrnusSpaceConnected>> spaceConnectionBindings;
 
 		TArray<FCavrnusSpaceInfo> CurrJoinableSpaces;
 

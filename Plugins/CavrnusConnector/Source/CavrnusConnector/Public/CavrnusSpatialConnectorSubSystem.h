@@ -1,6 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
+#include <Engine/GameInstance.h>
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "UObject/Object.h"
 
 #include "Types/CavrnusAuthentication.h"
 #include "Types/CavrnusSpawnedObject.h"
@@ -58,23 +60,21 @@ public:
 	UFUNCTION()
 	void OnSpaceConnectionFailure(FString Error);
 
-	void SpawnCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject);
-	FCavrnusSpawnedObject GetSpawnedObject(AActor* Actor);
-
-	void DestroyCavrnusActor(const FCavrnusSpawnedObject& SpawnedObject);
-
 	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
 	UCavrnusAvatarManager* GetAvatarManager();
 
 	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
-	USpawnedObjectsManager* GetSpawnedObjectsManager();
+	class UCavrnusUIManager* GetUIManager();
 
-	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
-	UPDFManager* GetPDFManager();
-protected:
-	void ShowGuestLoginWidget();
+private:
+	UFUNCTION()
+	void OnPawnControllerChanged(APawn* InPawn, AController* InController);
 
-	void ShowLoginWidget();
+	UFUNCTION()
+	void OnPossessedPawnChanged(APawn* OldPawn, APawn* NewPawn);
+
+	UFUNCTION()
+	void AttachLocalUserComponentToPawn();
 
 private:
 	TWeakObjectPtr<ACavrnusSpatialConnector> CurrentCavrnusSpatialConnector;
@@ -85,41 +85,25 @@ private:
 	FCavrnusError SpaceConnectionFailure;
 
 	UPROPERTY()
+	class UCavrnusUIManager* UIManager;
+
+	UPROPERTY()
 	FCavrnusAuthentication Authentication;
 
 	UPROPERTY()
 	bool bHasSpaceConnection = false;
 
-	UPROPERTY()
 	USpawnedObjectsManager* SpawnedObjectsManager;
 
 	UPROPERTY()
 	UCavrnusAvatarManager* AvatarManager;
 
-	UPROPERTY()
-	UPDFManager* PDFManager;
+	TWeakObjectPtr<UGameInstance> GameInstance;
+	TWeakObjectPtr<UObject> ObjectOwner;
 
-	UPROPERTY()
-	UUserWidget* LoadingWidget;
-
-	UPROPERTY()
-	UGameInstance* GameInstance;
-
-	UPROPERTY()
-	UObject* ObjectOwner;
-
-	UFUNCTION()
-	UUserWidget* SpawnWidget(TSubclassOf<UUserWidget> WidgetClass);
-
-	UFUNCTION()
-	void OnPawnControllerChanged(APawn* InPawn, AController* InController);
-
-	UFUNCTION()
-	void OnPossessedPawnChanged(APawn* OldPawn, APawn* NewPawn);
-
-	UFUNCTION()
-	void AttachLocalUserComponentToPawn();
-
+public:
+	UPROPERTY(BlueprintReadOnly, Category = "Cavrnus")
+	bool bInEditorMode = false;
 };
 
 // Class definition

@@ -1,7 +1,8 @@
-﻿#include "RelayCallbackModel.h"
+﻿#include "RelayModel/RelayCallbackModel.h"
 #include "CoreMinimal.h"
-#include "CavrnusRelayModel.h"
+#include "RelayModel/CavrnusRelayModel.h"
 #include "CavrnusConnectorModule.h"
+#include "Types\CavrnusRemoteContent.h"
 
 namespace Cavrnus
 {
@@ -38,6 +39,12 @@ namespace Cavrnus
 			break;
 		case ServerData::RelayRemoteMessage::kAllJoinableSpacesResp:
 			HandleJoinableSpacesRecv(callbackId, msg.alljoinablespacesresp());
+			break;
+		case ServerData::RelayRemoteMessage::kFetchAllUploadedContentResp:
+			HandleAllRemoteContentRecv(callbackId, msg.fetchalluploadedcontentresp());
+			break;
+		case ServerData::RelayRemoteMessage::kUploadLocalFileResp:
+			HandleUploadComplete(callbackId, msg.uploadlocalfileresp());
 			break;
 		default:
 			UE_LOG(LogCavrnusConnector, Warning, TEXT("Unhandled server message, message type: %d"), static_cast<int>(msg.Msg_case()));
@@ -138,26 +145,30 @@ namespace Cavrnus
 		LoginGuestErrorCallbacks.Remove(callbackId);
 	}
 
-	void RelayCallbackModel::RegisterBeginLoadingSpaceCallback(FCavrnusSpaceBeginLoading onBeginLoading)
+	void RelayCallbackModel::RegisterBeginLoadingSpaceCallback(CavrnusSpaceBeginLoading onBeginLoading)
 	{
-		BeginLoadingSpaceCallbacks.Add(onBeginLoading);
+		TSharedPtr<const CavrnusSpaceBeginLoading> CallbackPtr = MakeShareable(new const CavrnusSpaceBeginLoading(onBeginLoading));
+		BeginLoadingSpaceCallbacks.Add(CallbackPtr);
 	}
 
 	void RelayCallbackModel::HandleSpaceBeginLoading(FString spaceId)
 	{
 		for (int i = 0; i < BeginLoadingSpaceCallbacks.Num(); i++) 
 		{
-			BeginLoadingSpaceCallbacks[i].ExecuteIfBound(spaceId);
+			(*BeginLoadingSpaceCallbacks[i])(spaceId);
 		}
 		BeginLoadingSpaceCallbacks.Empty();
 	}
 
-	int RelayCallbackModel::RegisterJoinSpaceCallback(FCavrnusSpaceConnected onConnected, FCavrnusError onFailure)
+	int RelayCallbackModel::RegisterJoinSpaceCallback(CavrnusSpaceConnected onConnected, CavrnusError onFailure)
 	{
 		int reqId = ++currReqId;
 
-		JoinSpaceSuccessCallbacks.Add(reqId, onConnected);
-		JoinSpaceErrorCallbacks.Add(reqId, onFailure);
+		TSharedPtr<const CavrnusSpaceConnected> CallbackPtr = MakeShareable(new const CavrnusSpaceConnected(onConnected));
+		TSharedPtr<const CavrnusError> ErrorPtr = MakeShareable(new const CavrnusError(onFailure));
+
+		JoinSpaceSuccessCallbacks.Add(reqId, CallbackPtr);
+		JoinSpaceErrorCallbacks.Add(reqId, ErrorPtr);
 
 		return reqId;
 	}
@@ -196,14 +207,14 @@ namespace Cavrnus
 
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[JOIN SPACE SUCCESS]"));
 			if (JoinSpaceSuccessCallbacks.Contains(callbackId))
-				JoinSpaceSuccessCallbacks[callbackId].ExecuteIfBound(FCavrnusSpaceConnection(spaceConn));
+				(*JoinSpaceSuccessCallbacks[callbackId])(FCavrnusSpaceConnection(spaceConn));
 		}
 		else
 		{
 			FString error = resp.error().c_str();
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[JOIN SPACE FAILURE]: %s"), *error);
 			if (JoinSpaceErrorCallbacks.Contains(callbackId))
-				JoinSpaceErrorCallbacks[callbackId].ExecuteIfBound(error);
+				(*JoinSpaceErrorCallbacks[callbackId])(error);
 		}
 
 		JoinSpaceSuccessCallbacks.Remove(callbackId);
@@ -286,5 +297,67 @@ namespace Cavrnus
 
 		if (FetchVideoInputsCallbacks.Contains(callbackId))
 			FetchVideoInputsCallbacks[callbackId].ExecuteIfBound(devices);
+	}
+
+	int RelayCallbackModel::RegisterFetchAllAvailableContent(CavrnusRemoteContentFunction onfetchedContent)
+	{
+		int reqId = ++currReqId;
+
+		using contentFunction = const CavrnusRemoteContentFunction;
+		TSharedPtr<contentFunction> CallbackPtr = MakeShareable(new contentFunction(onfetchedContent));
+
+		AllRemoteContentCallbacks.Add(reqId, CallbackPtr);
+
+		return reqId;
+	}
+
+	void RelayCallbackModel::HandleAllRemoteContentRecv(int callbackId, ServerData::FetchAllUploadedContentResp resp)
+	{
+		TArray<FCavrnusRemoteContent> remoteContent;
+		for (int i = 0; i < resp.availablecontent().size(); i++) 
+		{
+			TMap<FString, FString> tags;
+			for (int j = 0; j < resp.availablecontent()[i].tagkeys_size(); j++) 
+			{
+				tags.Add(resp.availablecontent()[i].tagkeys()[j].c_str(), resp.availablecontent()[i].tagvalues()[j].c_str());
+			}
+
+			remoteContent.Add(FCavrnusRemoteContent(resp.availablecontent()[i].id().c_str(), resp.availablecontent()[i].name().c_str(), resp.availablecontent()[i].filename().c_str(), resp.availablecontent()[i].thumbnailurl().c_str(), tags));
+		}
+
+		if (AllRemoteContentCallbacks.Contains(callbackId))
+		{
+			(*AllRemoteContentCallbacks[callbackId])(remoteContent);
+			AllRemoteContentCallbacks.Remove(callbackId);
+		}
+	}
+
+	int RelayCallbackModel::RegisterUploadContent(CavrnusUploadCompleteFunction onUploadComplete)
+	{
+		int reqId = ++currReqId;
+
+		using contentFunction = const CavrnusUploadCompleteFunction;
+		TSharedPtr<contentFunction> CallbackPtr = MakeShareable(new contentFunction(onUploadComplete));
+
+		AllUploadContentCallbacks.Add(reqId, CallbackPtr);
+
+		return reqId;
+	}
+
+	void RelayCallbackModel::HandleUploadComplete(int callbackId, ServerData::UploadLocalFileResp resp)
+	{
+		TMap<FString, FString> tags;
+		for (int j = 0; j < resp.uploadedcontent().tagkeys_size(); j++)
+		{
+			tags.Add(resp.uploadedcontent().tagkeys()[j].c_str(), resp.uploadedcontent().tagvalues()[j].c_str());
+		}
+
+		FCavrnusRemoteContent remoteContent = FCavrnusRemoteContent(resp.uploadedcontent().id().c_str(), resp.uploadedcontent().name().c_str(), resp.uploadedcontent().filename().c_str(), resp.uploadedcontent().thumbnailurl().c_str(), tags);
+
+		if (AllUploadContentCallbacks.Contains(callbackId))
+		{
+			(*AllUploadContentCallbacks[callbackId])(remoteContent);
+			AllUploadContentCallbacks.Remove(callbackId);
+		}
 	}
 }

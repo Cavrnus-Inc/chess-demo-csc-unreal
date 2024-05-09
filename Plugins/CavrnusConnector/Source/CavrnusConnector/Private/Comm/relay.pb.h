@@ -91,6 +91,21 @@ extern ExitAllSpacesAndLogoutReqDefaultTypeInternal _ExitAllSpacesAndLogoutReq_d
 class ExitAllSpacesAndLogoutResp;
 struct ExitAllSpacesAndLogoutRespDefaultTypeInternal;
 extern ExitAllSpacesAndLogoutRespDefaultTypeInternal _ExitAllSpacesAndLogoutResp_default_instance_;
+class FetchAllUploadedContentReq;
+struct FetchAllUploadedContentReqDefaultTypeInternal;
+extern FetchAllUploadedContentReqDefaultTypeInternal _FetchAllUploadedContentReq_default_instance_;
+class FetchAllUploadedContentResp;
+struct FetchAllUploadedContentRespDefaultTypeInternal;
+extern FetchAllUploadedContentRespDefaultTypeInternal _FetchAllUploadedContentResp_default_instance_;
+class FetchFileByIdCompletedResp;
+struct FetchFileByIdCompletedRespDefaultTypeInternal;
+extern FetchFileByIdCompletedRespDefaultTypeInternal _FetchFileByIdCompletedResp_default_instance_;
+class FetchFileByIdProgressResp;
+struct FetchFileByIdProgressRespDefaultTypeInternal;
+extern FetchFileByIdProgressRespDefaultTypeInternal _FetchFileByIdProgressResp_default_instance_;
+class FetchFileByIdReq;
+struct FetchFileByIdReqDefaultTypeInternal;
+extern FetchFileByIdReqDefaultTypeInternal _FetchFileByIdReq_default_instance_;
 class FinalizeTransientPropertyUpdate;
 struct FinalizeTransientPropertyUpdateDefaultTypeInternal;
 extern FinalizeTransientPropertyUpdateDefaultTypeInternal _FinalizeTransientPropertyUpdate_default_instance_;
@@ -169,21 +184,12 @@ extern RelayRemoteMessageBatchDefaultTypeInternal _RelayRemoteMessageBatch_defau
 class SetAudioInputDeviceReq;
 struct SetAudioInputDeviceReqDefaultTypeInternal;
 extern SetAudioInputDeviceReqDefaultTypeInternal _SetAudioInputDeviceReq_default_instance_;
-class SetAudioInputDeviceResp;
-struct SetAudioInputDeviceRespDefaultTypeInternal;
-extern SetAudioInputDeviceRespDefaultTypeInternal _SetAudioInputDeviceResp_default_instance_;
 class SetAudioOutputDeviceReq;
 struct SetAudioOutputDeviceReqDefaultTypeInternal;
 extern SetAudioOutputDeviceReqDefaultTypeInternal _SetAudioOutputDeviceReq_default_instance_;
-class SetAudioOutputDeviceResp;
-struct SetAudioOutputDeviceRespDefaultTypeInternal;
-extern SetAudioOutputDeviceRespDefaultTypeInternal _SetAudioOutputDeviceResp_default_instance_;
 class SetVideoInputDeviceReq;
 struct SetVideoInputDeviceReqDefaultTypeInternal;
 extern SetVideoInputDeviceReqDefaultTypeInternal _SetVideoInputDeviceReq_default_instance_;
-class SetVideoInputDeviceResp;
-struct SetVideoInputDeviceRespDefaultTypeInternal;
-extern SetVideoInputDeviceRespDefaultTypeInternal _SetVideoInputDeviceResp_default_instance_;
 class ShutdownSpaceConnectionReq;
 struct ShutdownSpaceConnectionReqDefaultTypeInternal;
 extern ShutdownSpaceConnectionReqDefaultTypeInternal _ShutdownSpaceConnectionReq_default_instance_;
@@ -211,6 +217,12 @@ extern UpdateLocalUserStreamStateDefaultTypeInternal _UpdateLocalUserStreamState
 class UpdateTime;
 struct UpdateTimeDefaultTypeInternal;
 extern UpdateTimeDefaultTypeInternal _UpdateTime_default_instance_;
+class UploadLocalFileReq;
+struct UploadLocalFileReqDefaultTypeInternal;
+extern UploadLocalFileReqDefaultTypeInternal _UploadLocalFileReq_default_instance_;
+class UploadLocalFileResp;
+struct UploadLocalFileRespDefaultTypeInternal;
+extern UploadLocalFileRespDefaultTypeInternal _UploadLocalFileResp_default_instance_;
 class UserAdded;
 struct UserAddedDefaultTypeInternal;
 extern UserAddedDefaultTypeInternal _UserAdded_default_instance_;
@@ -236,6 +248,11 @@ template<> ::ServerData::ContinueTransientPropertyUpdate* Arena::CreateMaybeMess
 template<> ::ServerData::DefinePropertyDefaultValue* Arena::CreateMaybeMessage<::ServerData::DefinePropertyDefaultValue>(Arena*);
 template<> ::ServerData::ExitAllSpacesAndLogoutReq* Arena::CreateMaybeMessage<::ServerData::ExitAllSpacesAndLogoutReq>(Arena*);
 template<> ::ServerData::ExitAllSpacesAndLogoutResp* Arena::CreateMaybeMessage<::ServerData::ExitAllSpacesAndLogoutResp>(Arena*);
+template<> ::ServerData::FetchAllUploadedContentReq* Arena::CreateMaybeMessage<::ServerData::FetchAllUploadedContentReq>(Arena*);
+template<> ::ServerData::FetchAllUploadedContentResp* Arena::CreateMaybeMessage<::ServerData::FetchAllUploadedContentResp>(Arena*);
+template<> ::ServerData::FetchFileByIdCompletedResp* Arena::CreateMaybeMessage<::ServerData::FetchFileByIdCompletedResp>(Arena*);
+template<> ::ServerData::FetchFileByIdProgressResp* Arena::CreateMaybeMessage<::ServerData::FetchFileByIdProgressResp>(Arena*);
+template<> ::ServerData::FetchFileByIdReq* Arena::CreateMaybeMessage<::ServerData::FetchFileByIdReq>(Arena*);
 template<> ::ServerData::FinalizeTransientPropertyUpdate* Arena::CreateMaybeMessage<::ServerData::FinalizeTransientPropertyUpdate>(Arena*);
 template<> ::ServerData::GetAudioInputDevicesReq* Arena::CreateMaybeMessage<::ServerData::GetAudioInputDevicesReq>(Arena*);
 template<> ::ServerData::GetAudioInputDevicesResp* Arena::CreateMaybeMessage<::ServerData::GetAudioInputDevicesResp>(Arena*);
@@ -262,11 +279,8 @@ template<> ::ServerData::RelayClientMessageBatch* Arena::CreateMaybeMessage<::Se
 template<> ::ServerData::RelayRemoteMessage* Arena::CreateMaybeMessage<::ServerData::RelayRemoteMessage>(Arena*);
 template<> ::ServerData::RelayRemoteMessageBatch* Arena::CreateMaybeMessage<::ServerData::RelayRemoteMessageBatch>(Arena*);
 template<> ::ServerData::SetAudioInputDeviceReq* Arena::CreateMaybeMessage<::ServerData::SetAudioInputDeviceReq>(Arena*);
-template<> ::ServerData::SetAudioInputDeviceResp* Arena::CreateMaybeMessage<::ServerData::SetAudioInputDeviceResp>(Arena*);
 template<> ::ServerData::SetAudioOutputDeviceReq* Arena::CreateMaybeMessage<::ServerData::SetAudioOutputDeviceReq>(Arena*);
-template<> ::ServerData::SetAudioOutputDeviceResp* Arena::CreateMaybeMessage<::ServerData::SetAudioOutputDeviceResp>(Arena*);
 template<> ::ServerData::SetVideoInputDeviceReq* Arena::CreateMaybeMessage<::ServerData::SetVideoInputDeviceReq>(Arena*);
-template<> ::ServerData::SetVideoInputDeviceResp* Arena::CreateMaybeMessage<::ServerData::SetVideoInputDeviceResp>(Arena*);
 template<> ::ServerData::ShutdownSpaceConnectionReq* Arena::CreateMaybeMessage<::ServerData::ShutdownSpaceConnectionReq>(Arena*);
 template<> ::ServerData::ShutdownSpaceConnectionResp* Arena::CreateMaybeMessage<::ServerData::ShutdownSpaceConnectionResp>(Arena*);
 template<> ::ServerData::SpaceInfo* Arena::CreateMaybeMessage<::ServerData::SpaceInfo>(Arena*);
@@ -276,6 +290,8 @@ template<> ::ServerData::UpdateLocalUserCoPresence* Arena::CreateMaybeMessage<::
 template<> ::ServerData::UpdateLocalUserMuted* Arena::CreateMaybeMessage<::ServerData::UpdateLocalUserMuted>(Arena*);
 template<> ::ServerData::UpdateLocalUserStreamState* Arena::CreateMaybeMessage<::ServerData::UpdateLocalUserStreamState>(Arena*);
 template<> ::ServerData::UpdateTime* Arena::CreateMaybeMessage<::ServerData::UpdateTime>(Arena*);
+template<> ::ServerData::UploadLocalFileReq* Arena::CreateMaybeMessage<::ServerData::UploadLocalFileReq>(Arena*);
+template<> ::ServerData::UploadLocalFileResp* Arena::CreateMaybeMessage<::ServerData::UploadLocalFileResp>(Arena*);
 template<> ::ServerData::UserAdded* Arena::CreateMaybeMessage<::ServerData::UserAdded>(Arena*);
 template<> ::ServerData::UserRemoved* Arena::CreateMaybeMessage<::ServerData::UserRemoved>(Arena*);
 template<> ::ServerData::UserVideoFrame* Arena::CreateMaybeMessage<::ServerData::UserVideoFrame>(Arena*);
@@ -511,6 +527,9 @@ class RelayClientMessage final :
     kPostRemoveObject = 71,
     kPermissionStatusReq = 90,
     kAllJoinableSpacesReq = 100,
+    kFetchFileByIdReq = 110,
+    kFetchAllUploadedContentReq = 111,
+    kUploadLocalFileReq = 112,
     MSG_NOT_SET = 0,
   };
 
@@ -618,6 +637,9 @@ class RelayClientMessage final :
     kPostRemoveObjectFieldNumber = 71,
     kPermissionStatusReqFieldNumber = 90,
     kAllJoinableSpacesReqFieldNumber = 100,
+    kFetchFileByIdReqFieldNumber = 110,
+    kFetchAllUploadedContentReqFieldNumber = 111,
+    kUploadLocalFileReqFieldNumber = 112,
   };
   // .ServerData.KeepAlive KeepAlive = 1;
   bool has_keepalive() const;
@@ -1087,6 +1109,60 @@ class RelayClientMessage final :
       ::ServerData::AllJoinableSpacesReq* alljoinablespacesreq);
   ::ServerData::AllJoinableSpacesReq* unsafe_arena_release_alljoinablespacesreq();
 
+  // .ServerData.FetchFileByIdReq FetchFileByIdReq = 110;
+  bool has_fetchfilebyidreq() const;
+  private:
+  bool _internal_has_fetchfilebyidreq() const;
+  public:
+  void clear_fetchfilebyidreq();
+  const ::ServerData::FetchFileByIdReq& fetchfilebyidreq() const;
+  PROTOBUF_NODISCARD ::ServerData::FetchFileByIdReq* release_fetchfilebyidreq();
+  ::ServerData::FetchFileByIdReq* mutable_fetchfilebyidreq();
+  void set_allocated_fetchfilebyidreq(::ServerData::FetchFileByIdReq* fetchfilebyidreq);
+  private:
+  const ::ServerData::FetchFileByIdReq& _internal_fetchfilebyidreq() const;
+  ::ServerData::FetchFileByIdReq* _internal_mutable_fetchfilebyidreq();
+  public:
+  void unsafe_arena_set_allocated_fetchfilebyidreq(
+      ::ServerData::FetchFileByIdReq* fetchfilebyidreq);
+  ::ServerData::FetchFileByIdReq* unsafe_arena_release_fetchfilebyidreq();
+
+  // .ServerData.FetchAllUploadedContentReq FetchAllUploadedContentReq = 111;
+  bool has_fetchalluploadedcontentreq() const;
+  private:
+  bool _internal_has_fetchalluploadedcontentreq() const;
+  public:
+  void clear_fetchalluploadedcontentreq();
+  const ::ServerData::FetchAllUploadedContentReq& fetchalluploadedcontentreq() const;
+  PROTOBUF_NODISCARD ::ServerData::FetchAllUploadedContentReq* release_fetchalluploadedcontentreq();
+  ::ServerData::FetchAllUploadedContentReq* mutable_fetchalluploadedcontentreq();
+  void set_allocated_fetchalluploadedcontentreq(::ServerData::FetchAllUploadedContentReq* fetchalluploadedcontentreq);
+  private:
+  const ::ServerData::FetchAllUploadedContentReq& _internal_fetchalluploadedcontentreq() const;
+  ::ServerData::FetchAllUploadedContentReq* _internal_mutable_fetchalluploadedcontentreq();
+  public:
+  void unsafe_arena_set_allocated_fetchalluploadedcontentreq(
+      ::ServerData::FetchAllUploadedContentReq* fetchalluploadedcontentreq);
+  ::ServerData::FetchAllUploadedContentReq* unsafe_arena_release_fetchalluploadedcontentreq();
+
+  // .ServerData.UploadLocalFileReq UploadLocalFileReq = 112;
+  bool has_uploadlocalfilereq() const;
+  private:
+  bool _internal_has_uploadlocalfilereq() const;
+  public:
+  void clear_uploadlocalfilereq();
+  const ::ServerData::UploadLocalFileReq& uploadlocalfilereq() const;
+  PROTOBUF_NODISCARD ::ServerData::UploadLocalFileReq* release_uploadlocalfilereq();
+  ::ServerData::UploadLocalFileReq* mutable_uploadlocalfilereq();
+  void set_allocated_uploadlocalfilereq(::ServerData::UploadLocalFileReq* uploadlocalfilereq);
+  private:
+  const ::ServerData::UploadLocalFileReq& _internal_uploadlocalfilereq() const;
+  ::ServerData::UploadLocalFileReq* _internal_mutable_uploadlocalfilereq();
+  public:
+  void unsafe_arena_set_allocated_uploadlocalfilereq(
+      ::ServerData::UploadLocalFileReq* uploadlocalfilereq);
+  ::ServerData::UploadLocalFileReq* unsafe_arena_release_uploadlocalfilereq();
+
   void clear_Msg();
   MsgCase Msg_case() const;
   // @@protoc_insertion_point(class_scope:ServerData.RelayClientMessage)
@@ -1118,6 +1194,9 @@ class RelayClientMessage final :
   void set_has_postremoveobject();
   void set_has_permissionstatusreq();
   void set_has_alljoinablespacesreq();
+  void set_has_fetchfilebyidreq();
+  void set_has_fetchalluploadedcontentreq();
+  void set_has_uploadlocalfilereq();
 
   inline bool has_Msg() const;
   inline void clear_has_Msg();
@@ -1155,6 +1234,9 @@ class RelayClientMessage final :
       ::ServerData::PostRemoveObject* postremoveobject_;
       ::ServerData::PermissionStatusReq* permissionstatusreq_;
       ::ServerData::AllJoinableSpacesReq* alljoinablespacesreq_;
+      ::ServerData::FetchFileByIdReq* fetchfilebyidreq_;
+      ::ServerData::FetchAllUploadedContentReq* fetchalluploadedcontentreq_;
+      ::ServerData::UploadLocalFileReq* uploadlocalfilereq_;
     } Msg_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[1];
@@ -1375,9 +1457,6 @@ class RelayRemoteMessage final :
     kGetAudioInputDevicesResp = 20,
     kGetAudioOutputDevicesResp = 21,
     kGetVideoInputDevicesResp = 22,
-    kSetAudioInputDeviceResp = 23,
-    kSetAudioOutputDeviceResp = 24,
-    kSetVideoInputDeviceResp = 25,
     kPropertyValueStatus = 50,
     kLocalPropertyHandledResp = 51,
     kPropMetadataStatus = 52,
@@ -1391,6 +1470,10 @@ class RelayRemoteMessage final :
     kObjectRemoved = 81,
     kPermissionStatus = 90,
     kAllJoinableSpacesResp = 100,
+    kFetchFileByIdProgressResp = 110,
+    kFetchFileByIdCompletedResp = 111,
+    kFetchAllUploadedContentResp = 112,
+    kUploadLocalFileResp = 113,
     MSG_NOT_SET = 0,
   };
 
@@ -1481,9 +1564,6 @@ class RelayRemoteMessage final :
     kGetAudioInputDevicesRespFieldNumber = 20,
     kGetAudioOutputDevicesRespFieldNumber = 21,
     kGetVideoInputDevicesRespFieldNumber = 22,
-    kSetAudioInputDeviceRespFieldNumber = 23,
-    kSetAudioOutputDeviceRespFieldNumber = 24,
-    kSetVideoInputDeviceRespFieldNumber = 25,
     kPropertyValueStatusFieldNumber = 50,
     kLocalPropertyHandledRespFieldNumber = 51,
     kPropMetadataStatusFieldNumber = 52,
@@ -1497,6 +1577,10 @@ class RelayRemoteMessage final :
     kObjectRemovedFieldNumber = 81,
     kPermissionStatusFieldNumber = 90,
     kAllJoinableSpacesRespFieldNumber = 100,
+    kFetchFileByIdProgressRespFieldNumber = 110,
+    kFetchFileByIdCompletedRespFieldNumber = 111,
+    kFetchAllUploadedContentRespFieldNumber = 112,
+    kUploadLocalFileRespFieldNumber = 113,
   };
   // .ServerData.StatusMessage Message = 1;
   bool has_message() const;
@@ -1659,60 +1743,6 @@ class RelayRemoteMessage final :
   void unsafe_arena_set_allocated_getvideoinputdevicesresp(
       ::ServerData::GetVideoInputDevicesResp* getvideoinputdevicesresp);
   ::ServerData::GetVideoInputDevicesResp* unsafe_arena_release_getvideoinputdevicesresp();
-
-  // .ServerData.SetAudioInputDeviceResp SetAudioInputDeviceResp = 23;
-  bool has_setaudioinputdeviceresp() const;
-  private:
-  bool _internal_has_setaudioinputdeviceresp() const;
-  public:
-  void clear_setaudioinputdeviceresp();
-  const ::ServerData::SetAudioInputDeviceResp& setaudioinputdeviceresp() const;
-  PROTOBUF_NODISCARD ::ServerData::SetAudioInputDeviceResp* release_setaudioinputdeviceresp();
-  ::ServerData::SetAudioInputDeviceResp* mutable_setaudioinputdeviceresp();
-  void set_allocated_setaudioinputdeviceresp(::ServerData::SetAudioInputDeviceResp* setaudioinputdeviceresp);
-  private:
-  const ::ServerData::SetAudioInputDeviceResp& _internal_setaudioinputdeviceresp() const;
-  ::ServerData::SetAudioInputDeviceResp* _internal_mutable_setaudioinputdeviceresp();
-  public:
-  void unsafe_arena_set_allocated_setaudioinputdeviceresp(
-      ::ServerData::SetAudioInputDeviceResp* setaudioinputdeviceresp);
-  ::ServerData::SetAudioInputDeviceResp* unsafe_arena_release_setaudioinputdeviceresp();
-
-  // .ServerData.SetAudioOutputDeviceResp SetAudioOutputDeviceResp = 24;
-  bool has_setaudiooutputdeviceresp() const;
-  private:
-  bool _internal_has_setaudiooutputdeviceresp() const;
-  public:
-  void clear_setaudiooutputdeviceresp();
-  const ::ServerData::SetAudioOutputDeviceResp& setaudiooutputdeviceresp() const;
-  PROTOBUF_NODISCARD ::ServerData::SetAudioOutputDeviceResp* release_setaudiooutputdeviceresp();
-  ::ServerData::SetAudioOutputDeviceResp* mutable_setaudiooutputdeviceresp();
-  void set_allocated_setaudiooutputdeviceresp(::ServerData::SetAudioOutputDeviceResp* setaudiooutputdeviceresp);
-  private:
-  const ::ServerData::SetAudioOutputDeviceResp& _internal_setaudiooutputdeviceresp() const;
-  ::ServerData::SetAudioOutputDeviceResp* _internal_mutable_setaudiooutputdeviceresp();
-  public:
-  void unsafe_arena_set_allocated_setaudiooutputdeviceresp(
-      ::ServerData::SetAudioOutputDeviceResp* setaudiooutputdeviceresp);
-  ::ServerData::SetAudioOutputDeviceResp* unsafe_arena_release_setaudiooutputdeviceresp();
-
-  // .ServerData.SetVideoInputDeviceResp SetVideoInputDeviceResp = 25;
-  bool has_setvideoinputdeviceresp() const;
-  private:
-  bool _internal_has_setvideoinputdeviceresp() const;
-  public:
-  void clear_setvideoinputdeviceresp();
-  const ::ServerData::SetVideoInputDeviceResp& setvideoinputdeviceresp() const;
-  PROTOBUF_NODISCARD ::ServerData::SetVideoInputDeviceResp* release_setvideoinputdeviceresp();
-  ::ServerData::SetVideoInputDeviceResp* mutable_setvideoinputdeviceresp();
-  void set_allocated_setvideoinputdeviceresp(::ServerData::SetVideoInputDeviceResp* setvideoinputdeviceresp);
-  private:
-  const ::ServerData::SetVideoInputDeviceResp& _internal_setvideoinputdeviceresp() const;
-  ::ServerData::SetVideoInputDeviceResp* _internal_mutable_setvideoinputdeviceresp();
-  public:
-  void unsafe_arena_set_allocated_setvideoinputdeviceresp(
-      ::ServerData::SetVideoInputDeviceResp* setvideoinputdeviceresp);
-  ::ServerData::SetVideoInputDeviceResp* unsafe_arena_release_setvideoinputdeviceresp();
 
   // .ServerData.PropertyValueStatus PropertyValueStatus = 50;
   bool has_propertyvaluestatus() const;
@@ -1948,6 +1978,78 @@ class RelayRemoteMessage final :
       ::ServerData::AllJoinableSpacesResp* alljoinablespacesresp);
   ::ServerData::AllJoinableSpacesResp* unsafe_arena_release_alljoinablespacesresp();
 
+  // .ServerData.FetchFileByIdProgressResp FetchFileByIdProgressResp = 110;
+  bool has_fetchfilebyidprogressresp() const;
+  private:
+  bool _internal_has_fetchfilebyidprogressresp() const;
+  public:
+  void clear_fetchfilebyidprogressresp();
+  const ::ServerData::FetchFileByIdProgressResp& fetchfilebyidprogressresp() const;
+  PROTOBUF_NODISCARD ::ServerData::FetchFileByIdProgressResp* release_fetchfilebyidprogressresp();
+  ::ServerData::FetchFileByIdProgressResp* mutable_fetchfilebyidprogressresp();
+  void set_allocated_fetchfilebyidprogressresp(::ServerData::FetchFileByIdProgressResp* fetchfilebyidprogressresp);
+  private:
+  const ::ServerData::FetchFileByIdProgressResp& _internal_fetchfilebyidprogressresp() const;
+  ::ServerData::FetchFileByIdProgressResp* _internal_mutable_fetchfilebyidprogressresp();
+  public:
+  void unsafe_arena_set_allocated_fetchfilebyidprogressresp(
+      ::ServerData::FetchFileByIdProgressResp* fetchfilebyidprogressresp);
+  ::ServerData::FetchFileByIdProgressResp* unsafe_arena_release_fetchfilebyidprogressresp();
+
+  // .ServerData.FetchFileByIdCompletedResp FetchFileByIdCompletedResp = 111;
+  bool has_fetchfilebyidcompletedresp() const;
+  private:
+  bool _internal_has_fetchfilebyidcompletedresp() const;
+  public:
+  void clear_fetchfilebyidcompletedresp();
+  const ::ServerData::FetchFileByIdCompletedResp& fetchfilebyidcompletedresp() const;
+  PROTOBUF_NODISCARD ::ServerData::FetchFileByIdCompletedResp* release_fetchfilebyidcompletedresp();
+  ::ServerData::FetchFileByIdCompletedResp* mutable_fetchfilebyidcompletedresp();
+  void set_allocated_fetchfilebyidcompletedresp(::ServerData::FetchFileByIdCompletedResp* fetchfilebyidcompletedresp);
+  private:
+  const ::ServerData::FetchFileByIdCompletedResp& _internal_fetchfilebyidcompletedresp() const;
+  ::ServerData::FetchFileByIdCompletedResp* _internal_mutable_fetchfilebyidcompletedresp();
+  public:
+  void unsafe_arena_set_allocated_fetchfilebyidcompletedresp(
+      ::ServerData::FetchFileByIdCompletedResp* fetchfilebyidcompletedresp);
+  ::ServerData::FetchFileByIdCompletedResp* unsafe_arena_release_fetchfilebyidcompletedresp();
+
+  // .ServerData.FetchAllUploadedContentResp FetchAllUploadedContentResp = 112;
+  bool has_fetchalluploadedcontentresp() const;
+  private:
+  bool _internal_has_fetchalluploadedcontentresp() const;
+  public:
+  void clear_fetchalluploadedcontentresp();
+  const ::ServerData::FetchAllUploadedContentResp& fetchalluploadedcontentresp() const;
+  PROTOBUF_NODISCARD ::ServerData::FetchAllUploadedContentResp* release_fetchalluploadedcontentresp();
+  ::ServerData::FetchAllUploadedContentResp* mutable_fetchalluploadedcontentresp();
+  void set_allocated_fetchalluploadedcontentresp(::ServerData::FetchAllUploadedContentResp* fetchalluploadedcontentresp);
+  private:
+  const ::ServerData::FetchAllUploadedContentResp& _internal_fetchalluploadedcontentresp() const;
+  ::ServerData::FetchAllUploadedContentResp* _internal_mutable_fetchalluploadedcontentresp();
+  public:
+  void unsafe_arena_set_allocated_fetchalluploadedcontentresp(
+      ::ServerData::FetchAllUploadedContentResp* fetchalluploadedcontentresp);
+  ::ServerData::FetchAllUploadedContentResp* unsafe_arena_release_fetchalluploadedcontentresp();
+
+  // .ServerData.UploadLocalFileResp UploadLocalFileResp = 113;
+  bool has_uploadlocalfileresp() const;
+  private:
+  bool _internal_has_uploadlocalfileresp() const;
+  public:
+  void clear_uploadlocalfileresp();
+  const ::ServerData::UploadLocalFileResp& uploadlocalfileresp() const;
+  PROTOBUF_NODISCARD ::ServerData::UploadLocalFileResp* release_uploadlocalfileresp();
+  ::ServerData::UploadLocalFileResp* mutable_uploadlocalfileresp();
+  void set_allocated_uploadlocalfileresp(::ServerData::UploadLocalFileResp* uploadlocalfileresp);
+  private:
+  const ::ServerData::UploadLocalFileResp& _internal_uploadlocalfileresp() const;
+  ::ServerData::UploadLocalFileResp* _internal_mutable_uploadlocalfileresp();
+  public:
+  void unsafe_arena_set_allocated_uploadlocalfileresp(
+      ::ServerData::UploadLocalFileResp* uploadlocalfileresp);
+  ::ServerData::UploadLocalFileResp* unsafe_arena_release_uploadlocalfileresp();
+
   void clear_Msg();
   MsgCase Msg_case() const;
   // @@protoc_insertion_point(class_scope:ServerData.RelayRemoteMessage)
@@ -1962,9 +2064,6 @@ class RelayRemoteMessage final :
   void set_has_getaudioinputdevicesresp();
   void set_has_getaudiooutputdevicesresp();
   void set_has_getvideoinputdevicesresp();
-  void set_has_setaudioinputdeviceresp();
-  void set_has_setaudiooutputdeviceresp();
-  void set_has_setvideoinputdeviceresp();
   void set_has_propertyvaluestatus();
   void set_has_localpropertyhandledresp();
   void set_has_propmetadatastatus();
@@ -1978,6 +2077,10 @@ class RelayRemoteMessage final :
   void set_has_objectremoved();
   void set_has_permissionstatus();
   void set_has_alljoinablespacesresp();
+  void set_has_fetchfilebyidprogressresp();
+  void set_has_fetchfilebyidcompletedresp();
+  void set_has_fetchalluploadedcontentresp();
+  void set_has_uploadlocalfileresp();
 
   inline bool has_Msg() const;
   inline void clear_has_Msg();
@@ -1998,9 +2101,6 @@ class RelayRemoteMessage final :
       ::ServerData::GetAudioInputDevicesResp* getaudioinputdevicesresp_;
       ::ServerData::GetAudioOutputDevicesResp* getaudiooutputdevicesresp_;
       ::ServerData::GetVideoInputDevicesResp* getvideoinputdevicesresp_;
-      ::ServerData::SetAudioInputDeviceResp* setaudioinputdeviceresp_;
-      ::ServerData::SetAudioOutputDeviceResp* setaudiooutputdeviceresp_;
-      ::ServerData::SetVideoInputDeviceResp* setvideoinputdeviceresp_;
       ::ServerData::PropertyValueStatus* propertyvaluestatus_;
       ::ServerData::LocalPropertyHandledResp* localpropertyhandledresp_;
       ::ServerData::PropMetadataStatus* propmetadatastatus_;
@@ -2014,6 +2114,10 @@ class RelayRemoteMessage final :
       ::ServerData::ObjectRemoved* objectremoved_;
       ::ServerData::PermissionStatus* permissionstatus_;
       ::ServerData::AllJoinableSpacesResp* alljoinablespacesresp_;
+      ::ServerData::FetchFileByIdProgressResp* fetchfilebyidprogressresp_;
+      ::ServerData::FetchFileByIdCompletedResp* fetchfilebyidcompletedresp_;
+      ::ServerData::FetchAllUploadedContentResp* fetchalluploadedcontentresp_;
+      ::ServerData::UploadLocalFileResp* uploadlocalfileresp_;
     } Msg_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[1];
@@ -8093,627 +8197,6 @@ class SetVideoInputDeviceReq final :
 };
 // -------------------------------------------------------------------
 
-class SetAudioInputDeviceResp final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.SetAudioInputDeviceResp) */ {
- public:
-  inline SetAudioInputDeviceResp() : SetAudioInputDeviceResp(nullptr) {}
-  ~SetAudioInputDeviceResp() override;
-  explicit PROTOBUF_CONSTEXPR SetAudioInputDeviceResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SetAudioInputDeviceResp(const SetAudioInputDeviceResp& from);
-  SetAudioInputDeviceResp(SetAudioInputDeviceResp&& from) noexcept
-    : SetAudioInputDeviceResp() {
-    *this = ::std::move(from);
-  }
-
-  inline SetAudioInputDeviceResp& operator=(const SetAudioInputDeviceResp& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SetAudioInputDeviceResp& operator=(SetAudioInputDeviceResp&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SetAudioInputDeviceResp& default_instance() {
-    return *internal_default_instance();
-  }
-  enum RespCase {
-    kDevice = 10,
-    kError = 11,
-    RESP_NOT_SET = 0,
-  };
-
-  static inline const SetAudioInputDeviceResp* internal_default_instance() {
-    return reinterpret_cast<const SetAudioInputDeviceResp*>(
-               &_SetAudioInputDeviceResp_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    36;
-
-  friend void swap(SetAudioInputDeviceResp& a, SetAudioInputDeviceResp& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SetAudioInputDeviceResp* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SetAudioInputDeviceResp* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SetAudioInputDeviceResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SetAudioInputDeviceResp>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SetAudioInputDeviceResp& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const SetAudioInputDeviceResp& from) {
-    SetAudioInputDeviceResp::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SetAudioInputDeviceResp* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ServerData.SetAudioInputDeviceResp";
-  }
-  protected:
-  explicit SetAudioInputDeviceResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kReqIdFieldNumber = 1,
-    kDeviceFieldNumber = 10,
-    kErrorFieldNumber = 11,
-  };
-  // int32 reqId = 1;
-  void clear_reqid();
-  int32_t reqid() const;
-  void set_reqid(int32_t value);
-  private:
-  int32_t _internal_reqid() const;
-  void _internal_set_reqid(int32_t value);
-  public:
-
-  // .ServerData.RtcAudioInputDevice Device = 10;
-  bool has_device() const;
-  private:
-  bool _internal_has_device() const;
-  public:
-  void clear_device();
-  const ::ServerData::RtcAudioInputDevice& device() const;
-  PROTOBUF_NODISCARD ::ServerData::RtcAudioInputDevice* release_device();
-  ::ServerData::RtcAudioInputDevice* mutable_device();
-  void set_allocated_device(::ServerData::RtcAudioInputDevice* device);
-  private:
-  const ::ServerData::RtcAudioInputDevice& _internal_device() const;
-  ::ServerData::RtcAudioInputDevice* _internal_mutable_device();
-  public:
-  void unsafe_arena_set_allocated_device(
-      ::ServerData::RtcAudioInputDevice* device);
-  ::ServerData::RtcAudioInputDevice* unsafe_arena_release_device();
-
-  // string error = 11;
-  bool has_error() const;
-  private:
-  bool _internal_has_error() const;
-  public:
-  void clear_error();
-  const std::string& error() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_error(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_error();
-  PROTOBUF_NODISCARD std::string* release_error();
-  void set_allocated_error(std::string* error);
-  private:
-  const std::string& _internal_error() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
-  std::string* _internal_mutable_error();
-  public:
-
-  void clear_Resp();
-  RespCase Resp_case() const;
-  // @@protoc_insertion_point(class_scope:ServerData.SetAudioInputDeviceResp)
- private:
-  class _Internal;
-  void set_has_device();
-  void set_has_error();
-
-  inline bool has_Resp() const;
-  inline void clear_has_Resp();
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    int32_t reqid_;
-    union RespUnion {
-      constexpr RespUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::ServerData::RtcAudioInputDevice* device_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
-    } Resp_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[1];
-
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_relay_2eproto;
-};
-// -------------------------------------------------------------------
-
-class SetAudioOutputDeviceResp final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.SetAudioOutputDeviceResp) */ {
- public:
-  inline SetAudioOutputDeviceResp() : SetAudioOutputDeviceResp(nullptr) {}
-  ~SetAudioOutputDeviceResp() override;
-  explicit PROTOBUF_CONSTEXPR SetAudioOutputDeviceResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SetAudioOutputDeviceResp(const SetAudioOutputDeviceResp& from);
-  SetAudioOutputDeviceResp(SetAudioOutputDeviceResp&& from) noexcept
-    : SetAudioOutputDeviceResp() {
-    *this = ::std::move(from);
-  }
-
-  inline SetAudioOutputDeviceResp& operator=(const SetAudioOutputDeviceResp& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SetAudioOutputDeviceResp& operator=(SetAudioOutputDeviceResp&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SetAudioOutputDeviceResp& default_instance() {
-    return *internal_default_instance();
-  }
-  enum RespCase {
-    kDevice = 10,
-    kError = 11,
-    RESP_NOT_SET = 0,
-  };
-
-  static inline const SetAudioOutputDeviceResp* internal_default_instance() {
-    return reinterpret_cast<const SetAudioOutputDeviceResp*>(
-               &_SetAudioOutputDeviceResp_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    37;
-
-  friend void swap(SetAudioOutputDeviceResp& a, SetAudioOutputDeviceResp& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SetAudioOutputDeviceResp* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SetAudioOutputDeviceResp* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SetAudioOutputDeviceResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SetAudioOutputDeviceResp>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SetAudioOutputDeviceResp& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const SetAudioOutputDeviceResp& from) {
-    SetAudioOutputDeviceResp::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SetAudioOutputDeviceResp* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ServerData.SetAudioOutputDeviceResp";
-  }
-  protected:
-  explicit SetAudioOutputDeviceResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kReqIdFieldNumber = 1,
-    kDeviceFieldNumber = 10,
-    kErrorFieldNumber = 11,
-  };
-  // int32 reqId = 1;
-  void clear_reqid();
-  int32_t reqid() const;
-  void set_reqid(int32_t value);
-  private:
-  int32_t _internal_reqid() const;
-  void _internal_set_reqid(int32_t value);
-  public:
-
-  // .ServerData.RtcAudioOutputDevice Device = 10;
-  bool has_device() const;
-  private:
-  bool _internal_has_device() const;
-  public:
-  void clear_device();
-  const ::ServerData::RtcAudioOutputDevice& device() const;
-  PROTOBUF_NODISCARD ::ServerData::RtcAudioOutputDevice* release_device();
-  ::ServerData::RtcAudioOutputDevice* mutable_device();
-  void set_allocated_device(::ServerData::RtcAudioOutputDevice* device);
-  private:
-  const ::ServerData::RtcAudioOutputDevice& _internal_device() const;
-  ::ServerData::RtcAudioOutputDevice* _internal_mutable_device();
-  public:
-  void unsafe_arena_set_allocated_device(
-      ::ServerData::RtcAudioOutputDevice* device);
-  ::ServerData::RtcAudioOutputDevice* unsafe_arena_release_device();
-
-  // string error = 11;
-  bool has_error() const;
-  private:
-  bool _internal_has_error() const;
-  public:
-  void clear_error();
-  const std::string& error() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_error(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_error();
-  PROTOBUF_NODISCARD std::string* release_error();
-  void set_allocated_error(std::string* error);
-  private:
-  const std::string& _internal_error() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
-  std::string* _internal_mutable_error();
-  public:
-
-  void clear_Resp();
-  RespCase Resp_case() const;
-  // @@protoc_insertion_point(class_scope:ServerData.SetAudioOutputDeviceResp)
- private:
-  class _Internal;
-  void set_has_device();
-  void set_has_error();
-
-  inline bool has_Resp() const;
-  inline void clear_has_Resp();
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    int32_t reqid_;
-    union RespUnion {
-      constexpr RespUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::ServerData::RtcAudioOutputDevice* device_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
-    } Resp_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[1];
-
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_relay_2eproto;
-};
-// -------------------------------------------------------------------
-
-class SetVideoInputDeviceResp final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.SetVideoInputDeviceResp) */ {
- public:
-  inline SetVideoInputDeviceResp() : SetVideoInputDeviceResp(nullptr) {}
-  ~SetVideoInputDeviceResp() override;
-  explicit PROTOBUF_CONSTEXPR SetVideoInputDeviceResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SetVideoInputDeviceResp(const SetVideoInputDeviceResp& from);
-  SetVideoInputDeviceResp(SetVideoInputDeviceResp&& from) noexcept
-    : SetVideoInputDeviceResp() {
-    *this = ::std::move(from);
-  }
-
-  inline SetVideoInputDeviceResp& operator=(const SetVideoInputDeviceResp& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SetVideoInputDeviceResp& operator=(SetVideoInputDeviceResp&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SetVideoInputDeviceResp& default_instance() {
-    return *internal_default_instance();
-  }
-  enum RespCase {
-    kDevice = 10,
-    kError = 11,
-    RESP_NOT_SET = 0,
-  };
-
-  static inline const SetVideoInputDeviceResp* internal_default_instance() {
-    return reinterpret_cast<const SetVideoInputDeviceResp*>(
-               &_SetVideoInputDeviceResp_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    38;
-
-  friend void swap(SetVideoInputDeviceResp& a, SetVideoInputDeviceResp& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SetVideoInputDeviceResp* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SetVideoInputDeviceResp* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SetVideoInputDeviceResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SetVideoInputDeviceResp>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SetVideoInputDeviceResp& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const SetVideoInputDeviceResp& from) {
-    SetVideoInputDeviceResp::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SetVideoInputDeviceResp* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ServerData.SetVideoInputDeviceResp";
-  }
-  protected:
-  explicit SetVideoInputDeviceResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kReqIdFieldNumber = 1,
-    kDeviceFieldNumber = 10,
-    kErrorFieldNumber = 11,
-  };
-  // int32 reqId = 1;
-  void clear_reqid();
-  int32_t reqid() const;
-  void set_reqid(int32_t value);
-  private:
-  int32_t _internal_reqid() const;
-  void _internal_set_reqid(int32_t value);
-  public:
-
-  // .ServerData.RtcVideoInputDevice Device = 10;
-  bool has_device() const;
-  private:
-  bool _internal_has_device() const;
-  public:
-  void clear_device();
-  const ::ServerData::RtcVideoInputDevice& device() const;
-  PROTOBUF_NODISCARD ::ServerData::RtcVideoInputDevice* release_device();
-  ::ServerData::RtcVideoInputDevice* mutable_device();
-  void set_allocated_device(::ServerData::RtcVideoInputDevice* device);
-  private:
-  const ::ServerData::RtcVideoInputDevice& _internal_device() const;
-  ::ServerData::RtcVideoInputDevice* _internal_mutable_device();
-  public:
-  void unsafe_arena_set_allocated_device(
-      ::ServerData::RtcVideoInputDevice* device);
-  ::ServerData::RtcVideoInputDevice* unsafe_arena_release_device();
-
-  // string error = 11;
-  bool has_error() const;
-  private:
-  bool _internal_has_error() const;
-  public:
-  void clear_error();
-  const std::string& error() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_error(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_error();
-  PROTOBUF_NODISCARD std::string* release_error();
-  void set_allocated_error(std::string* error);
-  private:
-  const std::string& _internal_error() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
-  std::string* _internal_mutable_error();
-  public:
-
-  void clear_Resp();
-  RespCase Resp_case() const;
-  // @@protoc_insertion_point(class_scope:ServerData.SetVideoInputDeviceResp)
- private:
-  class _Internal;
-  void set_has_device();
-  void set_has_error();
-
-  inline bool has_Resp() const;
-  inline void clear_has_Resp();
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    int32_t reqid_;
-    union RespUnion {
-      constexpr RespUnion() : _constinit_{} {}
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      ::ServerData::RtcVideoInputDevice* device_;
-      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
-    } Resp_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    uint32_t _oneof_case_[1];
-
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_relay_2eproto;
-};
-// -------------------------------------------------------------------
-
 class PostCreateObject final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.PostCreateObject) */ {
  public:
@@ -8762,7 +8245,7 @@ class PostCreateObject final :
                &_PostCreateObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    36;
 
   friend void swap(PostCreateObject& a, PostCreateObject& b) {
     a.Swap(&b);
@@ -8951,7 +8434,7 @@ class PostRemoveObject final :
                &_PostRemoveObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    37;
 
   friend void swap(PostRemoveObject& a, PostRemoveObject& b) {
     a.Swap(&b);
@@ -9076,6 +8559,1208 @@ class PostRemoveObject final :
 };
 // -------------------------------------------------------------------
 
+class FetchFileByIdReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.FetchFileByIdReq) */ {
+ public:
+  inline FetchFileByIdReq() : FetchFileByIdReq(nullptr) {}
+  ~FetchFileByIdReq() override;
+  explicit PROTOBUF_CONSTEXPR FetchFileByIdReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FetchFileByIdReq(const FetchFileByIdReq& from);
+  FetchFileByIdReq(FetchFileByIdReq&& from) noexcept
+    : FetchFileByIdReq() {
+    *this = ::std::move(from);
+  }
+
+  inline FetchFileByIdReq& operator=(const FetchFileByIdReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FetchFileByIdReq& operator=(FetchFileByIdReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FetchFileByIdReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FetchFileByIdReq* internal_default_instance() {
+    return reinterpret_cast<const FetchFileByIdReq*>(
+               &_FetchFileByIdReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    38;
+
+  friend void swap(FetchFileByIdReq& a, FetchFileByIdReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FetchFileByIdReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FetchFileByIdReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FetchFileByIdReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FetchFileByIdReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FetchFileByIdReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FetchFileByIdReq& from) {
+    FetchFileByIdReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FetchFileByIdReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.FetchFileByIdReq";
+  }
+  protected:
+  explicit FetchFileByIdReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContentIdFieldNumber = 1,
+  };
+  // string contentId = 1;
+  void clear_contentid();
+  const std::string& contentid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_contentid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_contentid();
+  PROTOBUF_NODISCARD std::string* release_contentid();
+  void set_allocated_contentid(std::string* contentid);
+  private:
+  const std::string& _internal_contentid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_contentid(const std::string& value);
+  std::string* _internal_mutable_contentid();
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.FetchFileByIdReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contentid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FetchFileByIdProgressResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.FetchFileByIdProgressResp) */ {
+ public:
+  inline FetchFileByIdProgressResp() : FetchFileByIdProgressResp(nullptr) {}
+  ~FetchFileByIdProgressResp() override;
+  explicit PROTOBUF_CONSTEXPR FetchFileByIdProgressResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FetchFileByIdProgressResp(const FetchFileByIdProgressResp& from);
+  FetchFileByIdProgressResp(FetchFileByIdProgressResp&& from) noexcept
+    : FetchFileByIdProgressResp() {
+    *this = ::std::move(from);
+  }
+
+  inline FetchFileByIdProgressResp& operator=(const FetchFileByIdProgressResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FetchFileByIdProgressResp& operator=(FetchFileByIdProgressResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FetchFileByIdProgressResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FetchFileByIdProgressResp* internal_default_instance() {
+    return reinterpret_cast<const FetchFileByIdProgressResp*>(
+               &_FetchFileByIdProgressResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    39;
+
+  friend void swap(FetchFileByIdProgressResp& a, FetchFileByIdProgressResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FetchFileByIdProgressResp* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FetchFileByIdProgressResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FetchFileByIdProgressResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FetchFileByIdProgressResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FetchFileByIdProgressResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FetchFileByIdProgressResp& from) {
+    FetchFileByIdProgressResp::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FetchFileByIdProgressResp* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.FetchFileByIdProgressResp";
+  }
+  protected:
+  explicit FetchFileByIdProgressResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContentIdFieldNumber = 1,
+    kProgressStepFieldNumber = 11,
+    kProgressFieldNumber = 10,
+  };
+  // string contentId = 1;
+  void clear_contentid();
+  const std::string& contentid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_contentid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_contentid();
+  PROTOBUF_NODISCARD std::string* release_contentid();
+  void set_allocated_contentid(std::string* contentid);
+  private:
+  const std::string& _internal_contentid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_contentid(const std::string& value);
+  std::string* _internal_mutable_contentid();
+  public:
+
+  // string progressStep = 11;
+  void clear_progressstep();
+  const std::string& progressstep() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_progressstep(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_progressstep();
+  PROTOBUF_NODISCARD std::string* release_progressstep();
+  void set_allocated_progressstep(std::string* progressstep);
+  private:
+  const std::string& _internal_progressstep() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_progressstep(const std::string& value);
+  std::string* _internal_mutable_progressstep();
+  public:
+
+  // float progress = 10;
+  void clear_progress();
+  float progress() const;
+  void set_progress(float value);
+  private:
+  float _internal_progress() const;
+  void _internal_set_progress(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.FetchFileByIdProgressResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contentid_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr progressstep_;
+    float progress_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FetchFileByIdCompletedResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.FetchFileByIdCompletedResp) */ {
+ public:
+  inline FetchFileByIdCompletedResp() : FetchFileByIdCompletedResp(nullptr) {}
+  ~FetchFileByIdCompletedResp() override;
+  explicit PROTOBUF_CONSTEXPR FetchFileByIdCompletedResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FetchFileByIdCompletedResp(const FetchFileByIdCompletedResp& from);
+  FetchFileByIdCompletedResp(FetchFileByIdCompletedResp&& from) noexcept
+    : FetchFileByIdCompletedResp() {
+    *this = ::std::move(from);
+  }
+
+  inline FetchFileByIdCompletedResp& operator=(const FetchFileByIdCompletedResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FetchFileByIdCompletedResp& operator=(FetchFileByIdCompletedResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FetchFileByIdCompletedResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FetchFileByIdCompletedResp* internal_default_instance() {
+    return reinterpret_cast<const FetchFileByIdCompletedResp*>(
+               &_FetchFileByIdCompletedResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    40;
+
+  friend void swap(FetchFileByIdCompletedResp& a, FetchFileByIdCompletedResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FetchFileByIdCompletedResp* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FetchFileByIdCompletedResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FetchFileByIdCompletedResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FetchFileByIdCompletedResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FetchFileByIdCompletedResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FetchFileByIdCompletedResp& from) {
+    FetchFileByIdCompletedResp::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FetchFileByIdCompletedResp* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.FetchFileByIdCompletedResp";
+  }
+  protected:
+  explicit FetchFileByIdCompletedResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContentIdFieldNumber = 1,
+    kFilePathFieldNumber = 10,
+  };
+  // string contentId = 1;
+  void clear_contentid();
+  const std::string& contentid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_contentid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_contentid();
+  PROTOBUF_NODISCARD std::string* release_contentid();
+  void set_allocated_contentid(std::string* contentid);
+  private:
+  const std::string& _internal_contentid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_contentid(const std::string& value);
+  std::string* _internal_mutable_contentid();
+  public:
+
+  // string filePath = 10;
+  void clear_filepath();
+  const std::string& filepath() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filepath(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filepath();
+  PROTOBUF_NODISCARD std::string* release_filepath();
+  void set_allocated_filepath(std::string* filepath);
+  private:
+  const std::string& _internal_filepath() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filepath(const std::string& value);
+  std::string* _internal_mutable_filepath();
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.FetchFileByIdCompletedResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contentid_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filepath_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FetchAllUploadedContentReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.FetchAllUploadedContentReq) */ {
+ public:
+  inline FetchAllUploadedContentReq() : FetchAllUploadedContentReq(nullptr) {}
+  ~FetchAllUploadedContentReq() override;
+  explicit PROTOBUF_CONSTEXPR FetchAllUploadedContentReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FetchAllUploadedContentReq(const FetchAllUploadedContentReq& from);
+  FetchAllUploadedContentReq(FetchAllUploadedContentReq&& from) noexcept
+    : FetchAllUploadedContentReq() {
+    *this = ::std::move(from);
+  }
+
+  inline FetchAllUploadedContentReq& operator=(const FetchAllUploadedContentReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FetchAllUploadedContentReq& operator=(FetchAllUploadedContentReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FetchAllUploadedContentReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FetchAllUploadedContentReq* internal_default_instance() {
+    return reinterpret_cast<const FetchAllUploadedContentReq*>(
+               &_FetchAllUploadedContentReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    41;
+
+  friend void swap(FetchAllUploadedContentReq& a, FetchAllUploadedContentReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FetchAllUploadedContentReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FetchAllUploadedContentReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FetchAllUploadedContentReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FetchAllUploadedContentReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FetchAllUploadedContentReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FetchAllUploadedContentReq& from) {
+    FetchAllUploadedContentReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FetchAllUploadedContentReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.FetchAllUploadedContentReq";
+  }
+  protected:
+  explicit FetchAllUploadedContentReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kReqIdFieldNumber = 1,
+  };
+  // int32 reqId = 1;
+  void clear_reqid();
+  int32_t reqid() const;
+  void set_reqid(int32_t value);
+  private:
+  int32_t _internal_reqid() const;
+  void _internal_set_reqid(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.FetchAllUploadedContentReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t reqid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadLocalFileResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.UploadLocalFileResp) */ {
+ public:
+  inline UploadLocalFileResp() : UploadLocalFileResp(nullptr) {}
+  ~UploadLocalFileResp() override;
+  explicit PROTOBUF_CONSTEXPR UploadLocalFileResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadLocalFileResp(const UploadLocalFileResp& from);
+  UploadLocalFileResp(UploadLocalFileResp&& from) noexcept
+    : UploadLocalFileResp() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadLocalFileResp& operator=(const UploadLocalFileResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadLocalFileResp& operator=(UploadLocalFileResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadLocalFileResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadLocalFileResp* internal_default_instance() {
+    return reinterpret_cast<const UploadLocalFileResp*>(
+               &_UploadLocalFileResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    42;
+
+  friend void swap(UploadLocalFileResp& a, UploadLocalFileResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadLocalFileResp* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadLocalFileResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadLocalFileResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadLocalFileResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadLocalFileResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UploadLocalFileResp& from) {
+    UploadLocalFileResp::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadLocalFileResp* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.UploadLocalFileResp";
+  }
+  protected:
+  explicit UploadLocalFileResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUploadedContentFieldNumber = 10,
+    kReqIdFieldNumber = 1,
+  };
+  // .ServerData.CavrnusRemoteContent uploadedContent = 10;
+  bool has_uploadedcontent() const;
+  private:
+  bool _internal_has_uploadedcontent() const;
+  public:
+  void clear_uploadedcontent();
+  const ::ServerData::CavrnusRemoteContent& uploadedcontent() const;
+  PROTOBUF_NODISCARD ::ServerData::CavrnusRemoteContent* release_uploadedcontent();
+  ::ServerData::CavrnusRemoteContent* mutable_uploadedcontent();
+  void set_allocated_uploadedcontent(::ServerData::CavrnusRemoteContent* uploadedcontent);
+  private:
+  const ::ServerData::CavrnusRemoteContent& _internal_uploadedcontent() const;
+  ::ServerData::CavrnusRemoteContent* _internal_mutable_uploadedcontent();
+  public:
+  void unsafe_arena_set_allocated_uploadedcontent(
+      ::ServerData::CavrnusRemoteContent* uploadedcontent);
+  ::ServerData::CavrnusRemoteContent* unsafe_arena_release_uploadedcontent();
+
+  // int32 reqId = 1;
+  void clear_reqid();
+  int32_t reqid() const;
+  void set_reqid(int32_t value);
+  private:
+  int32_t _internal_reqid() const;
+  void _internal_set_reqid(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.UploadLocalFileResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::ServerData::CavrnusRemoteContent* uploadedcontent_;
+    int32_t reqid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadLocalFileReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.UploadLocalFileReq) */ {
+ public:
+  inline UploadLocalFileReq() : UploadLocalFileReq(nullptr) {}
+  ~UploadLocalFileReq() override;
+  explicit PROTOBUF_CONSTEXPR UploadLocalFileReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadLocalFileReq(const UploadLocalFileReq& from);
+  UploadLocalFileReq(UploadLocalFileReq&& from) noexcept
+    : UploadLocalFileReq() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadLocalFileReq& operator=(const UploadLocalFileReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadLocalFileReq& operator=(UploadLocalFileReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadLocalFileReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadLocalFileReq* internal_default_instance() {
+    return reinterpret_cast<const UploadLocalFileReq*>(
+               &_UploadLocalFileReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    43;
+
+  friend void swap(UploadLocalFileReq& a, UploadLocalFileReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadLocalFileReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadLocalFileReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadLocalFileReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadLocalFileReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadLocalFileReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UploadLocalFileReq& from) {
+    UploadLocalFileReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadLocalFileReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.UploadLocalFileReq";
+  }
+  protected:
+  explicit UploadLocalFileReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagKeysFieldNumber = 11,
+    kTagValuesFieldNumber = 12,
+    kFilePathFieldNumber = 10,
+    kReqIdFieldNumber = 1,
+  };
+  // repeated string tagKeys = 11;
+  int tagkeys_size() const;
+  private:
+  int _internal_tagkeys_size() const;
+  public:
+  void clear_tagkeys();
+  const std::string& tagkeys(int index) const;
+  std::string* mutable_tagkeys(int index);
+  void set_tagkeys(int index, const std::string& value);
+  void set_tagkeys(int index, std::string&& value);
+  void set_tagkeys(int index, const char* value);
+  void set_tagkeys(int index, const char* value, size_t size);
+  std::string* add_tagkeys();
+  void add_tagkeys(const std::string& value);
+  void add_tagkeys(std::string&& value);
+  void add_tagkeys(const char* value);
+  void add_tagkeys(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagkeys() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagkeys();
+  private:
+  const std::string& _internal_tagkeys(int index) const;
+  std::string* _internal_add_tagkeys();
+  public:
+
+  // repeated string tagValues = 12;
+  int tagvalues_size() const;
+  private:
+  int _internal_tagvalues_size() const;
+  public:
+  void clear_tagvalues();
+  const std::string& tagvalues(int index) const;
+  std::string* mutable_tagvalues(int index);
+  void set_tagvalues(int index, const std::string& value);
+  void set_tagvalues(int index, std::string&& value);
+  void set_tagvalues(int index, const char* value);
+  void set_tagvalues(int index, const char* value, size_t size);
+  std::string* add_tagvalues();
+  void add_tagvalues(const std::string& value);
+  void add_tagvalues(std::string&& value);
+  void add_tagvalues(const char* value);
+  void add_tagvalues(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagvalues() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagvalues();
+  private:
+  const std::string& _internal_tagvalues(int index) const;
+  std::string* _internal_add_tagvalues();
+  public:
+
+  // string filePath = 10;
+  void clear_filepath();
+  const std::string& filepath() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filepath(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filepath();
+  PROTOBUF_NODISCARD std::string* release_filepath();
+  void set_allocated_filepath(std::string* filepath);
+  private:
+  const std::string& _internal_filepath() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filepath(const std::string& value);
+  std::string* _internal_mutable_filepath();
+  public:
+
+  // int32 reqId = 1;
+  void clear_reqid();
+  int32_t reqid() const;
+  void set_reqid(int32_t value);
+  private:
+  int32_t _internal_reqid() const;
+  void _internal_set_reqid(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.UploadLocalFileReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tagkeys_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tagvalues_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filepath_;
+    int32_t reqid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FetchAllUploadedContentResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.FetchAllUploadedContentResp) */ {
+ public:
+  inline FetchAllUploadedContentResp() : FetchAllUploadedContentResp(nullptr) {}
+  ~FetchAllUploadedContentResp() override;
+  explicit PROTOBUF_CONSTEXPR FetchAllUploadedContentResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FetchAllUploadedContentResp(const FetchAllUploadedContentResp& from);
+  FetchAllUploadedContentResp(FetchAllUploadedContentResp&& from) noexcept
+    : FetchAllUploadedContentResp() {
+    *this = ::std::move(from);
+  }
+
+  inline FetchAllUploadedContentResp& operator=(const FetchAllUploadedContentResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FetchAllUploadedContentResp& operator=(FetchAllUploadedContentResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FetchAllUploadedContentResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FetchAllUploadedContentResp* internal_default_instance() {
+    return reinterpret_cast<const FetchAllUploadedContentResp*>(
+               &_FetchAllUploadedContentResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    44;
+
+  friend void swap(FetchAllUploadedContentResp& a, FetchAllUploadedContentResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FetchAllUploadedContentResp* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FetchAllUploadedContentResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FetchAllUploadedContentResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FetchAllUploadedContentResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FetchAllUploadedContentResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FetchAllUploadedContentResp& from) {
+    FetchAllUploadedContentResp::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FetchAllUploadedContentResp* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.FetchAllUploadedContentResp";
+  }
+  protected:
+  explicit FetchAllUploadedContentResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAvailableContentFieldNumber = 10,
+    kReqIdFieldNumber = 1,
+  };
+  // repeated .ServerData.CavrnusRemoteContent availableContent = 10;
+  int availablecontent_size() const;
+  private:
+  int _internal_availablecontent_size() const;
+  public:
+  void clear_availablecontent();
+  ::ServerData::CavrnusRemoteContent* mutable_availablecontent(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ServerData::CavrnusRemoteContent >*
+      mutable_availablecontent();
+  private:
+  const ::ServerData::CavrnusRemoteContent& _internal_availablecontent(int index) const;
+  ::ServerData::CavrnusRemoteContent* _internal_add_availablecontent();
+  public:
+  const ::ServerData::CavrnusRemoteContent& availablecontent(int index) const;
+  ::ServerData::CavrnusRemoteContent* add_availablecontent();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ServerData::CavrnusRemoteContent >&
+      availablecontent() const;
+
+  // int32 reqId = 1;
+  void clear_reqid();
+  int32_t reqid() const;
+  void set_reqid(int32_t value);
+  private:
+  int32_t _internal_reqid() const;
+  void _internal_set_reqid(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.FetchAllUploadedContentResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ServerData::CavrnusRemoteContent > availablecontent_;
+    int32_t reqid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PropMetadataStatus final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.PropMetadataStatus) */ {
  public:
@@ -9124,7 +9809,7 @@ class PropMetadataStatus final :
                &_PropMetadataStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    45;
 
   friend void swap(PropMetadataStatus& a, PropMetadataStatus& b) {
     a.Swap(&b);
@@ -9312,7 +9997,7 @@ class PropertyValueStatus final :
                &_PropertyValueStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    46;
 
   friend void swap(PropertyValueStatus& a, PropertyValueStatus& b) {
     a.Swap(&b);
@@ -9520,7 +10205,7 @@ class LocalPropertyHandledResp final :
                &_LocalPropertyHandledResp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    47;
 
   friend void swap(LocalPropertyHandledResp& a, LocalPropertyHandledResp& b) {
     a.Swap(&b);
@@ -9708,7 +10393,7 @@ class UserAdded final :
                &_UserAdded_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    48;
 
   friend void swap(UserAdded& a, UserAdded& b) {
     a.Swap(&b);
@@ -9885,7 +10570,7 @@ class UserRemoved final :
                &_UserRemoved_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    49;
 
   friend void swap(UserRemoved& a, UserRemoved& b) {
     a.Swap(&b);
@@ -10058,7 +10743,7 @@ class UserVideoFrame final :
                &_UserVideoFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    50;
 
   friend void swap(UserVideoFrame& a, UserVideoFrame& b) {
     a.Swap(&b);
@@ -10269,7 +10954,7 @@ class SpaceInfo final :
                &_SpaceInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    51;
 
   friend void swap(SpaceInfo& a, SpaceInfo& b) {
     a.Swap(&b);
@@ -10465,7 +11150,7 @@ class ObjectAdded final :
                &_ObjectAdded_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    52;
 
   friend void swap(ObjectAdded& a, ObjectAdded& b) {
     a.Swap(&b);
@@ -10670,7 +11355,7 @@ class ObjectRemoved final :
                &_ObjectRemoved_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    53;
 
   friend void swap(ObjectRemoved& a, ObjectRemoved& b) {
     a.Swap(&b);
@@ -10843,7 +11528,7 @@ class UpdateLocalUserMuted final :
                &_UpdateLocalUserMuted_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    54;
 
   friend void swap(UpdateLocalUserMuted& a, UpdateLocalUserMuted& b) {
     a.Swap(&b);
@@ -11011,7 +11696,7 @@ class UpdateLocalUserCoPresence final :
                &_UpdateLocalUserCoPresence_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    55;
 
   friend void swap(UpdateLocalUserCoPresence& a, UpdateLocalUserCoPresence& b) {
     a.Swap(&b);
@@ -11188,7 +11873,7 @@ class UpdateLocalUserStreamState final :
                &_UpdateLocalUserStreamState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    56;
 
   friend void swap(UpdateLocalUserStreamState& a, UpdateLocalUserStreamState& b) {
     a.Swap(&b);
@@ -11356,7 +12041,7 @@ class PermissionStatusReq final :
                &_PermissionStatusReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    57;
 
   friend void swap(PermissionStatusReq& a, PermissionStatusReq& b) {
     a.Swap(&b);
@@ -11530,7 +12215,7 @@ class PermissionStatus final :
                &_PermissionStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    58;
 
   friend void swap(PermissionStatus& a, PermissionStatus& b) {
     a.Swap(&b);
@@ -11715,7 +12400,7 @@ class AllJoinableSpacesReq final :
                &_AllJoinableSpacesReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    59;
 
   friend void swap(AllJoinableSpacesReq& a, AllJoinableSpacesReq& b) {
     a.Swap(&b);
@@ -11863,7 +12548,7 @@ class AllJoinableSpacesResp final :
                &_AllJoinableSpacesResp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    60;
 
   friend void swap(AllJoinableSpacesResp& a, AllJoinableSpacesResp& b) {
     a.Swap(&b);
@@ -13960,6 +14645,228 @@ inline ::ServerData::AllJoinableSpacesReq* RelayClientMessage::mutable_alljoinab
   return _msg;
 }
 
+// .ServerData.FetchFileByIdReq FetchFileByIdReq = 110;
+inline bool RelayClientMessage::_internal_has_fetchfilebyidreq() const {
+  return Msg_case() == kFetchFileByIdReq;
+}
+inline bool RelayClientMessage::has_fetchfilebyidreq() const {
+  return _internal_has_fetchfilebyidreq();
+}
+inline void RelayClientMessage::set_has_fetchfilebyidreq() {
+  _impl_._oneof_case_[0] = kFetchFileByIdReq;
+}
+inline void RelayClientMessage::clear_fetchfilebyidreq() {
+  if (_internal_has_fetchfilebyidreq()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.fetchfilebyidreq_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::FetchFileByIdReq* RelayClientMessage::release_fetchfilebyidreq() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayClientMessage.FetchFileByIdReq)
+  if (_internal_has_fetchfilebyidreq()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdReq* temp = _impl_.Msg_.fetchfilebyidreq_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.fetchfilebyidreq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::FetchFileByIdReq& RelayClientMessage::_internal_fetchfilebyidreq() const {
+  return _internal_has_fetchfilebyidreq()
+      ? *_impl_.Msg_.fetchfilebyidreq_
+      : reinterpret_cast< ::ServerData::FetchFileByIdReq&>(::ServerData::_FetchFileByIdReq_default_instance_);
+}
+inline const ::ServerData::FetchFileByIdReq& RelayClientMessage::fetchfilebyidreq() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayClientMessage.FetchFileByIdReq)
+  return _internal_fetchfilebyidreq();
+}
+inline ::ServerData::FetchFileByIdReq* RelayClientMessage::unsafe_arena_release_fetchfilebyidreq() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayClientMessage.FetchFileByIdReq)
+  if (_internal_has_fetchfilebyidreq()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdReq* temp = _impl_.Msg_.fetchfilebyidreq_;
+    _impl_.Msg_.fetchfilebyidreq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayClientMessage::unsafe_arena_set_allocated_fetchfilebyidreq(::ServerData::FetchFileByIdReq* fetchfilebyidreq) {
+  clear_Msg();
+  if (fetchfilebyidreq) {
+    set_has_fetchfilebyidreq();
+    _impl_.Msg_.fetchfilebyidreq_ = fetchfilebyidreq;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayClientMessage.FetchFileByIdReq)
+}
+inline ::ServerData::FetchFileByIdReq* RelayClientMessage::_internal_mutable_fetchfilebyidreq() {
+  if (!_internal_has_fetchfilebyidreq()) {
+    clear_Msg();
+    set_has_fetchfilebyidreq();
+    _impl_.Msg_.fetchfilebyidreq_ = CreateMaybeMessage< ::ServerData::FetchFileByIdReq >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.fetchfilebyidreq_;
+}
+inline ::ServerData::FetchFileByIdReq* RelayClientMessage::mutable_fetchfilebyidreq() {
+  ::ServerData::FetchFileByIdReq* _msg = _internal_mutable_fetchfilebyidreq();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayClientMessage.FetchFileByIdReq)
+  return _msg;
+}
+
+// .ServerData.FetchAllUploadedContentReq FetchAllUploadedContentReq = 111;
+inline bool RelayClientMessage::_internal_has_fetchalluploadedcontentreq() const {
+  return Msg_case() == kFetchAllUploadedContentReq;
+}
+inline bool RelayClientMessage::has_fetchalluploadedcontentreq() const {
+  return _internal_has_fetchalluploadedcontentreq();
+}
+inline void RelayClientMessage::set_has_fetchalluploadedcontentreq() {
+  _impl_._oneof_case_[0] = kFetchAllUploadedContentReq;
+}
+inline void RelayClientMessage::clear_fetchalluploadedcontentreq() {
+  if (_internal_has_fetchalluploadedcontentreq()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.fetchalluploadedcontentreq_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::FetchAllUploadedContentReq* RelayClientMessage::release_fetchalluploadedcontentreq() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayClientMessage.FetchAllUploadedContentReq)
+  if (_internal_has_fetchalluploadedcontentreq()) {
+    clear_has_Msg();
+    ::ServerData::FetchAllUploadedContentReq* temp = _impl_.Msg_.fetchalluploadedcontentreq_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.fetchalluploadedcontentreq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::FetchAllUploadedContentReq& RelayClientMessage::_internal_fetchalluploadedcontentreq() const {
+  return _internal_has_fetchalluploadedcontentreq()
+      ? *_impl_.Msg_.fetchalluploadedcontentreq_
+      : reinterpret_cast< ::ServerData::FetchAllUploadedContentReq&>(::ServerData::_FetchAllUploadedContentReq_default_instance_);
+}
+inline const ::ServerData::FetchAllUploadedContentReq& RelayClientMessage::fetchalluploadedcontentreq() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayClientMessage.FetchAllUploadedContentReq)
+  return _internal_fetchalluploadedcontentreq();
+}
+inline ::ServerData::FetchAllUploadedContentReq* RelayClientMessage::unsafe_arena_release_fetchalluploadedcontentreq() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayClientMessage.FetchAllUploadedContentReq)
+  if (_internal_has_fetchalluploadedcontentreq()) {
+    clear_has_Msg();
+    ::ServerData::FetchAllUploadedContentReq* temp = _impl_.Msg_.fetchalluploadedcontentreq_;
+    _impl_.Msg_.fetchalluploadedcontentreq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayClientMessage::unsafe_arena_set_allocated_fetchalluploadedcontentreq(::ServerData::FetchAllUploadedContentReq* fetchalluploadedcontentreq) {
+  clear_Msg();
+  if (fetchalluploadedcontentreq) {
+    set_has_fetchalluploadedcontentreq();
+    _impl_.Msg_.fetchalluploadedcontentreq_ = fetchalluploadedcontentreq;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayClientMessage.FetchAllUploadedContentReq)
+}
+inline ::ServerData::FetchAllUploadedContentReq* RelayClientMessage::_internal_mutable_fetchalluploadedcontentreq() {
+  if (!_internal_has_fetchalluploadedcontentreq()) {
+    clear_Msg();
+    set_has_fetchalluploadedcontentreq();
+    _impl_.Msg_.fetchalluploadedcontentreq_ = CreateMaybeMessage< ::ServerData::FetchAllUploadedContentReq >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.fetchalluploadedcontentreq_;
+}
+inline ::ServerData::FetchAllUploadedContentReq* RelayClientMessage::mutable_fetchalluploadedcontentreq() {
+  ::ServerData::FetchAllUploadedContentReq* _msg = _internal_mutable_fetchalluploadedcontentreq();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayClientMessage.FetchAllUploadedContentReq)
+  return _msg;
+}
+
+// .ServerData.UploadLocalFileReq UploadLocalFileReq = 112;
+inline bool RelayClientMessage::_internal_has_uploadlocalfilereq() const {
+  return Msg_case() == kUploadLocalFileReq;
+}
+inline bool RelayClientMessage::has_uploadlocalfilereq() const {
+  return _internal_has_uploadlocalfilereq();
+}
+inline void RelayClientMessage::set_has_uploadlocalfilereq() {
+  _impl_._oneof_case_[0] = kUploadLocalFileReq;
+}
+inline void RelayClientMessage::clear_uploadlocalfilereq() {
+  if (_internal_has_uploadlocalfilereq()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.uploadlocalfilereq_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::UploadLocalFileReq* RelayClientMessage::release_uploadlocalfilereq() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayClientMessage.UploadLocalFileReq)
+  if (_internal_has_uploadlocalfilereq()) {
+    clear_has_Msg();
+    ::ServerData::UploadLocalFileReq* temp = _impl_.Msg_.uploadlocalfilereq_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.uploadlocalfilereq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::UploadLocalFileReq& RelayClientMessage::_internal_uploadlocalfilereq() const {
+  return _internal_has_uploadlocalfilereq()
+      ? *_impl_.Msg_.uploadlocalfilereq_
+      : reinterpret_cast< ::ServerData::UploadLocalFileReq&>(::ServerData::_UploadLocalFileReq_default_instance_);
+}
+inline const ::ServerData::UploadLocalFileReq& RelayClientMessage::uploadlocalfilereq() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayClientMessage.UploadLocalFileReq)
+  return _internal_uploadlocalfilereq();
+}
+inline ::ServerData::UploadLocalFileReq* RelayClientMessage::unsafe_arena_release_uploadlocalfilereq() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayClientMessage.UploadLocalFileReq)
+  if (_internal_has_uploadlocalfilereq()) {
+    clear_has_Msg();
+    ::ServerData::UploadLocalFileReq* temp = _impl_.Msg_.uploadlocalfilereq_;
+    _impl_.Msg_.uploadlocalfilereq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayClientMessage::unsafe_arena_set_allocated_uploadlocalfilereq(::ServerData::UploadLocalFileReq* uploadlocalfilereq) {
+  clear_Msg();
+  if (uploadlocalfilereq) {
+    set_has_uploadlocalfilereq();
+    _impl_.Msg_.uploadlocalfilereq_ = uploadlocalfilereq;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayClientMessage.UploadLocalFileReq)
+}
+inline ::ServerData::UploadLocalFileReq* RelayClientMessage::_internal_mutable_uploadlocalfilereq() {
+  if (!_internal_has_uploadlocalfilereq()) {
+    clear_Msg();
+    set_has_uploadlocalfilereq();
+    _impl_.Msg_.uploadlocalfilereq_ = CreateMaybeMessage< ::ServerData::UploadLocalFileReq >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.uploadlocalfilereq_;
+}
+inline ::ServerData::UploadLocalFileReq* RelayClientMessage::mutable_uploadlocalfilereq() {
+  ::ServerData::UploadLocalFileReq* _msg = _internal_mutable_uploadlocalfilereq();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayClientMessage.UploadLocalFileReq)
+  return _msg;
+}
+
 inline bool RelayClientMessage::has_Msg() const {
   return Msg_case() != MSG_NOT_SET;
 }
@@ -14680,228 +15587,6 @@ inline ::ServerData::GetVideoInputDevicesResp* RelayRemoteMessage::_internal_mut
 inline ::ServerData::GetVideoInputDevicesResp* RelayRemoteMessage::mutable_getvideoinputdevicesresp() {
   ::ServerData::GetVideoInputDevicesResp* _msg = _internal_mutable_getvideoinputdevicesresp();
   // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.GetVideoInputDevicesResp)
-  return _msg;
-}
-
-// .ServerData.SetAudioInputDeviceResp SetAudioInputDeviceResp = 23;
-inline bool RelayRemoteMessage::_internal_has_setaudioinputdeviceresp() const {
-  return Msg_case() == kSetAudioInputDeviceResp;
-}
-inline bool RelayRemoteMessage::has_setaudioinputdeviceresp() const {
-  return _internal_has_setaudioinputdeviceresp();
-}
-inline void RelayRemoteMessage::set_has_setaudioinputdeviceresp() {
-  _impl_._oneof_case_[0] = kSetAudioInputDeviceResp;
-}
-inline void RelayRemoteMessage::clear_setaudioinputdeviceresp() {
-  if (_internal_has_setaudioinputdeviceresp()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete _impl_.Msg_.setaudioinputdeviceresp_;
-    }
-    clear_has_Msg();
-  }
-}
-inline ::ServerData::SetAudioInputDeviceResp* RelayRemoteMessage::release_setaudioinputdeviceresp() {
-  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.SetAudioInputDeviceResp)
-  if (_internal_has_setaudioinputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetAudioInputDeviceResp* temp = _impl_.Msg_.setaudioinputdeviceresp_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Msg_.setaudioinputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::SetAudioInputDeviceResp& RelayRemoteMessage::_internal_setaudioinputdeviceresp() const {
-  return _internal_has_setaudioinputdeviceresp()
-      ? *_impl_.Msg_.setaudioinputdeviceresp_
-      : reinterpret_cast< ::ServerData::SetAudioInputDeviceResp&>(::ServerData::_SetAudioInputDeviceResp_default_instance_);
-}
-inline const ::ServerData::SetAudioInputDeviceResp& RelayRemoteMessage::setaudioinputdeviceresp() const {
-  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.SetAudioInputDeviceResp)
-  return _internal_setaudioinputdeviceresp();
-}
-inline ::ServerData::SetAudioInputDeviceResp* RelayRemoteMessage::unsafe_arena_release_setaudioinputdeviceresp() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.SetAudioInputDeviceResp)
-  if (_internal_has_setaudioinputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetAudioInputDeviceResp* temp = _impl_.Msg_.setaudioinputdeviceresp_;
-    _impl_.Msg_.setaudioinputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void RelayRemoteMessage::unsafe_arena_set_allocated_setaudioinputdeviceresp(::ServerData::SetAudioInputDeviceResp* setaudioinputdeviceresp) {
-  clear_Msg();
-  if (setaudioinputdeviceresp) {
-    set_has_setaudioinputdeviceresp();
-    _impl_.Msg_.setaudioinputdeviceresp_ = setaudioinputdeviceresp;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.SetAudioInputDeviceResp)
-}
-inline ::ServerData::SetAudioInputDeviceResp* RelayRemoteMessage::_internal_mutable_setaudioinputdeviceresp() {
-  if (!_internal_has_setaudioinputdeviceresp()) {
-    clear_Msg();
-    set_has_setaudioinputdeviceresp();
-    _impl_.Msg_.setaudioinputdeviceresp_ = CreateMaybeMessage< ::ServerData::SetAudioInputDeviceResp >(GetArenaForAllocation());
-  }
-  return _impl_.Msg_.setaudioinputdeviceresp_;
-}
-inline ::ServerData::SetAudioInputDeviceResp* RelayRemoteMessage::mutable_setaudioinputdeviceresp() {
-  ::ServerData::SetAudioInputDeviceResp* _msg = _internal_mutable_setaudioinputdeviceresp();
-  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.SetAudioInputDeviceResp)
-  return _msg;
-}
-
-// .ServerData.SetAudioOutputDeviceResp SetAudioOutputDeviceResp = 24;
-inline bool RelayRemoteMessage::_internal_has_setaudiooutputdeviceresp() const {
-  return Msg_case() == kSetAudioOutputDeviceResp;
-}
-inline bool RelayRemoteMessage::has_setaudiooutputdeviceresp() const {
-  return _internal_has_setaudiooutputdeviceresp();
-}
-inline void RelayRemoteMessage::set_has_setaudiooutputdeviceresp() {
-  _impl_._oneof_case_[0] = kSetAudioOutputDeviceResp;
-}
-inline void RelayRemoteMessage::clear_setaudiooutputdeviceresp() {
-  if (_internal_has_setaudiooutputdeviceresp()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete _impl_.Msg_.setaudiooutputdeviceresp_;
-    }
-    clear_has_Msg();
-  }
-}
-inline ::ServerData::SetAudioOutputDeviceResp* RelayRemoteMessage::release_setaudiooutputdeviceresp() {
-  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.SetAudioOutputDeviceResp)
-  if (_internal_has_setaudiooutputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetAudioOutputDeviceResp* temp = _impl_.Msg_.setaudiooutputdeviceresp_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Msg_.setaudiooutputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::SetAudioOutputDeviceResp& RelayRemoteMessage::_internal_setaudiooutputdeviceresp() const {
-  return _internal_has_setaudiooutputdeviceresp()
-      ? *_impl_.Msg_.setaudiooutputdeviceresp_
-      : reinterpret_cast< ::ServerData::SetAudioOutputDeviceResp&>(::ServerData::_SetAudioOutputDeviceResp_default_instance_);
-}
-inline const ::ServerData::SetAudioOutputDeviceResp& RelayRemoteMessage::setaudiooutputdeviceresp() const {
-  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.SetAudioOutputDeviceResp)
-  return _internal_setaudiooutputdeviceresp();
-}
-inline ::ServerData::SetAudioOutputDeviceResp* RelayRemoteMessage::unsafe_arena_release_setaudiooutputdeviceresp() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.SetAudioOutputDeviceResp)
-  if (_internal_has_setaudiooutputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetAudioOutputDeviceResp* temp = _impl_.Msg_.setaudiooutputdeviceresp_;
-    _impl_.Msg_.setaudiooutputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void RelayRemoteMessage::unsafe_arena_set_allocated_setaudiooutputdeviceresp(::ServerData::SetAudioOutputDeviceResp* setaudiooutputdeviceresp) {
-  clear_Msg();
-  if (setaudiooutputdeviceresp) {
-    set_has_setaudiooutputdeviceresp();
-    _impl_.Msg_.setaudiooutputdeviceresp_ = setaudiooutputdeviceresp;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.SetAudioOutputDeviceResp)
-}
-inline ::ServerData::SetAudioOutputDeviceResp* RelayRemoteMessage::_internal_mutable_setaudiooutputdeviceresp() {
-  if (!_internal_has_setaudiooutputdeviceresp()) {
-    clear_Msg();
-    set_has_setaudiooutputdeviceresp();
-    _impl_.Msg_.setaudiooutputdeviceresp_ = CreateMaybeMessage< ::ServerData::SetAudioOutputDeviceResp >(GetArenaForAllocation());
-  }
-  return _impl_.Msg_.setaudiooutputdeviceresp_;
-}
-inline ::ServerData::SetAudioOutputDeviceResp* RelayRemoteMessage::mutable_setaudiooutputdeviceresp() {
-  ::ServerData::SetAudioOutputDeviceResp* _msg = _internal_mutable_setaudiooutputdeviceresp();
-  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.SetAudioOutputDeviceResp)
-  return _msg;
-}
-
-// .ServerData.SetVideoInputDeviceResp SetVideoInputDeviceResp = 25;
-inline bool RelayRemoteMessage::_internal_has_setvideoinputdeviceresp() const {
-  return Msg_case() == kSetVideoInputDeviceResp;
-}
-inline bool RelayRemoteMessage::has_setvideoinputdeviceresp() const {
-  return _internal_has_setvideoinputdeviceresp();
-}
-inline void RelayRemoteMessage::set_has_setvideoinputdeviceresp() {
-  _impl_._oneof_case_[0] = kSetVideoInputDeviceResp;
-}
-inline void RelayRemoteMessage::clear_setvideoinputdeviceresp() {
-  if (_internal_has_setvideoinputdeviceresp()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete _impl_.Msg_.setvideoinputdeviceresp_;
-    }
-    clear_has_Msg();
-  }
-}
-inline ::ServerData::SetVideoInputDeviceResp* RelayRemoteMessage::release_setvideoinputdeviceresp() {
-  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.SetVideoInputDeviceResp)
-  if (_internal_has_setvideoinputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetVideoInputDeviceResp* temp = _impl_.Msg_.setvideoinputdeviceresp_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Msg_.setvideoinputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::SetVideoInputDeviceResp& RelayRemoteMessage::_internal_setvideoinputdeviceresp() const {
-  return _internal_has_setvideoinputdeviceresp()
-      ? *_impl_.Msg_.setvideoinputdeviceresp_
-      : reinterpret_cast< ::ServerData::SetVideoInputDeviceResp&>(::ServerData::_SetVideoInputDeviceResp_default_instance_);
-}
-inline const ::ServerData::SetVideoInputDeviceResp& RelayRemoteMessage::setvideoinputdeviceresp() const {
-  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.SetVideoInputDeviceResp)
-  return _internal_setvideoinputdeviceresp();
-}
-inline ::ServerData::SetVideoInputDeviceResp* RelayRemoteMessage::unsafe_arena_release_setvideoinputdeviceresp() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.SetVideoInputDeviceResp)
-  if (_internal_has_setvideoinputdeviceresp()) {
-    clear_has_Msg();
-    ::ServerData::SetVideoInputDeviceResp* temp = _impl_.Msg_.setvideoinputdeviceresp_;
-    _impl_.Msg_.setvideoinputdeviceresp_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void RelayRemoteMessage::unsafe_arena_set_allocated_setvideoinputdeviceresp(::ServerData::SetVideoInputDeviceResp* setvideoinputdeviceresp) {
-  clear_Msg();
-  if (setvideoinputdeviceresp) {
-    set_has_setvideoinputdeviceresp();
-    _impl_.Msg_.setvideoinputdeviceresp_ = setvideoinputdeviceresp;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.SetVideoInputDeviceResp)
-}
-inline ::ServerData::SetVideoInputDeviceResp* RelayRemoteMessage::_internal_mutable_setvideoinputdeviceresp() {
-  if (!_internal_has_setvideoinputdeviceresp()) {
-    clear_Msg();
-    set_has_setvideoinputdeviceresp();
-    _impl_.Msg_.setvideoinputdeviceresp_ = CreateMaybeMessage< ::ServerData::SetVideoInputDeviceResp >(GetArenaForAllocation());
-  }
-  return _impl_.Msg_.setvideoinputdeviceresp_;
-}
-inline ::ServerData::SetVideoInputDeviceResp* RelayRemoteMessage::mutable_setvideoinputdeviceresp() {
-  ::ServerData::SetVideoInputDeviceResp* _msg = _internal_mutable_setvideoinputdeviceresp();
-  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.SetVideoInputDeviceResp)
   return _msg;
 }
 
@@ -15864,6 +16549,302 @@ inline ::ServerData::AllJoinableSpacesResp* RelayRemoteMessage::_internal_mutabl
 inline ::ServerData::AllJoinableSpacesResp* RelayRemoteMessage::mutable_alljoinablespacesresp() {
   ::ServerData::AllJoinableSpacesResp* _msg = _internal_mutable_alljoinablespacesresp();
   // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.AllJoinableSpacesResp)
+  return _msg;
+}
+
+// .ServerData.FetchFileByIdProgressResp FetchFileByIdProgressResp = 110;
+inline bool RelayRemoteMessage::_internal_has_fetchfilebyidprogressresp() const {
+  return Msg_case() == kFetchFileByIdProgressResp;
+}
+inline bool RelayRemoteMessage::has_fetchfilebyidprogressresp() const {
+  return _internal_has_fetchfilebyidprogressresp();
+}
+inline void RelayRemoteMessage::set_has_fetchfilebyidprogressresp() {
+  _impl_._oneof_case_[0] = kFetchFileByIdProgressResp;
+}
+inline void RelayRemoteMessage::clear_fetchfilebyidprogressresp() {
+  if (_internal_has_fetchfilebyidprogressresp()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.fetchfilebyidprogressresp_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::FetchFileByIdProgressResp* RelayRemoteMessage::release_fetchfilebyidprogressresp() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.FetchFileByIdProgressResp)
+  if (_internal_has_fetchfilebyidprogressresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdProgressResp* temp = _impl_.Msg_.fetchfilebyidprogressresp_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.fetchfilebyidprogressresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::FetchFileByIdProgressResp& RelayRemoteMessage::_internal_fetchfilebyidprogressresp() const {
+  return _internal_has_fetchfilebyidprogressresp()
+      ? *_impl_.Msg_.fetchfilebyidprogressresp_
+      : reinterpret_cast< ::ServerData::FetchFileByIdProgressResp&>(::ServerData::_FetchFileByIdProgressResp_default_instance_);
+}
+inline const ::ServerData::FetchFileByIdProgressResp& RelayRemoteMessage::fetchfilebyidprogressresp() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.FetchFileByIdProgressResp)
+  return _internal_fetchfilebyidprogressresp();
+}
+inline ::ServerData::FetchFileByIdProgressResp* RelayRemoteMessage::unsafe_arena_release_fetchfilebyidprogressresp() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.FetchFileByIdProgressResp)
+  if (_internal_has_fetchfilebyidprogressresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdProgressResp* temp = _impl_.Msg_.fetchfilebyidprogressresp_;
+    _impl_.Msg_.fetchfilebyidprogressresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayRemoteMessage::unsafe_arena_set_allocated_fetchfilebyidprogressresp(::ServerData::FetchFileByIdProgressResp* fetchfilebyidprogressresp) {
+  clear_Msg();
+  if (fetchfilebyidprogressresp) {
+    set_has_fetchfilebyidprogressresp();
+    _impl_.Msg_.fetchfilebyidprogressresp_ = fetchfilebyidprogressresp;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.FetchFileByIdProgressResp)
+}
+inline ::ServerData::FetchFileByIdProgressResp* RelayRemoteMessage::_internal_mutable_fetchfilebyidprogressresp() {
+  if (!_internal_has_fetchfilebyidprogressresp()) {
+    clear_Msg();
+    set_has_fetchfilebyidprogressresp();
+    _impl_.Msg_.fetchfilebyidprogressresp_ = CreateMaybeMessage< ::ServerData::FetchFileByIdProgressResp >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.fetchfilebyidprogressresp_;
+}
+inline ::ServerData::FetchFileByIdProgressResp* RelayRemoteMessage::mutable_fetchfilebyidprogressresp() {
+  ::ServerData::FetchFileByIdProgressResp* _msg = _internal_mutable_fetchfilebyidprogressresp();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.FetchFileByIdProgressResp)
+  return _msg;
+}
+
+// .ServerData.FetchFileByIdCompletedResp FetchFileByIdCompletedResp = 111;
+inline bool RelayRemoteMessage::_internal_has_fetchfilebyidcompletedresp() const {
+  return Msg_case() == kFetchFileByIdCompletedResp;
+}
+inline bool RelayRemoteMessage::has_fetchfilebyidcompletedresp() const {
+  return _internal_has_fetchfilebyidcompletedresp();
+}
+inline void RelayRemoteMessage::set_has_fetchfilebyidcompletedresp() {
+  _impl_._oneof_case_[0] = kFetchFileByIdCompletedResp;
+}
+inline void RelayRemoteMessage::clear_fetchfilebyidcompletedresp() {
+  if (_internal_has_fetchfilebyidcompletedresp()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.fetchfilebyidcompletedresp_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::FetchFileByIdCompletedResp* RelayRemoteMessage::release_fetchfilebyidcompletedresp() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.FetchFileByIdCompletedResp)
+  if (_internal_has_fetchfilebyidcompletedresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdCompletedResp* temp = _impl_.Msg_.fetchfilebyidcompletedresp_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.fetchfilebyidcompletedresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::FetchFileByIdCompletedResp& RelayRemoteMessage::_internal_fetchfilebyidcompletedresp() const {
+  return _internal_has_fetchfilebyidcompletedresp()
+      ? *_impl_.Msg_.fetchfilebyidcompletedresp_
+      : reinterpret_cast< ::ServerData::FetchFileByIdCompletedResp&>(::ServerData::_FetchFileByIdCompletedResp_default_instance_);
+}
+inline const ::ServerData::FetchFileByIdCompletedResp& RelayRemoteMessage::fetchfilebyidcompletedresp() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.FetchFileByIdCompletedResp)
+  return _internal_fetchfilebyidcompletedresp();
+}
+inline ::ServerData::FetchFileByIdCompletedResp* RelayRemoteMessage::unsafe_arena_release_fetchfilebyidcompletedresp() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.FetchFileByIdCompletedResp)
+  if (_internal_has_fetchfilebyidcompletedresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchFileByIdCompletedResp* temp = _impl_.Msg_.fetchfilebyidcompletedresp_;
+    _impl_.Msg_.fetchfilebyidcompletedresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayRemoteMessage::unsafe_arena_set_allocated_fetchfilebyidcompletedresp(::ServerData::FetchFileByIdCompletedResp* fetchfilebyidcompletedresp) {
+  clear_Msg();
+  if (fetchfilebyidcompletedresp) {
+    set_has_fetchfilebyidcompletedresp();
+    _impl_.Msg_.fetchfilebyidcompletedresp_ = fetchfilebyidcompletedresp;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.FetchFileByIdCompletedResp)
+}
+inline ::ServerData::FetchFileByIdCompletedResp* RelayRemoteMessage::_internal_mutable_fetchfilebyidcompletedresp() {
+  if (!_internal_has_fetchfilebyidcompletedresp()) {
+    clear_Msg();
+    set_has_fetchfilebyidcompletedresp();
+    _impl_.Msg_.fetchfilebyidcompletedresp_ = CreateMaybeMessage< ::ServerData::FetchFileByIdCompletedResp >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.fetchfilebyidcompletedresp_;
+}
+inline ::ServerData::FetchFileByIdCompletedResp* RelayRemoteMessage::mutable_fetchfilebyidcompletedresp() {
+  ::ServerData::FetchFileByIdCompletedResp* _msg = _internal_mutable_fetchfilebyidcompletedresp();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.FetchFileByIdCompletedResp)
+  return _msg;
+}
+
+// .ServerData.FetchAllUploadedContentResp FetchAllUploadedContentResp = 112;
+inline bool RelayRemoteMessage::_internal_has_fetchalluploadedcontentresp() const {
+  return Msg_case() == kFetchAllUploadedContentResp;
+}
+inline bool RelayRemoteMessage::has_fetchalluploadedcontentresp() const {
+  return _internal_has_fetchalluploadedcontentresp();
+}
+inline void RelayRemoteMessage::set_has_fetchalluploadedcontentresp() {
+  _impl_._oneof_case_[0] = kFetchAllUploadedContentResp;
+}
+inline void RelayRemoteMessage::clear_fetchalluploadedcontentresp() {
+  if (_internal_has_fetchalluploadedcontentresp()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.fetchalluploadedcontentresp_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::FetchAllUploadedContentResp* RelayRemoteMessage::release_fetchalluploadedcontentresp() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.FetchAllUploadedContentResp)
+  if (_internal_has_fetchalluploadedcontentresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchAllUploadedContentResp* temp = _impl_.Msg_.fetchalluploadedcontentresp_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.fetchalluploadedcontentresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::FetchAllUploadedContentResp& RelayRemoteMessage::_internal_fetchalluploadedcontentresp() const {
+  return _internal_has_fetchalluploadedcontentresp()
+      ? *_impl_.Msg_.fetchalluploadedcontentresp_
+      : reinterpret_cast< ::ServerData::FetchAllUploadedContentResp&>(::ServerData::_FetchAllUploadedContentResp_default_instance_);
+}
+inline const ::ServerData::FetchAllUploadedContentResp& RelayRemoteMessage::fetchalluploadedcontentresp() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.FetchAllUploadedContentResp)
+  return _internal_fetchalluploadedcontentresp();
+}
+inline ::ServerData::FetchAllUploadedContentResp* RelayRemoteMessage::unsafe_arena_release_fetchalluploadedcontentresp() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.FetchAllUploadedContentResp)
+  if (_internal_has_fetchalluploadedcontentresp()) {
+    clear_has_Msg();
+    ::ServerData::FetchAllUploadedContentResp* temp = _impl_.Msg_.fetchalluploadedcontentresp_;
+    _impl_.Msg_.fetchalluploadedcontentresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayRemoteMessage::unsafe_arena_set_allocated_fetchalluploadedcontentresp(::ServerData::FetchAllUploadedContentResp* fetchalluploadedcontentresp) {
+  clear_Msg();
+  if (fetchalluploadedcontentresp) {
+    set_has_fetchalluploadedcontentresp();
+    _impl_.Msg_.fetchalluploadedcontentresp_ = fetchalluploadedcontentresp;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.FetchAllUploadedContentResp)
+}
+inline ::ServerData::FetchAllUploadedContentResp* RelayRemoteMessage::_internal_mutable_fetchalluploadedcontentresp() {
+  if (!_internal_has_fetchalluploadedcontentresp()) {
+    clear_Msg();
+    set_has_fetchalluploadedcontentresp();
+    _impl_.Msg_.fetchalluploadedcontentresp_ = CreateMaybeMessage< ::ServerData::FetchAllUploadedContentResp >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.fetchalluploadedcontentresp_;
+}
+inline ::ServerData::FetchAllUploadedContentResp* RelayRemoteMessage::mutable_fetchalluploadedcontentresp() {
+  ::ServerData::FetchAllUploadedContentResp* _msg = _internal_mutable_fetchalluploadedcontentresp();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.FetchAllUploadedContentResp)
+  return _msg;
+}
+
+// .ServerData.UploadLocalFileResp UploadLocalFileResp = 113;
+inline bool RelayRemoteMessage::_internal_has_uploadlocalfileresp() const {
+  return Msg_case() == kUploadLocalFileResp;
+}
+inline bool RelayRemoteMessage::has_uploadlocalfileresp() const {
+  return _internal_has_uploadlocalfileresp();
+}
+inline void RelayRemoteMessage::set_has_uploadlocalfileresp() {
+  _impl_._oneof_case_[0] = kUploadLocalFileResp;
+}
+inline void RelayRemoteMessage::clear_uploadlocalfileresp() {
+  if (_internal_has_uploadlocalfileresp()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.Msg_.uploadlocalfileresp_;
+    }
+    clear_has_Msg();
+  }
+}
+inline ::ServerData::UploadLocalFileResp* RelayRemoteMessage::release_uploadlocalfileresp() {
+  // @@protoc_insertion_point(field_release:ServerData.RelayRemoteMessage.UploadLocalFileResp)
+  if (_internal_has_uploadlocalfileresp()) {
+    clear_has_Msg();
+    ::ServerData::UploadLocalFileResp* temp = _impl_.Msg_.uploadlocalfileresp_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Msg_.uploadlocalfileresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::ServerData::UploadLocalFileResp& RelayRemoteMessage::_internal_uploadlocalfileresp() const {
+  return _internal_has_uploadlocalfileresp()
+      ? *_impl_.Msg_.uploadlocalfileresp_
+      : reinterpret_cast< ::ServerData::UploadLocalFileResp&>(::ServerData::_UploadLocalFileResp_default_instance_);
+}
+inline const ::ServerData::UploadLocalFileResp& RelayRemoteMessage::uploadlocalfileresp() const {
+  // @@protoc_insertion_point(field_get:ServerData.RelayRemoteMessage.UploadLocalFileResp)
+  return _internal_uploadlocalfileresp();
+}
+inline ::ServerData::UploadLocalFileResp* RelayRemoteMessage::unsafe_arena_release_uploadlocalfileresp() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.RelayRemoteMessage.UploadLocalFileResp)
+  if (_internal_has_uploadlocalfileresp()) {
+    clear_has_Msg();
+    ::ServerData::UploadLocalFileResp* temp = _impl_.Msg_.uploadlocalfileresp_;
+    _impl_.Msg_.uploadlocalfileresp_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RelayRemoteMessage::unsafe_arena_set_allocated_uploadlocalfileresp(::ServerData::UploadLocalFileResp* uploadlocalfileresp) {
+  clear_Msg();
+  if (uploadlocalfileresp) {
+    set_has_uploadlocalfileresp();
+    _impl_.Msg_.uploadlocalfileresp_ = uploadlocalfileresp;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.RelayRemoteMessage.UploadLocalFileResp)
+}
+inline ::ServerData::UploadLocalFileResp* RelayRemoteMessage::_internal_mutable_uploadlocalfileresp() {
+  if (!_internal_has_uploadlocalfileresp()) {
+    clear_Msg();
+    set_has_uploadlocalfileresp();
+    _impl_.Msg_.uploadlocalfileresp_ = CreateMaybeMessage< ::ServerData::UploadLocalFileResp >(GetArenaForAllocation());
+  }
+  return _impl_.Msg_.uploadlocalfileresp_;
+}
+inline ::ServerData::UploadLocalFileResp* RelayRemoteMessage::mutable_uploadlocalfileresp() {
+  ::ServerData::UploadLocalFileResp* _msg = _internal_mutable_uploadlocalfileresp();
+  // @@protoc_insertion_point(field_mutable:ServerData.RelayRemoteMessage.UploadLocalFileResp)
   return _msg;
 }
 
@@ -20962,534 +21943,6 @@ inline void SetVideoInputDeviceReq::set_allocated_device(::ServerData::RtcVideoI
 
 // -------------------------------------------------------------------
 
-// SetAudioInputDeviceResp
-
-// int32 reqId = 1;
-inline void SetAudioInputDeviceResp::clear_reqid() {
-  _impl_.reqid_ = 0;
-}
-inline int32_t SetAudioInputDeviceResp::_internal_reqid() const {
-  return _impl_.reqid_;
-}
-inline int32_t SetAudioInputDeviceResp::reqid() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioInputDeviceResp.reqId)
-  return _internal_reqid();
-}
-inline void SetAudioInputDeviceResp::_internal_set_reqid(int32_t value) {
-  
-  _impl_.reqid_ = value;
-}
-inline void SetAudioInputDeviceResp::set_reqid(int32_t value) {
-  _internal_set_reqid(value);
-  // @@protoc_insertion_point(field_set:ServerData.SetAudioInputDeviceResp.reqId)
-}
-
-// .ServerData.RtcAudioInputDevice Device = 10;
-inline bool SetAudioInputDeviceResp::_internal_has_device() const {
-  return Resp_case() == kDevice;
-}
-inline bool SetAudioInputDeviceResp::has_device() const {
-  return _internal_has_device();
-}
-inline void SetAudioInputDeviceResp::set_has_device() {
-  _impl_._oneof_case_[0] = kDevice;
-}
-inline ::ServerData::RtcAudioInputDevice* SetAudioInputDeviceResp::release_device() {
-  // @@protoc_insertion_point(field_release:ServerData.SetAudioInputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcAudioInputDevice* temp = _impl_.Resp_.device_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::RtcAudioInputDevice& SetAudioInputDeviceResp::_internal_device() const {
-  return _internal_has_device()
-      ? *_impl_.Resp_.device_
-      : reinterpret_cast< ::ServerData::RtcAudioInputDevice&>(::ServerData::_RtcAudioInputDevice_default_instance_);
-}
-inline const ::ServerData::RtcAudioInputDevice& SetAudioInputDeviceResp::device() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioInputDeviceResp.Device)
-  return _internal_device();
-}
-inline ::ServerData::RtcAudioInputDevice* SetAudioInputDeviceResp::unsafe_arena_release_device() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.SetAudioInputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcAudioInputDevice* temp = _impl_.Resp_.device_;
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void SetAudioInputDeviceResp::unsafe_arena_set_allocated_device(::ServerData::RtcAudioInputDevice* device) {
-  clear_Resp();
-  if (device) {
-    set_has_device();
-    _impl_.Resp_.device_ = device;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.SetAudioInputDeviceResp.Device)
-}
-inline ::ServerData::RtcAudioInputDevice* SetAudioInputDeviceResp::_internal_mutable_device() {
-  if (!_internal_has_device()) {
-    clear_Resp();
-    set_has_device();
-    _impl_.Resp_.device_ = CreateMaybeMessage< ::ServerData::RtcAudioInputDevice >(GetArenaForAllocation());
-  }
-  return _impl_.Resp_.device_;
-}
-inline ::ServerData::RtcAudioInputDevice* SetAudioInputDeviceResp::mutable_device() {
-  ::ServerData::RtcAudioInputDevice* _msg = _internal_mutable_device();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetAudioInputDeviceResp.Device)
-  return _msg;
-}
-
-// string error = 11;
-inline bool SetAudioInputDeviceResp::_internal_has_error() const {
-  return Resp_case() == kError;
-}
-inline bool SetAudioInputDeviceResp::has_error() const {
-  return _internal_has_error();
-}
-inline void SetAudioInputDeviceResp::set_has_error() {
-  _impl_._oneof_case_[0] = kError;
-}
-inline void SetAudioInputDeviceResp::clear_error() {
-  if (_internal_has_error()) {
-    _impl_.Resp_.error_.Destroy();
-    clear_has_Resp();
-  }
-}
-inline const std::string& SetAudioInputDeviceResp::error() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioInputDeviceResp.error)
-  return _internal_error();
-}
-template <typename ArgT0, typename... ArgT>
-inline void SetAudioInputDeviceResp::set_error(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ServerData.SetAudioInputDeviceResp.error)
-}
-inline std::string* SetAudioInputDeviceResp::mutable_error() {
-  std::string* _s = _internal_mutable_error();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetAudioInputDeviceResp.error)
-  return _s;
-}
-inline const std::string& SetAudioInputDeviceResp::_internal_error() const {
-  if (_internal_has_error()) {
-    return _impl_.Resp_.error_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
-}
-inline void SetAudioInputDeviceResp::_internal_set_error(const std::string& value) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SetAudioInputDeviceResp::_internal_mutable_error() {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  return _impl_.Resp_.error_.Mutable(      GetArenaForAllocation());
-}
-inline std::string* SetAudioInputDeviceResp::release_error() {
-  // @@protoc_insertion_point(field_release:ServerData.SetAudioInputDeviceResp.error)
-  if (_internal_has_error()) {
-    clear_has_Resp();
-    return _impl_.Resp_.error_.Release();
-  } else {
-    return nullptr;
-  }
-}
-inline void SetAudioInputDeviceResp::set_allocated_error(std::string* error) {
-  if (has_Resp()) {
-    clear_Resp();
-  }
-  if (error != nullptr) {
-    set_has_error();
-    _impl_.Resp_.error_.InitAllocated(error, GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(field_set_allocated:ServerData.SetAudioInputDeviceResp.error)
-}
-
-inline bool SetAudioInputDeviceResp::has_Resp() const {
-  return Resp_case() != RESP_NOT_SET;
-}
-inline void SetAudioInputDeviceResp::clear_has_Resp() {
-  _impl_._oneof_case_[0] = RESP_NOT_SET;
-}
-inline SetAudioInputDeviceResp::RespCase SetAudioInputDeviceResp::Resp_case() const {
-  return SetAudioInputDeviceResp::RespCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
-// SetAudioOutputDeviceResp
-
-// int32 reqId = 1;
-inline void SetAudioOutputDeviceResp::clear_reqid() {
-  _impl_.reqid_ = 0;
-}
-inline int32_t SetAudioOutputDeviceResp::_internal_reqid() const {
-  return _impl_.reqid_;
-}
-inline int32_t SetAudioOutputDeviceResp::reqid() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioOutputDeviceResp.reqId)
-  return _internal_reqid();
-}
-inline void SetAudioOutputDeviceResp::_internal_set_reqid(int32_t value) {
-  
-  _impl_.reqid_ = value;
-}
-inline void SetAudioOutputDeviceResp::set_reqid(int32_t value) {
-  _internal_set_reqid(value);
-  // @@protoc_insertion_point(field_set:ServerData.SetAudioOutputDeviceResp.reqId)
-}
-
-// .ServerData.RtcAudioOutputDevice Device = 10;
-inline bool SetAudioOutputDeviceResp::_internal_has_device() const {
-  return Resp_case() == kDevice;
-}
-inline bool SetAudioOutputDeviceResp::has_device() const {
-  return _internal_has_device();
-}
-inline void SetAudioOutputDeviceResp::set_has_device() {
-  _impl_._oneof_case_[0] = kDevice;
-}
-inline ::ServerData::RtcAudioOutputDevice* SetAudioOutputDeviceResp::release_device() {
-  // @@protoc_insertion_point(field_release:ServerData.SetAudioOutputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcAudioOutputDevice* temp = _impl_.Resp_.device_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::RtcAudioOutputDevice& SetAudioOutputDeviceResp::_internal_device() const {
-  return _internal_has_device()
-      ? *_impl_.Resp_.device_
-      : reinterpret_cast< ::ServerData::RtcAudioOutputDevice&>(::ServerData::_RtcAudioOutputDevice_default_instance_);
-}
-inline const ::ServerData::RtcAudioOutputDevice& SetAudioOutputDeviceResp::device() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioOutputDeviceResp.Device)
-  return _internal_device();
-}
-inline ::ServerData::RtcAudioOutputDevice* SetAudioOutputDeviceResp::unsafe_arena_release_device() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.SetAudioOutputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcAudioOutputDevice* temp = _impl_.Resp_.device_;
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void SetAudioOutputDeviceResp::unsafe_arena_set_allocated_device(::ServerData::RtcAudioOutputDevice* device) {
-  clear_Resp();
-  if (device) {
-    set_has_device();
-    _impl_.Resp_.device_ = device;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.SetAudioOutputDeviceResp.Device)
-}
-inline ::ServerData::RtcAudioOutputDevice* SetAudioOutputDeviceResp::_internal_mutable_device() {
-  if (!_internal_has_device()) {
-    clear_Resp();
-    set_has_device();
-    _impl_.Resp_.device_ = CreateMaybeMessage< ::ServerData::RtcAudioOutputDevice >(GetArenaForAllocation());
-  }
-  return _impl_.Resp_.device_;
-}
-inline ::ServerData::RtcAudioOutputDevice* SetAudioOutputDeviceResp::mutable_device() {
-  ::ServerData::RtcAudioOutputDevice* _msg = _internal_mutable_device();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetAudioOutputDeviceResp.Device)
-  return _msg;
-}
-
-// string error = 11;
-inline bool SetAudioOutputDeviceResp::_internal_has_error() const {
-  return Resp_case() == kError;
-}
-inline bool SetAudioOutputDeviceResp::has_error() const {
-  return _internal_has_error();
-}
-inline void SetAudioOutputDeviceResp::set_has_error() {
-  _impl_._oneof_case_[0] = kError;
-}
-inline void SetAudioOutputDeviceResp::clear_error() {
-  if (_internal_has_error()) {
-    _impl_.Resp_.error_.Destroy();
-    clear_has_Resp();
-  }
-}
-inline const std::string& SetAudioOutputDeviceResp::error() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetAudioOutputDeviceResp.error)
-  return _internal_error();
-}
-template <typename ArgT0, typename... ArgT>
-inline void SetAudioOutputDeviceResp::set_error(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ServerData.SetAudioOutputDeviceResp.error)
-}
-inline std::string* SetAudioOutputDeviceResp::mutable_error() {
-  std::string* _s = _internal_mutable_error();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetAudioOutputDeviceResp.error)
-  return _s;
-}
-inline const std::string& SetAudioOutputDeviceResp::_internal_error() const {
-  if (_internal_has_error()) {
-    return _impl_.Resp_.error_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
-}
-inline void SetAudioOutputDeviceResp::_internal_set_error(const std::string& value) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SetAudioOutputDeviceResp::_internal_mutable_error() {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  return _impl_.Resp_.error_.Mutable(      GetArenaForAllocation());
-}
-inline std::string* SetAudioOutputDeviceResp::release_error() {
-  // @@protoc_insertion_point(field_release:ServerData.SetAudioOutputDeviceResp.error)
-  if (_internal_has_error()) {
-    clear_has_Resp();
-    return _impl_.Resp_.error_.Release();
-  } else {
-    return nullptr;
-  }
-}
-inline void SetAudioOutputDeviceResp::set_allocated_error(std::string* error) {
-  if (has_Resp()) {
-    clear_Resp();
-  }
-  if (error != nullptr) {
-    set_has_error();
-    _impl_.Resp_.error_.InitAllocated(error, GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(field_set_allocated:ServerData.SetAudioOutputDeviceResp.error)
-}
-
-inline bool SetAudioOutputDeviceResp::has_Resp() const {
-  return Resp_case() != RESP_NOT_SET;
-}
-inline void SetAudioOutputDeviceResp::clear_has_Resp() {
-  _impl_._oneof_case_[0] = RESP_NOT_SET;
-}
-inline SetAudioOutputDeviceResp::RespCase SetAudioOutputDeviceResp::Resp_case() const {
-  return SetAudioOutputDeviceResp::RespCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
-// SetVideoInputDeviceResp
-
-// int32 reqId = 1;
-inline void SetVideoInputDeviceResp::clear_reqid() {
-  _impl_.reqid_ = 0;
-}
-inline int32_t SetVideoInputDeviceResp::_internal_reqid() const {
-  return _impl_.reqid_;
-}
-inline int32_t SetVideoInputDeviceResp::reqid() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetVideoInputDeviceResp.reqId)
-  return _internal_reqid();
-}
-inline void SetVideoInputDeviceResp::_internal_set_reqid(int32_t value) {
-  
-  _impl_.reqid_ = value;
-}
-inline void SetVideoInputDeviceResp::set_reqid(int32_t value) {
-  _internal_set_reqid(value);
-  // @@protoc_insertion_point(field_set:ServerData.SetVideoInputDeviceResp.reqId)
-}
-
-// .ServerData.RtcVideoInputDevice Device = 10;
-inline bool SetVideoInputDeviceResp::_internal_has_device() const {
-  return Resp_case() == kDevice;
-}
-inline bool SetVideoInputDeviceResp::has_device() const {
-  return _internal_has_device();
-}
-inline void SetVideoInputDeviceResp::set_has_device() {
-  _impl_._oneof_case_[0] = kDevice;
-}
-inline ::ServerData::RtcVideoInputDevice* SetVideoInputDeviceResp::release_device() {
-  // @@protoc_insertion_point(field_release:ServerData.SetVideoInputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcVideoInputDevice* temp = _impl_.Resp_.device_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::ServerData::RtcVideoInputDevice& SetVideoInputDeviceResp::_internal_device() const {
-  return _internal_has_device()
-      ? *_impl_.Resp_.device_
-      : reinterpret_cast< ::ServerData::RtcVideoInputDevice&>(::ServerData::_RtcVideoInputDevice_default_instance_);
-}
-inline const ::ServerData::RtcVideoInputDevice& SetVideoInputDeviceResp::device() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetVideoInputDeviceResp.Device)
-  return _internal_device();
-}
-inline ::ServerData::RtcVideoInputDevice* SetVideoInputDeviceResp::unsafe_arena_release_device() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:ServerData.SetVideoInputDeviceResp.Device)
-  if (_internal_has_device()) {
-    clear_has_Resp();
-    ::ServerData::RtcVideoInputDevice* temp = _impl_.Resp_.device_;
-    _impl_.Resp_.device_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void SetVideoInputDeviceResp::unsafe_arena_set_allocated_device(::ServerData::RtcVideoInputDevice* device) {
-  clear_Resp();
-  if (device) {
-    set_has_device();
-    _impl_.Resp_.device_ = device;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.SetVideoInputDeviceResp.Device)
-}
-inline ::ServerData::RtcVideoInputDevice* SetVideoInputDeviceResp::_internal_mutable_device() {
-  if (!_internal_has_device()) {
-    clear_Resp();
-    set_has_device();
-    _impl_.Resp_.device_ = CreateMaybeMessage< ::ServerData::RtcVideoInputDevice >(GetArenaForAllocation());
-  }
-  return _impl_.Resp_.device_;
-}
-inline ::ServerData::RtcVideoInputDevice* SetVideoInputDeviceResp::mutable_device() {
-  ::ServerData::RtcVideoInputDevice* _msg = _internal_mutable_device();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetVideoInputDeviceResp.Device)
-  return _msg;
-}
-
-// string error = 11;
-inline bool SetVideoInputDeviceResp::_internal_has_error() const {
-  return Resp_case() == kError;
-}
-inline bool SetVideoInputDeviceResp::has_error() const {
-  return _internal_has_error();
-}
-inline void SetVideoInputDeviceResp::set_has_error() {
-  _impl_._oneof_case_[0] = kError;
-}
-inline void SetVideoInputDeviceResp::clear_error() {
-  if (_internal_has_error()) {
-    _impl_.Resp_.error_.Destroy();
-    clear_has_Resp();
-  }
-}
-inline const std::string& SetVideoInputDeviceResp::error() const {
-  // @@protoc_insertion_point(field_get:ServerData.SetVideoInputDeviceResp.error)
-  return _internal_error();
-}
-template <typename ArgT0, typename... ArgT>
-inline void SetVideoInputDeviceResp::set_error(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ServerData.SetVideoInputDeviceResp.error)
-}
-inline std::string* SetVideoInputDeviceResp::mutable_error() {
-  std::string* _s = _internal_mutable_error();
-  // @@protoc_insertion_point(field_mutable:ServerData.SetVideoInputDeviceResp.error)
-  return _s;
-}
-inline const std::string& SetVideoInputDeviceResp::_internal_error() const {
-  if (_internal_has_error()) {
-    return _impl_.Resp_.error_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
-}
-inline void SetVideoInputDeviceResp::_internal_set_error(const std::string& value) {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  _impl_.Resp_.error_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SetVideoInputDeviceResp::_internal_mutable_error() {
-  if (!_internal_has_error()) {
-    clear_Resp();
-    set_has_error();
-    _impl_.Resp_.error_.InitDefault();
-  }
-  return _impl_.Resp_.error_.Mutable(      GetArenaForAllocation());
-}
-inline std::string* SetVideoInputDeviceResp::release_error() {
-  // @@protoc_insertion_point(field_release:ServerData.SetVideoInputDeviceResp.error)
-  if (_internal_has_error()) {
-    clear_has_Resp();
-    return _impl_.Resp_.error_.Release();
-  } else {
-    return nullptr;
-  }
-}
-inline void SetVideoInputDeviceResp::set_allocated_error(std::string* error) {
-  if (has_Resp()) {
-    clear_Resp();
-  }
-  if (error != nullptr) {
-    set_has_error();
-    _impl_.Resp_.error_.InitAllocated(error, GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(field_set_allocated:ServerData.SetVideoInputDeviceResp.error)
-}
-
-inline bool SetVideoInputDeviceResp::has_Resp() const {
-  return Resp_case() != RESP_NOT_SET;
-}
-inline void SetVideoInputDeviceResp::clear_has_Resp() {
-  _impl_._oneof_case_[0] = RESP_NOT_SET;
-}
-inline SetVideoInputDeviceResp::RespCase SetVideoInputDeviceResp::Resp_case() const {
-  return SetVideoInputDeviceResp::RespCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
 // PostCreateObject
 
 // .ServerData.CavrnusSpaceConnection spaceConn = 1;
@@ -21814,6 +22267,706 @@ inline void PostRemoveObject::set_allocated_opid(std::string* opid) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:ServerData.PostRemoveObject.opId)
+}
+
+// -------------------------------------------------------------------
+
+// FetchFileByIdReq
+
+// string contentId = 1;
+inline void FetchFileByIdReq::clear_contentid() {
+  _impl_.contentid_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdReq::contentid() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdReq.contentId)
+  return _internal_contentid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdReq::set_contentid(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.contentid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdReq.contentId)
+}
+inline std::string* FetchFileByIdReq::mutable_contentid() {
+  std::string* _s = _internal_mutable_contentid();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdReq.contentId)
+  return _s;
+}
+inline const std::string& FetchFileByIdReq::_internal_contentid() const {
+  return _impl_.contentid_.Get();
+}
+inline void FetchFileByIdReq::_internal_set_contentid(const std::string& value) {
+  
+  _impl_.contentid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdReq::_internal_mutable_contentid() {
+  
+  return _impl_.contentid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdReq::release_contentid() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdReq.contentId)
+  return _impl_.contentid_.Release();
+}
+inline void FetchFileByIdReq::set_allocated_contentid(std::string* contentid) {
+  if (contentid != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.contentid_.SetAllocated(contentid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.contentid_.IsDefault()) {
+    _impl_.contentid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdReq.contentId)
+}
+
+// -------------------------------------------------------------------
+
+// FetchFileByIdProgressResp
+
+// string contentId = 1;
+inline void FetchFileByIdProgressResp::clear_contentid() {
+  _impl_.contentid_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdProgressResp::contentid() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdProgressResp.contentId)
+  return _internal_contentid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdProgressResp::set_contentid(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.contentid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdProgressResp.contentId)
+}
+inline std::string* FetchFileByIdProgressResp::mutable_contentid() {
+  std::string* _s = _internal_mutable_contentid();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdProgressResp.contentId)
+  return _s;
+}
+inline const std::string& FetchFileByIdProgressResp::_internal_contentid() const {
+  return _impl_.contentid_.Get();
+}
+inline void FetchFileByIdProgressResp::_internal_set_contentid(const std::string& value) {
+  
+  _impl_.contentid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdProgressResp::_internal_mutable_contentid() {
+  
+  return _impl_.contentid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdProgressResp::release_contentid() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdProgressResp.contentId)
+  return _impl_.contentid_.Release();
+}
+inline void FetchFileByIdProgressResp::set_allocated_contentid(std::string* contentid) {
+  if (contentid != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.contentid_.SetAllocated(contentid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.contentid_.IsDefault()) {
+    _impl_.contentid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdProgressResp.contentId)
+}
+
+// float progress = 10;
+inline void FetchFileByIdProgressResp::clear_progress() {
+  _impl_.progress_ = 0;
+}
+inline float FetchFileByIdProgressResp::_internal_progress() const {
+  return _impl_.progress_;
+}
+inline float FetchFileByIdProgressResp::progress() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdProgressResp.progress)
+  return _internal_progress();
+}
+inline void FetchFileByIdProgressResp::_internal_set_progress(float value) {
+  
+  _impl_.progress_ = value;
+}
+inline void FetchFileByIdProgressResp::set_progress(float value) {
+  _internal_set_progress(value);
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdProgressResp.progress)
+}
+
+// string progressStep = 11;
+inline void FetchFileByIdProgressResp::clear_progressstep() {
+  _impl_.progressstep_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdProgressResp::progressstep() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdProgressResp.progressStep)
+  return _internal_progressstep();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdProgressResp::set_progressstep(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.progressstep_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdProgressResp.progressStep)
+}
+inline std::string* FetchFileByIdProgressResp::mutable_progressstep() {
+  std::string* _s = _internal_mutable_progressstep();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdProgressResp.progressStep)
+  return _s;
+}
+inline const std::string& FetchFileByIdProgressResp::_internal_progressstep() const {
+  return _impl_.progressstep_.Get();
+}
+inline void FetchFileByIdProgressResp::_internal_set_progressstep(const std::string& value) {
+  
+  _impl_.progressstep_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdProgressResp::_internal_mutable_progressstep() {
+  
+  return _impl_.progressstep_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdProgressResp::release_progressstep() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdProgressResp.progressStep)
+  return _impl_.progressstep_.Release();
+}
+inline void FetchFileByIdProgressResp::set_allocated_progressstep(std::string* progressstep) {
+  if (progressstep != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.progressstep_.SetAllocated(progressstep, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.progressstep_.IsDefault()) {
+    _impl_.progressstep_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdProgressResp.progressStep)
+}
+
+// -------------------------------------------------------------------
+
+// FetchFileByIdCompletedResp
+
+// string contentId = 1;
+inline void FetchFileByIdCompletedResp::clear_contentid() {
+  _impl_.contentid_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdCompletedResp::contentid() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdCompletedResp.contentId)
+  return _internal_contentid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdCompletedResp::set_contentid(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.contentid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdCompletedResp.contentId)
+}
+inline std::string* FetchFileByIdCompletedResp::mutable_contentid() {
+  std::string* _s = _internal_mutable_contentid();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdCompletedResp.contentId)
+  return _s;
+}
+inline const std::string& FetchFileByIdCompletedResp::_internal_contentid() const {
+  return _impl_.contentid_.Get();
+}
+inline void FetchFileByIdCompletedResp::_internal_set_contentid(const std::string& value) {
+  
+  _impl_.contentid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::_internal_mutable_contentid() {
+  
+  return _impl_.contentid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::release_contentid() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdCompletedResp.contentId)
+  return _impl_.contentid_.Release();
+}
+inline void FetchFileByIdCompletedResp::set_allocated_contentid(std::string* contentid) {
+  if (contentid != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.contentid_.SetAllocated(contentid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.contentid_.IsDefault()) {
+    _impl_.contentid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdCompletedResp.contentId)
+}
+
+// string filePath = 10;
+inline void FetchFileByIdCompletedResp::clear_filepath() {
+  _impl_.filepath_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdCompletedResp::filepath() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdCompletedResp.filePath)
+  return _internal_filepath();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdCompletedResp::set_filepath(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.filepath_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdCompletedResp.filePath)
+}
+inline std::string* FetchFileByIdCompletedResp::mutable_filepath() {
+  std::string* _s = _internal_mutable_filepath();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdCompletedResp.filePath)
+  return _s;
+}
+inline const std::string& FetchFileByIdCompletedResp::_internal_filepath() const {
+  return _impl_.filepath_.Get();
+}
+inline void FetchFileByIdCompletedResp::_internal_set_filepath(const std::string& value) {
+  
+  _impl_.filepath_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::_internal_mutable_filepath() {
+  
+  return _impl_.filepath_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::release_filepath() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdCompletedResp.filePath)
+  return _impl_.filepath_.Release();
+}
+inline void FetchFileByIdCompletedResp::set_allocated_filepath(std::string* filepath) {
+  if (filepath != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.filepath_.SetAllocated(filepath, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.filepath_.IsDefault()) {
+    _impl_.filepath_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdCompletedResp.filePath)
+}
+
+// -------------------------------------------------------------------
+
+// FetchAllUploadedContentReq
+
+// int32 reqId = 1;
+inline void FetchAllUploadedContentReq::clear_reqid() {
+  _impl_.reqid_ = 0;
+}
+inline int32_t FetchAllUploadedContentReq::_internal_reqid() const {
+  return _impl_.reqid_;
+}
+inline int32_t FetchAllUploadedContentReq::reqid() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchAllUploadedContentReq.reqId)
+  return _internal_reqid();
+}
+inline void FetchAllUploadedContentReq::_internal_set_reqid(int32_t value) {
+  
+  _impl_.reqid_ = value;
+}
+inline void FetchAllUploadedContentReq::set_reqid(int32_t value) {
+  _internal_set_reqid(value);
+  // @@protoc_insertion_point(field_set:ServerData.FetchAllUploadedContentReq.reqId)
+}
+
+// -------------------------------------------------------------------
+
+// UploadLocalFileResp
+
+// int32 reqId = 1;
+inline void UploadLocalFileResp::clear_reqid() {
+  _impl_.reqid_ = 0;
+}
+inline int32_t UploadLocalFileResp::_internal_reqid() const {
+  return _impl_.reqid_;
+}
+inline int32_t UploadLocalFileResp::reqid() const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileResp.reqId)
+  return _internal_reqid();
+}
+inline void UploadLocalFileResp::_internal_set_reqid(int32_t value) {
+  
+  _impl_.reqid_ = value;
+}
+inline void UploadLocalFileResp::set_reqid(int32_t value) {
+  _internal_set_reqid(value);
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileResp.reqId)
+}
+
+// .ServerData.CavrnusRemoteContent uploadedContent = 10;
+inline bool UploadLocalFileResp::_internal_has_uploadedcontent() const {
+  return this != internal_default_instance() && _impl_.uploadedcontent_ != nullptr;
+}
+inline bool UploadLocalFileResp::has_uploadedcontent() const {
+  return _internal_has_uploadedcontent();
+}
+inline const ::ServerData::CavrnusRemoteContent& UploadLocalFileResp::_internal_uploadedcontent() const {
+  const ::ServerData::CavrnusRemoteContent* p = _impl_.uploadedcontent_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ServerData::CavrnusRemoteContent&>(
+      ::ServerData::_CavrnusRemoteContent_default_instance_);
+}
+inline const ::ServerData::CavrnusRemoteContent& UploadLocalFileResp::uploadedcontent() const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileResp.uploadedContent)
+  return _internal_uploadedcontent();
+}
+inline void UploadLocalFileResp::unsafe_arena_set_allocated_uploadedcontent(
+    ::ServerData::CavrnusRemoteContent* uploadedcontent) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.uploadedcontent_);
+  }
+  _impl_.uploadedcontent_ = uploadedcontent;
+  if (uploadedcontent) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ServerData.UploadLocalFileResp.uploadedContent)
+}
+inline ::ServerData::CavrnusRemoteContent* UploadLocalFileResp::release_uploadedcontent() {
+  
+  ::ServerData::CavrnusRemoteContent* temp = _impl_.uploadedcontent_;
+  _impl_.uploadedcontent_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ServerData::CavrnusRemoteContent* UploadLocalFileResp::unsafe_arena_release_uploadedcontent() {
+  // @@protoc_insertion_point(field_release:ServerData.UploadLocalFileResp.uploadedContent)
+  
+  ::ServerData::CavrnusRemoteContent* temp = _impl_.uploadedcontent_;
+  _impl_.uploadedcontent_ = nullptr;
+  return temp;
+}
+inline ::ServerData::CavrnusRemoteContent* UploadLocalFileResp::_internal_mutable_uploadedcontent() {
+  
+  if (_impl_.uploadedcontent_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ServerData::CavrnusRemoteContent>(GetArenaForAllocation());
+    _impl_.uploadedcontent_ = p;
+  }
+  return _impl_.uploadedcontent_;
+}
+inline ::ServerData::CavrnusRemoteContent* UploadLocalFileResp::mutable_uploadedcontent() {
+  ::ServerData::CavrnusRemoteContent* _msg = _internal_mutable_uploadedcontent();
+  // @@protoc_insertion_point(field_mutable:ServerData.UploadLocalFileResp.uploadedContent)
+  return _msg;
+}
+inline void UploadLocalFileResp::set_allocated_uploadedcontent(::ServerData::CavrnusRemoteContent* uploadedcontent) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.uploadedcontent_);
+  }
+  if (uploadedcontent) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(uploadedcontent));
+    if (message_arena != submessage_arena) {
+      uploadedcontent = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, uploadedcontent, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.uploadedcontent_ = uploadedcontent;
+  // @@protoc_insertion_point(field_set_allocated:ServerData.UploadLocalFileResp.uploadedContent)
+}
+
+// -------------------------------------------------------------------
+
+// UploadLocalFileReq
+
+// int32 reqId = 1;
+inline void UploadLocalFileReq::clear_reqid() {
+  _impl_.reqid_ = 0;
+}
+inline int32_t UploadLocalFileReq::_internal_reqid() const {
+  return _impl_.reqid_;
+}
+inline int32_t UploadLocalFileReq::reqid() const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileReq.reqId)
+  return _internal_reqid();
+}
+inline void UploadLocalFileReq::_internal_set_reqid(int32_t value) {
+  
+  _impl_.reqid_ = value;
+}
+inline void UploadLocalFileReq::set_reqid(int32_t value) {
+  _internal_set_reqid(value);
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.reqId)
+}
+
+// string filePath = 10;
+inline void UploadLocalFileReq::clear_filepath() {
+  _impl_.filepath_.ClearToEmpty();
+}
+inline const std::string& UploadLocalFileReq::filepath() const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileReq.filePath)
+  return _internal_filepath();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadLocalFileReq::set_filepath(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.filepath_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.filePath)
+}
+inline std::string* UploadLocalFileReq::mutable_filepath() {
+  std::string* _s = _internal_mutable_filepath();
+  // @@protoc_insertion_point(field_mutable:ServerData.UploadLocalFileReq.filePath)
+  return _s;
+}
+inline const std::string& UploadLocalFileReq::_internal_filepath() const {
+  return _impl_.filepath_.Get();
+}
+inline void UploadLocalFileReq::_internal_set_filepath(const std::string& value) {
+  
+  _impl_.filepath_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadLocalFileReq::_internal_mutable_filepath() {
+  
+  return _impl_.filepath_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadLocalFileReq::release_filepath() {
+  // @@protoc_insertion_point(field_release:ServerData.UploadLocalFileReq.filePath)
+  return _impl_.filepath_.Release();
+}
+inline void UploadLocalFileReq::set_allocated_filepath(std::string* filepath) {
+  if (filepath != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.filepath_.SetAllocated(filepath, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.filepath_.IsDefault()) {
+    _impl_.filepath_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.UploadLocalFileReq.filePath)
+}
+
+// repeated string tagKeys = 11;
+inline int UploadLocalFileReq::_internal_tagkeys_size() const {
+  return _impl_.tagkeys_.size();
+}
+inline int UploadLocalFileReq::tagkeys_size() const {
+  return _internal_tagkeys_size();
+}
+inline void UploadLocalFileReq::clear_tagkeys() {
+  _impl_.tagkeys_.Clear();
+}
+inline std::string* UploadLocalFileReq::add_tagkeys() {
+  std::string* _s = _internal_add_tagkeys();
+  // @@protoc_insertion_point(field_add_mutable:ServerData.UploadLocalFileReq.tagKeys)
+  return _s;
+}
+inline const std::string& UploadLocalFileReq::_internal_tagkeys(int index) const {
+  return _impl_.tagkeys_.Get(index);
+}
+inline const std::string& UploadLocalFileReq::tagkeys(int index) const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileReq.tagKeys)
+  return _internal_tagkeys(index);
+}
+inline std::string* UploadLocalFileReq::mutable_tagkeys(int index) {
+  // @@protoc_insertion_point(field_mutable:ServerData.UploadLocalFileReq.tagKeys)
+  return _impl_.tagkeys_.Mutable(index);
+}
+inline void UploadLocalFileReq::set_tagkeys(int index, const std::string& value) {
+  _impl_.tagkeys_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::set_tagkeys(int index, std::string&& value) {
+  _impl_.tagkeys_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::set_tagkeys(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagkeys_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::set_tagkeys(int index, const char* value, size_t size) {
+  _impl_.tagkeys_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline std::string* UploadLocalFileReq::_internal_add_tagkeys() {
+  return _impl_.tagkeys_.Add();
+}
+inline void UploadLocalFileReq::add_tagkeys(const std::string& value) {
+  _impl_.tagkeys_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::add_tagkeys(std::string&& value) {
+  _impl_.tagkeys_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::add_tagkeys(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagkeys_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline void UploadLocalFileReq::add_tagkeys(const char* value, size_t size) {
+  _impl_.tagkeys_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:ServerData.UploadLocalFileReq.tagKeys)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UploadLocalFileReq::tagkeys() const {
+  // @@protoc_insertion_point(field_list:ServerData.UploadLocalFileReq.tagKeys)
+  return _impl_.tagkeys_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UploadLocalFileReq::mutable_tagkeys() {
+  // @@protoc_insertion_point(field_mutable_list:ServerData.UploadLocalFileReq.tagKeys)
+  return &_impl_.tagkeys_;
+}
+
+// repeated string tagValues = 12;
+inline int UploadLocalFileReq::_internal_tagvalues_size() const {
+  return _impl_.tagvalues_.size();
+}
+inline int UploadLocalFileReq::tagvalues_size() const {
+  return _internal_tagvalues_size();
+}
+inline void UploadLocalFileReq::clear_tagvalues() {
+  _impl_.tagvalues_.Clear();
+}
+inline std::string* UploadLocalFileReq::add_tagvalues() {
+  std::string* _s = _internal_add_tagvalues();
+  // @@protoc_insertion_point(field_add_mutable:ServerData.UploadLocalFileReq.tagValues)
+  return _s;
+}
+inline const std::string& UploadLocalFileReq::_internal_tagvalues(int index) const {
+  return _impl_.tagvalues_.Get(index);
+}
+inline const std::string& UploadLocalFileReq::tagvalues(int index) const {
+  // @@protoc_insertion_point(field_get:ServerData.UploadLocalFileReq.tagValues)
+  return _internal_tagvalues(index);
+}
+inline std::string* UploadLocalFileReq::mutable_tagvalues(int index) {
+  // @@protoc_insertion_point(field_mutable:ServerData.UploadLocalFileReq.tagValues)
+  return _impl_.tagvalues_.Mutable(index);
+}
+inline void UploadLocalFileReq::set_tagvalues(int index, const std::string& value) {
+  _impl_.tagvalues_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::set_tagvalues(int index, std::string&& value) {
+  _impl_.tagvalues_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::set_tagvalues(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagvalues_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::set_tagvalues(int index, const char* value, size_t size) {
+  _impl_.tagvalues_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:ServerData.UploadLocalFileReq.tagValues)
+}
+inline std::string* UploadLocalFileReq::_internal_add_tagvalues() {
+  return _impl_.tagvalues_.Add();
+}
+inline void UploadLocalFileReq::add_tagvalues(const std::string& value) {
+  _impl_.tagvalues_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::add_tagvalues(std::string&& value) {
+  _impl_.tagvalues_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::add_tagvalues(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagvalues_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:ServerData.UploadLocalFileReq.tagValues)
+}
+inline void UploadLocalFileReq::add_tagvalues(const char* value, size_t size) {
+  _impl_.tagvalues_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:ServerData.UploadLocalFileReq.tagValues)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UploadLocalFileReq::tagvalues() const {
+  // @@protoc_insertion_point(field_list:ServerData.UploadLocalFileReq.tagValues)
+  return _impl_.tagvalues_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UploadLocalFileReq::mutable_tagvalues() {
+  // @@protoc_insertion_point(field_mutable_list:ServerData.UploadLocalFileReq.tagValues)
+  return &_impl_.tagvalues_;
+}
+
+// -------------------------------------------------------------------
+
+// FetchAllUploadedContentResp
+
+// int32 reqId = 1;
+inline void FetchAllUploadedContentResp::clear_reqid() {
+  _impl_.reqid_ = 0;
+}
+inline int32_t FetchAllUploadedContentResp::_internal_reqid() const {
+  return _impl_.reqid_;
+}
+inline int32_t FetchAllUploadedContentResp::reqid() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchAllUploadedContentResp.reqId)
+  return _internal_reqid();
+}
+inline void FetchAllUploadedContentResp::_internal_set_reqid(int32_t value) {
+  
+  _impl_.reqid_ = value;
+}
+inline void FetchAllUploadedContentResp::set_reqid(int32_t value) {
+  _internal_set_reqid(value);
+  // @@protoc_insertion_point(field_set:ServerData.FetchAllUploadedContentResp.reqId)
+}
+
+// repeated .ServerData.CavrnusRemoteContent availableContent = 10;
+inline int FetchAllUploadedContentResp::_internal_availablecontent_size() const {
+  return _impl_.availablecontent_.size();
+}
+inline int FetchAllUploadedContentResp::availablecontent_size() const {
+  return _internal_availablecontent_size();
+}
+inline ::ServerData::CavrnusRemoteContent* FetchAllUploadedContentResp::mutable_availablecontent(int index) {
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchAllUploadedContentResp.availableContent)
+  return _impl_.availablecontent_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ServerData::CavrnusRemoteContent >*
+FetchAllUploadedContentResp::mutable_availablecontent() {
+  // @@protoc_insertion_point(field_mutable_list:ServerData.FetchAllUploadedContentResp.availableContent)
+  return &_impl_.availablecontent_;
+}
+inline const ::ServerData::CavrnusRemoteContent& FetchAllUploadedContentResp::_internal_availablecontent(int index) const {
+  return _impl_.availablecontent_.Get(index);
+}
+inline const ::ServerData::CavrnusRemoteContent& FetchAllUploadedContentResp::availablecontent(int index) const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchAllUploadedContentResp.availableContent)
+  return _internal_availablecontent(index);
+}
+inline ::ServerData::CavrnusRemoteContent* FetchAllUploadedContentResp::_internal_add_availablecontent() {
+  return _impl_.availablecontent_.Add();
+}
+inline ::ServerData::CavrnusRemoteContent* FetchAllUploadedContentResp::add_availablecontent() {
+  ::ServerData::CavrnusRemoteContent* _add = _internal_add_availablecontent();
+  // @@protoc_insertion_point(field_add:ServerData.FetchAllUploadedContentResp.availableContent)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ServerData::CavrnusRemoteContent >&
+FetchAllUploadedContentResp::availablecontent() const {
+  // @@protoc_insertion_point(field_list:ServerData.FetchAllUploadedContentResp.availableContent)
+  return _impl_.availablecontent_;
 }
 
 // -------------------------------------------------------------------
@@ -24372,6 +25525,14 @@ AllJoinableSpacesResp::availablespaces() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

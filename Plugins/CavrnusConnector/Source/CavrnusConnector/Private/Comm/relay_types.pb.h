@@ -51,6 +51,9 @@ extern CavrnusAuthDefaultTypeInternal _CavrnusAuth_default_instance_;
 class CavrnusAuthLinkResponse;
 struct CavrnusAuthLinkResponseDefaultTypeInternal;
 extern CavrnusAuthLinkResponseDefaultTypeInternal _CavrnusAuthLinkResponse_default_instance_;
+class CavrnusRemoteContent;
+struct CavrnusRemoteContentDefaultTypeInternal;
+extern CavrnusRemoteContentDefaultTypeInternal _CavrnusRemoteContent_default_instance_;
 class CavrnusSpaceConnection;
 struct CavrnusSpaceConnectionDefaultTypeInternal;
 extern CavrnusSpaceConnectionDefaultTypeInternal _CavrnusSpaceConnection_default_instance_;
@@ -79,6 +82,7 @@ extern RtcVideoInputDeviceListDefaultTypeInternal _RtcVideoInputDeviceList_defau
 PROTOBUF_NAMESPACE_OPEN
 template<> ::ServerData::CavrnusAuth* Arena::CreateMaybeMessage<::ServerData::CavrnusAuth>(Arena*);
 template<> ::ServerData::CavrnusAuthLinkResponse* Arena::CreateMaybeMessage<::ServerData::CavrnusAuthLinkResponse>(Arena*);
+template<> ::ServerData::CavrnusRemoteContent* Arena::CreateMaybeMessage<::ServerData::CavrnusRemoteContent>(Arena*);
 template<> ::ServerData::CavrnusSpaceConnection* Arena::CreateMaybeMessage<::ServerData::CavrnusSpaceConnection>(Arena*);
 template<> ::ServerData::CavrnusUser* Arena::CreateMaybeMessage<::ServerData::CavrnusUser>(Arena*);
 template<> ::ServerData::RtcAudioInputDevice* Arena::CreateMaybeMessage<::ServerData::RtcAudioInputDevice>(Arena*);
@@ -1722,6 +1726,259 @@ class RtcVideoInputDeviceList final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_relay_5ftypes_2eproto;
 };
+// -------------------------------------------------------------------
+
+class CavrnusRemoteContent final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ServerData.CavrnusRemoteContent) */ {
+ public:
+  inline CavrnusRemoteContent() : CavrnusRemoteContent(nullptr) {}
+  ~CavrnusRemoteContent() override;
+  explicit PROTOBUF_CONSTEXPR CavrnusRemoteContent(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CavrnusRemoteContent(const CavrnusRemoteContent& from);
+  CavrnusRemoteContent(CavrnusRemoteContent&& from) noexcept
+    : CavrnusRemoteContent() {
+    *this = ::std::move(from);
+  }
+
+  inline CavrnusRemoteContent& operator=(const CavrnusRemoteContent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CavrnusRemoteContent& operator=(CavrnusRemoteContent&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CavrnusRemoteContent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CavrnusRemoteContent* internal_default_instance() {
+    return reinterpret_cast<const CavrnusRemoteContent*>(
+               &_CavrnusRemoteContent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(CavrnusRemoteContent& a, CavrnusRemoteContent& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CavrnusRemoteContent* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CavrnusRemoteContent* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CavrnusRemoteContent* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CavrnusRemoteContent>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CavrnusRemoteContent& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CavrnusRemoteContent& from) {
+    CavrnusRemoteContent::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CavrnusRemoteContent* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ServerData.CavrnusRemoteContent";
+  }
+  protected:
+  explicit CavrnusRemoteContent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagKeysFieldNumber = 10,
+    kTagValuesFieldNumber = 11,
+    kIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kFileNameFieldNumber = 3,
+    kThumbnailUrlFieldNumber = 4,
+  };
+  // repeated string tagKeys = 10;
+  int tagkeys_size() const;
+  private:
+  int _internal_tagkeys_size() const;
+  public:
+  void clear_tagkeys();
+  const std::string& tagkeys(int index) const;
+  std::string* mutable_tagkeys(int index);
+  void set_tagkeys(int index, const std::string& value);
+  void set_tagkeys(int index, std::string&& value);
+  void set_tagkeys(int index, const char* value);
+  void set_tagkeys(int index, const char* value, size_t size);
+  std::string* add_tagkeys();
+  void add_tagkeys(const std::string& value);
+  void add_tagkeys(std::string&& value);
+  void add_tagkeys(const char* value);
+  void add_tagkeys(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagkeys() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagkeys();
+  private:
+  const std::string& _internal_tagkeys(int index) const;
+  std::string* _internal_add_tagkeys();
+  public:
+
+  // repeated string tagValues = 11;
+  int tagvalues_size() const;
+  private:
+  int _internal_tagvalues_size() const;
+  public:
+  void clear_tagvalues();
+  const std::string& tagvalues(int index) const;
+  std::string* mutable_tagvalues(int index);
+  void set_tagvalues(int index, const std::string& value);
+  void set_tagvalues(int index, std::string&& value);
+  void set_tagvalues(int index, const char* value);
+  void set_tagvalues(int index, const char* value, size_t size);
+  std::string* add_tagvalues();
+  void add_tagvalues(const std::string& value);
+  void add_tagvalues(std::string&& value);
+  void add_tagvalues(const char* value);
+  void add_tagvalues(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagvalues() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagvalues();
+  private:
+  const std::string& _internal_tagvalues(int index) const;
+  std::string* _internal_add_tagvalues();
+  public:
+
+  // string id = 1;
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string fileName = 3;
+  void clear_filename();
+  const std::string& filename() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filename(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filename();
+  PROTOBUF_NODISCARD std::string* release_filename();
+  void set_allocated_filename(std::string* filename);
+  private:
+  const std::string& _internal_filename() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filename(const std::string& value);
+  std::string* _internal_mutable_filename();
+  public:
+
+  // string thumbnailUrl = 4;
+  void clear_thumbnailurl();
+  const std::string& thumbnailurl() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_thumbnailurl(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_thumbnailurl();
+  PROTOBUF_NODISCARD std::string* release_thumbnailurl();
+  void set_allocated_thumbnailurl(std::string* thumbnailurl);
+  private:
+  const std::string& _internal_thumbnailurl() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_thumbnailurl(const std::string& value);
+  std::string* _internal_mutable_thumbnailurl();
+  public:
+
+  // @@protoc_insertion_point(class_scope:ServerData.CavrnusRemoteContent)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tagkeys_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tagvalues_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filename_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr thumbnailurl_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_relay_5ftypes_2eproto;
+};
 // ===================================================================
 
 
@@ -2519,9 +2776,365 @@ RtcVideoInputDeviceList::devices() const {
   return _impl_.devices_;
 }
 
+// -------------------------------------------------------------------
+
+// CavrnusRemoteContent
+
+// string id = 1;
+inline void CavrnusRemoteContent::clear_id() {
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& CavrnusRemoteContent::id() const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CavrnusRemoteContent::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.id)
+}
+inline std::string* CavrnusRemoteContent::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.id)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_id() const {
+  return _impl_.id_.Get();
+}
+inline void CavrnusRemoteContent::_internal_set_id(const std::string& value) {
+  
+  _impl_.id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::_internal_mutable_id() {
+  
+  return _impl_.id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::release_id() {
+  // @@protoc_insertion_point(field_release:ServerData.CavrnusRemoteContent.id)
+  return _impl_.id_.Release();
+}
+inline void CavrnusRemoteContent::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.CavrnusRemoteContent.id)
+}
+
+// string name = 2;
+inline void CavrnusRemoteContent::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& CavrnusRemoteContent::name() const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CavrnusRemoteContent::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.name)
+}
+inline std::string* CavrnusRemoteContent::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.name)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void CavrnusRemoteContent::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::release_name() {
+  // @@protoc_insertion_point(field_release:ServerData.CavrnusRemoteContent.name)
+  return _impl_.name_.Release();
+}
+inline void CavrnusRemoteContent::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.CavrnusRemoteContent.name)
+}
+
+// string fileName = 3;
+inline void CavrnusRemoteContent::clear_filename() {
+  _impl_.filename_.ClearToEmpty();
+}
+inline const std::string& CavrnusRemoteContent::filename() const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.fileName)
+  return _internal_filename();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CavrnusRemoteContent::set_filename(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.filename_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.fileName)
+}
+inline std::string* CavrnusRemoteContent::mutable_filename() {
+  std::string* _s = _internal_mutable_filename();
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.fileName)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_filename() const {
+  return _impl_.filename_.Get();
+}
+inline void CavrnusRemoteContent::_internal_set_filename(const std::string& value) {
+  
+  _impl_.filename_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::_internal_mutable_filename() {
+  
+  return _impl_.filename_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::release_filename() {
+  // @@protoc_insertion_point(field_release:ServerData.CavrnusRemoteContent.fileName)
+  return _impl_.filename_.Release();
+}
+inline void CavrnusRemoteContent::set_allocated_filename(std::string* filename) {
+  if (filename != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.filename_.SetAllocated(filename, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.filename_.IsDefault()) {
+    _impl_.filename_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.CavrnusRemoteContent.fileName)
+}
+
+// string thumbnailUrl = 4;
+inline void CavrnusRemoteContent::clear_thumbnailurl() {
+  _impl_.thumbnailurl_.ClearToEmpty();
+}
+inline const std::string& CavrnusRemoteContent::thumbnailurl() const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.thumbnailUrl)
+  return _internal_thumbnailurl();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CavrnusRemoteContent::set_thumbnailurl(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.thumbnailurl_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.thumbnailUrl)
+}
+inline std::string* CavrnusRemoteContent::mutable_thumbnailurl() {
+  std::string* _s = _internal_mutable_thumbnailurl();
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.thumbnailUrl)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_thumbnailurl() const {
+  return _impl_.thumbnailurl_.Get();
+}
+inline void CavrnusRemoteContent::_internal_set_thumbnailurl(const std::string& value) {
+  
+  _impl_.thumbnailurl_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::_internal_mutable_thumbnailurl() {
+  
+  return _impl_.thumbnailurl_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CavrnusRemoteContent::release_thumbnailurl() {
+  // @@protoc_insertion_point(field_release:ServerData.CavrnusRemoteContent.thumbnailUrl)
+  return _impl_.thumbnailurl_.Release();
+}
+inline void CavrnusRemoteContent::set_allocated_thumbnailurl(std::string* thumbnailurl) {
+  if (thumbnailurl != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.thumbnailurl_.SetAllocated(thumbnailurl, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.thumbnailurl_.IsDefault()) {
+    _impl_.thumbnailurl_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.CavrnusRemoteContent.thumbnailUrl)
+}
+
+// repeated string tagKeys = 10;
+inline int CavrnusRemoteContent::_internal_tagkeys_size() const {
+  return _impl_.tagkeys_.size();
+}
+inline int CavrnusRemoteContent::tagkeys_size() const {
+  return _internal_tagkeys_size();
+}
+inline void CavrnusRemoteContent::clear_tagkeys() {
+  _impl_.tagkeys_.Clear();
+}
+inline std::string* CavrnusRemoteContent::add_tagkeys() {
+  std::string* _s = _internal_add_tagkeys();
+  // @@protoc_insertion_point(field_add_mutable:ServerData.CavrnusRemoteContent.tagKeys)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_tagkeys(int index) const {
+  return _impl_.tagkeys_.Get(index);
+}
+inline const std::string& CavrnusRemoteContent::tagkeys(int index) const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.tagKeys)
+  return _internal_tagkeys(index);
+}
+inline std::string* CavrnusRemoteContent::mutable_tagkeys(int index) {
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.tagKeys)
+  return _impl_.tagkeys_.Mutable(index);
+}
+inline void CavrnusRemoteContent::set_tagkeys(int index, const std::string& value) {
+  _impl_.tagkeys_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::set_tagkeys(int index, std::string&& value) {
+  _impl_.tagkeys_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::set_tagkeys(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagkeys_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::set_tagkeys(int index, const char* value, size_t size) {
+  _impl_.tagkeys_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline std::string* CavrnusRemoteContent::_internal_add_tagkeys() {
+  return _impl_.tagkeys_.Add();
+}
+inline void CavrnusRemoteContent::add_tagkeys(const std::string& value) {
+  _impl_.tagkeys_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::add_tagkeys(std::string&& value) {
+  _impl_.tagkeys_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::add_tagkeys(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagkeys_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline void CavrnusRemoteContent::add_tagkeys(const char* value, size_t size) {
+  _impl_.tagkeys_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:ServerData.CavrnusRemoteContent.tagKeys)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+CavrnusRemoteContent::tagkeys() const {
+  // @@protoc_insertion_point(field_list:ServerData.CavrnusRemoteContent.tagKeys)
+  return _impl_.tagkeys_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+CavrnusRemoteContent::mutable_tagkeys() {
+  // @@protoc_insertion_point(field_mutable_list:ServerData.CavrnusRemoteContent.tagKeys)
+  return &_impl_.tagkeys_;
+}
+
+// repeated string tagValues = 11;
+inline int CavrnusRemoteContent::_internal_tagvalues_size() const {
+  return _impl_.tagvalues_.size();
+}
+inline int CavrnusRemoteContent::tagvalues_size() const {
+  return _internal_tagvalues_size();
+}
+inline void CavrnusRemoteContent::clear_tagvalues() {
+  _impl_.tagvalues_.Clear();
+}
+inline std::string* CavrnusRemoteContent::add_tagvalues() {
+  std::string* _s = _internal_add_tagvalues();
+  // @@protoc_insertion_point(field_add_mutable:ServerData.CavrnusRemoteContent.tagValues)
+  return _s;
+}
+inline const std::string& CavrnusRemoteContent::_internal_tagvalues(int index) const {
+  return _impl_.tagvalues_.Get(index);
+}
+inline const std::string& CavrnusRemoteContent::tagvalues(int index) const {
+  // @@protoc_insertion_point(field_get:ServerData.CavrnusRemoteContent.tagValues)
+  return _internal_tagvalues(index);
+}
+inline std::string* CavrnusRemoteContent::mutable_tagvalues(int index) {
+  // @@protoc_insertion_point(field_mutable:ServerData.CavrnusRemoteContent.tagValues)
+  return _impl_.tagvalues_.Mutable(index);
+}
+inline void CavrnusRemoteContent::set_tagvalues(int index, const std::string& value) {
+  _impl_.tagvalues_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::set_tagvalues(int index, std::string&& value) {
+  _impl_.tagvalues_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::set_tagvalues(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagvalues_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::set_tagvalues(int index, const char* value, size_t size) {
+  _impl_.tagvalues_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline std::string* CavrnusRemoteContent::_internal_add_tagvalues() {
+  return _impl_.tagvalues_.Add();
+}
+inline void CavrnusRemoteContent::add_tagvalues(const std::string& value) {
+  _impl_.tagvalues_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::add_tagvalues(std::string&& value) {
+  _impl_.tagvalues_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::add_tagvalues(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tagvalues_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline void CavrnusRemoteContent::add_tagvalues(const char* value, size_t size) {
+  _impl_.tagvalues_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:ServerData.CavrnusRemoteContent.tagValues)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+CavrnusRemoteContent::tagvalues() const {
+  // @@protoc_insertion_point(field_list:ServerData.CavrnusRemoteContent.tagValues)
+  return _impl_.tagvalues_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+CavrnusRemoteContent::mutable_tagvalues() {
+  // @@protoc_insertion_point(field_mutable_list:ServerData.CavrnusRemoteContent.tagValues)
+  return &_impl_.tagvalues_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

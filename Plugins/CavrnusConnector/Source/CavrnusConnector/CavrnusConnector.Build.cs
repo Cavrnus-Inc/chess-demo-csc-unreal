@@ -90,14 +90,13 @@ public class CavrnusConnector : ModuleRules
             "CoreUObject",
             "Engine",
             "UMG",
-            "PDFImporter",
             "InputCore",
             "Slate",
             "SlateCore",
             "RenderCore",
             "RHI",
-            "ProceduralMeshComponent",
-            "Networking",
+			"ProceduralMeshComponent",
+			"Networking",
             "Sockets",
             "JsonBlueprintUtilities",
 #if UE_5_4_OR_LATER
@@ -163,6 +162,6 @@ public class CavrnusConnector : ModuleRules
 
         RuntimeDependencies.Add(Path.Combine(ModuleDirectory, "CavrnusRelayNet/..."));
 
-        Console.WriteLine("====== Exiting from CavrnusRelay.Build.cs ====== ");
+        Console.WriteLine("====== Exiting from CavrnusConnector.Build.cs ====== ");
     }
 }

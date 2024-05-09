@@ -1,8 +1,17 @@
-Cavrnus-UE5.0-RelayPlugin-2023.2.524-Dev
-paul.gothard: ue - master [d2450824573aa4d036c9618377d8cd01eecf7d4e]
-Make spawned object callback optional
+\Cavrnus-UE5.0-RelayPlugin-2023.2.610-Dev
++ Pros
+	- Good audio
+	- Names and Avatars
 
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusRelayModel.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusFunctionLibrary.h
++ Cons
+	- Did not release DLL when closing Unreal
+	- Could not connect to Space until the Journal was cleard
+
+
+josh.criz: ue - master [112886b132b23f92f35e4ba77afe6ef14b1bd7c0]
+PerfTestDestroyer BP Compiler Fix
+
+Was still using the old Library function to check for spawned objects instead of getting the new CavrnusSpawnedObjectFlag component
+
+	CavrnusPlugin/Content/SampleBehaviors/BP_PerfTestDestroyer.uasset
 

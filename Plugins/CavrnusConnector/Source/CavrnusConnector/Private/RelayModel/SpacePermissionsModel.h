@@ -14,12 +14,12 @@ namespace Cavrnus
 
 		void UpdatePolicyAllowed(FString policy, bool allowed);
 
-		FCavrnusBinding BindPolicyAllowed(FString policy, FCavrnusPolicyUpdated callback);
+		FCavrnusBinding BindPolicyAllowed(FString policy, CavrnusPolicyUpdated callback);
 
 	private:
 		TMap<FString, bool> CurrPolicyAllowedValues;
 
-		TMap<FString, TArray<FCavrnusPolicyUpdated>> PolicyBindings;
+		TMap<FString, TArray<TSharedPtr<const CavrnusPolicyUpdated>>> PolicyBindings;
 	};
 
 } // namespace CavrnusRelay
