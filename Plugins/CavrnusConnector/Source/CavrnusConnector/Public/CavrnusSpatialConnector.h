@@ -115,7 +115,7 @@ public:
 
 	// Asset class type used to represent remote users
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, BlueprintReadOnly, Category = "Cavrnus")
-	TSubclassOf<class AActor> RemoteAvatarClass;
+	TSubclassOf<AActor> RemoteAvatarClass;
 
 	// ------------------------------------------- In Space UI ----------------------------------------------------------------------------------
 
@@ -127,7 +127,4 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cavrnus")
 	TMap<FString, TSubclassOf<AActor>> SpawnableIdentifiers;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Cavrnus")
-	bool Lasers = true;
 };

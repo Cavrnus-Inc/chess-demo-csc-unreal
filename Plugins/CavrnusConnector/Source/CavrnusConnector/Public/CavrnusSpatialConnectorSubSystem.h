@@ -13,8 +13,8 @@
 class ACavrnusSpatialConnector;
 class AController;
 class APawn;
-class USpawnedObjectsManager;
-class UCavrnusAvatarManager;
+class SpawnedObjectsManager;
+class CavrnusAvatarManager;
 class UPDFManager;
 
 UCLASS(BlueprintType, Blueprintable)
@@ -61,9 +61,6 @@ public:
 	void OnSpaceConnectionFailure(FString Error);
 
 	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
-	UCavrnusAvatarManager* GetAvatarManager();
-
-	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
 	class UCavrnusUIManager* GetUIManager();
 
 private:
@@ -74,7 +71,7 @@ private:
 	void OnPossessedPawnChanged(APawn* OldPawn, APawn* NewPawn);
 
 	UFUNCTION()
-	void AttachLocalUserComponentToPawn();
+	void SetupLocalUserPawn();
 
 private:
 	TWeakObjectPtr<ACavrnusSpatialConnector> CurrentCavrnusSpatialConnector;
@@ -90,13 +87,11 @@ private:
 	UPROPERTY()
 	FCavrnusAuthentication Authentication;
 
-	UPROPERTY()
-	bool bHasSpaceConnection = false;
+	bool hasSpaceConn;
+	FCavrnusSpaceConnection SpaceConn;
 
-	USpawnedObjectsManager* SpawnedObjectsManager;
-
-	UPROPERTY()
-	UCavrnusAvatarManager* AvatarManager;
+	SpawnedObjectsManager* SpawnManager;
+	CavrnusAvatarManager* AvatarManager;
 
 	TWeakObjectPtr<UGameInstance> GameInstance;
 	TWeakObjectPtr<UObject> ObjectOwner;

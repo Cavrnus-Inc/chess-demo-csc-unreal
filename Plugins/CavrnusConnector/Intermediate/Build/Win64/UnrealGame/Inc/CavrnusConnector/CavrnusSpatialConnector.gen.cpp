@@ -325,11 +325,6 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpawnableIdentifiers_MetaData[];
 #endif
 		static const UECodeGen_Private::FMapPropertyParams NewProp_SpawnableIdentifiers;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Lasers_MetaData[];
-#endif
-		static void NewProp_Lasers_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_Lasers;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -502,17 +497,6 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 	};
 #endif
 	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers = { "SpawnableIdentifiers", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, SpawnableIdentifiers), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers_MetaData[] = {
-		{ "Category", "Cavrnus" },
-		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
-	};
-#endif
-	void Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers_SetBit(void* Obj)
-	{
-		((ACavrnusSpatialConnector*)Obj)->Lasers = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers = { "Lasers", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACavrnusSpatialConnector), &Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACavrnusSpatialConnector_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MyServer,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_Underlying,
@@ -537,7 +521,6 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_ValueProp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_Key_KeyProp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_Lasers,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACavrnusSpatialConnector_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACavrnusSpatialConnector>::IsAbstract,
@@ -582,9 +565,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ ECavrnusSpaceJoinMethod_StaticEnum, TEXT("ECavrnusSpaceJoinMethod"), &Z_Registration_Info_UEnum_ECavrnusSpaceJoinMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3919926405U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACavrnusSpatialConnector, ACavrnusSpatialConnector::StaticClass, TEXT("ACavrnusSpatialConnector"), &Z_Registration_Info_UClass_ACavrnusSpatialConnector, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACavrnusSpatialConnector), 493640686U) },
+		{ Z_Construct_UClass_ACavrnusSpatialConnector, ACavrnusSpatialConnector::StaticClass, TEXT("ACavrnusSpatialConnector"), &Z_Registration_Info_UClass_ACavrnusSpatialConnector, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACavrnusSpatialConnector), 2900000534U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_3128850252(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_303247863(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::EnumInfo));

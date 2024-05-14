@@ -3,26 +3,36 @@
 #include "CavrnusSpatialConnector.h"
 #include "CavrnusSpatialConnectorSubSystem.h"
 #include "CavrnusFunctionLibrary.h"
-#include "CavrnusSpawnedObjectFlag.h"
+#include "FlagComponents/CavrnusSpawnedObjectFlag.h"
 #include "CavrnusPropertiesContainer.h"
 #include "CoreMinimal.h"
 #include <Kismet/GameplayStatics.h>
 
 // Sets default values
-USpawnedObjectsManager::USpawnedObjectsManager()
+SpawnedObjectsManager::SpawnedObjectsManager()
 {
 }
 
-USpawnedObjectsManager::~USpawnedObjectsManager()
+SpawnedObjectsManager::~SpawnedObjectsManager()
 {
 }
 
-void USpawnedObjectsManager::RegisterSpawnedObject(const FCavrnusSpawnedObject& SpawnedObject, TSubclassOf<AActor>* ActorClass, UWorld* World)
+void SpawnedObjectsManager::RegisterSpawnedObject(const FCavrnusSpawnedObject& SpawnedObject, TSubclassOf<AActor> ActorClass, UWorld* World)
 {
 	FTransform SpawnTransform = UCavrnusFunctionLibrary::GetTransformPropertyValue(SpawnedObject.SpaceConnection, SpawnedObject.PropertiesContainerName, "Transform");
 
-	AActor* SpawnedActor = World->SpawnActor(*ActorClass, &SpawnTransform);
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.OverrideLevel = World->PersistentLevel;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	AActor* SpawnedActor = World->SpawnActor(ActorClass, &SpawnTransform, SpawnParams);
 	spawnedActors.Add(SpawnedObject.PropertiesContainerName, SpawnedActor);
+
+	if (SpawnedActor == nullptr)
+	{
+		UE_LOG(LogCavrnusConnector, Error, TEXT("Failed to successfully spawn actor"));
+		return;
+	}
 
 	TArray<USceneComponent*> PropertiesContainers;
 	USceneComponent* ActorRoot = SpawnedActor->GetRootComponent();
@@ -79,10 +89,10 @@ void USpawnedObjectsManager::RegisterSpawnedObject(const FCavrnusSpawnedObject& 
 		}
 	}
 
-	UCavrnusPropertiesContainer::ReplaceClassNameInPropertiesContainers(SpawnedActor, SpawnedObject.PropertiesContainerName);
+	UCavrnusPropertiesContainer::ResetLiveHierarchyRootName(SpawnedActor, SpawnedObject.PropertiesContainerName);
 }
 
-void USpawnedObjectsManager::UnregisterSpawnedObject(const FCavrnusSpawnedObject& SpawnedObject, UWorld* World)
+void SpawnedObjectsManager::UnregisterSpawnedObject(const FCavrnusSpawnedObject& SpawnedObject, UWorld* World)
 {
 	if (!spawnedActors.Contains(SpawnedObject.PropertiesContainerName))
 	{

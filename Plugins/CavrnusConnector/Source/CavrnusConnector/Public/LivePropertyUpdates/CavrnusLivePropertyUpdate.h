@@ -37,5 +37,5 @@ public:
 
 protected:
 
-	Cavrnus::CavrnusVirtualPropertyUpdate* livePropertyUpdate;
+	Cavrnus::CavrnusVirtualPropertyUpdate* livePropertyUpdate = nullptr;
 };

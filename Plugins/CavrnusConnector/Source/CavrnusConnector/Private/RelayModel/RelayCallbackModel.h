@@ -23,10 +23,10 @@ namespace Cavrnus
 
 		void HandleServerCallback(int callbackId, const ServerData::RelayRemoteMessage& msg);
 
-		int RegisterLoginPasswordCallback(FCavrnusAuthRecv onSuccess, FCavrnusError onFailure);
-		int RegisterLoginGuestCallback(FCavrnusAuthRecv onSuccess, FCavrnusError onFailure);
+		int RegisterLoginPasswordCallback(CavrnusAuthRecv onSuccess, CavrnusError onFailure);
+		int RegisterLoginGuestCallback(CavrnusAuthRecv onSuccess, CavrnusError onFailure);
 
-		void RegisterAuthCallback(FCavrnusAuthRecv onAuth);
+		void RegisterAuthCallback(CavrnusAuthRecv onAuth);
 
 		void RegisterBeginLoadingSpaceCallback(CavrnusSpaceBeginLoading onBeginLoading);
 		void HandleSpaceBeginLoading(FString spaceId);
@@ -48,15 +48,15 @@ namespace Cavrnus
 
 		int currReqId = 0;
 
-		TArray<FCavrnusAuthRecv> AuthCallbacks;
+		TArray<CavrnusAuthRecv*> AuthCallbacks;
 		void HandleAuthRecv(FCavrnusAuthentication auth);
 
-		TMap<int, FCavrnusAuthRecv> LoginPasswordSuccessCallbacks;
-		TMap<int, FCavrnusError> LoginPasswordErrorCallbacks;
+		TMap<int, CavrnusAuthRecv*> LoginPasswordSuccessCallbacks;
+		TMap<int, CavrnusError*> LoginPasswordErrorCallbacks;
 		void HandleLoginPasswordResponse(int callbackId, ServerData::AuthenticateResp resp);
 
-		TMap<int, FCavrnusAuthRecv> LoginGuestSuccessCallbacks;
-		TMap<int, FCavrnusError> LoginGuestErrorCallbacks;
+		TMap<int, CavrnusAuthRecv*> LoginGuestSuccessCallbacks;
+		TMap<int, CavrnusError*> LoginGuestErrorCallbacks;
 		void HandleLoginGuestResponse(int callbackId, ServerData::AuthenticateGuestResp resp);
 
 		TArray< TSharedPtr<const CavrnusSpaceBeginLoading>> BeginLoadingSpaceCallbacks;

@@ -3,14 +3,12 @@
 #include "../../Public/Types/CavrnusSpaceConnection.h"
 #include "SpacePropertyModel.h"
 
-#include "CavrnusConnectorModule.h"
+#include "../CavrnusConnectorModule.h"
 
 #include <CoreMinimal.h>
 #include <string>
 #include <Tickable.h>
 #include "CavrnusContentModel.h"
-
-class UPDFManager;
 
 namespace ServerData
 {
@@ -51,7 +49,6 @@ namespace Cavrnus
 		SpacePropertyModel* GetSpacePropertyModel(FCavrnusSpaceConnection spaceConn);
 		RelayCallbackModel* GetCallbackModel();
 		DataState* GetDataState();
-		void SetPDFManager(UPDFManager* PDFManager);
 		void SendMessage(const ServerData::RelayClientMessage& msg);
 
 		CavrnusContentModel ContentModel;
@@ -68,7 +65,6 @@ namespace Cavrnus
 		SpacePermissionsModel* globalPermissionsModel;
 		TMap<int, SpacePermissionsModel*> spacePermissionsModelLookup;
 		TMap<int, SpacePropertyModel*> spacePropertyModelLookup;
-		class UPDFManager* PDFManager = nullptr;
 		void HandleServerMsg(const ServerData::RelayRemoteMessage& msg);
 
 		TSharedPtr<const TFunction<void(FCavrnusSpawnedObject, FString)>> ObjectCreationCallback = nullptr;

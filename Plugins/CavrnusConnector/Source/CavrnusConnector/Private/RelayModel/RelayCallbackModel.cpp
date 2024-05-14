@@ -56,17 +56,20 @@ namespace Cavrnus
 	{
 		for (int i = 0; i < AuthCallbacks.Num(); i++) 
 		{
-			AuthCallbacks[i].ExecuteIfBound(auth);
+			(*AuthCallbacks[i])(auth);
 		}
 		AuthCallbacks.Empty();
 	}
 
-	int RelayCallbackModel::RegisterLoginPasswordCallback(FCavrnusAuthRecv onSuccess, FCavrnusError onFailure)
+	int RelayCallbackModel::RegisterLoginPasswordCallback(CavrnusAuthRecv onSuccess, CavrnusError onFailure)
 	{
 		int reqId = ++currReqId;
 
-		LoginPasswordSuccessCallbacks.Add(reqId, onSuccess);
-		LoginPasswordErrorCallbacks.Add(reqId, onFailure);
+		CavrnusAuthRecv* callback = new CavrnusAuthRecv(onSuccess);
+		LoginPasswordSuccessCallbacks.Add(reqId, callback);
+
+		CavrnusError* errorCallback = new CavrnusError(onFailure);
+		LoginPasswordErrorCallbacks.Add(reqId, errorCallback);
 
 		return reqId;
 	}
@@ -85,7 +88,7 @@ namespace Cavrnus
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH SUCCESS]"));
 
 			if (LoginPasswordSuccessCallbacks.Contains(callbackId))
-				LoginPasswordSuccessCallbacks[callbackId].ExecuteIfBound(auth);
+				(*LoginPasswordSuccessCallbacks[callbackId])(auth);
 		}
 		else
 		{
@@ -93,7 +96,7 @@ namespace Cavrnus
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH FAILURE]: %s"), *error);
 
 			if (LoginPasswordErrorCallbacks.Contains(callbackId))
-				LoginPasswordErrorCallbacks[callbackId].ExecuteIfBound(error);
+				(*LoginPasswordErrorCallbacks[callbackId])(error);
 		}
 
 		LoginPasswordSuccessCallbacks.Remove(callbackId);
@@ -101,19 +104,31 @@ namespace Cavrnus
 
 	}
 
-	int RelayCallbackModel::RegisterLoginGuestCallback(FCavrnusAuthRecv onSuccess, FCavrnusError onFailure)
+	int RelayCallbackModel::RegisterLoginGuestCallback(CavrnusAuthRecv onSuccess, CavrnusError onFailure)
 	{
 		int reqId = ++currReqId;
 
-		LoginGuestSuccessCallbacks.Add(reqId, onSuccess);
-		LoginGuestErrorCallbacks.Add(reqId, onFailure);
+		CavrnusAuthRecv* callback = new CavrnusAuthRecv(onSuccess);
+		LoginGuestSuccessCallbacks.Add(reqId, callback);
+
+		CavrnusError* errorCallback = new CavrnusError(onFailure);
+		LoginGuestErrorCallbacks.Add(reqId, errorCallback);
 
 		return reqId;
 	}
 
-	void RelayCallbackModel::RegisterAuthCallback(FCavrnusAuthRecv onAuth)
+	void RelayCallbackModel::RegisterAuthCallback(CavrnusAuthRecv onAuth)
 	{
-		AuthCallbacks.Add(onAuth);
+		if (relayModel->GetDataState()->CurrentAuthentication != nullptr)
+		{
+			onAuth(*relayModel->GetDataState()->CurrentAuthentication);
+		}
+		else 
+		{
+			CavrnusAuthRecv* callback = new CavrnusAuthRecv(onAuth);
+			AuthCallbacks.Add(callback);
+		}
+		
 	}
 
 	void RelayCallbackModel::HandleLoginGuestResponse(int callbackId, ServerData::AuthenticateGuestResp resp)
@@ -130,7 +145,7 @@ namespace Cavrnus
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH SUCCESS]"));
 
 			if (LoginGuestSuccessCallbacks.Contains(callbackId))
-				LoginGuestSuccessCallbacks[callbackId].ExecuteIfBound(auth);
+				(*LoginGuestSuccessCallbacks[callbackId])(auth);
 		}
 		else
 		{
@@ -138,7 +153,7 @@ namespace Cavrnus
 			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH FAILURE]: %s"), *error);
 
 			if (LoginGuestErrorCallbacks.Contains(callbackId))
-				LoginGuestErrorCallbacks[callbackId].ExecuteIfBound(error);
+				(*LoginGuestErrorCallbacks[callbackId])(error);
 		}
 
 		LoginGuestSuccessCallbacks.Remove(callbackId);
@@ -238,7 +253,7 @@ namespace Cavrnus
 		for (int i = 0; i < devices_field.devices_size(); ++i)
 		{
 			const ServerData::RtcAudioInputDevice& device = devices_field.devices(i);
-			FCavrnusInputDevice item = { device.name().c_str(), device.id().c_str() };
+			FCavrnusInputDevice item = FCavrnusInputDevice(device.name().c_str(), device.id().c_str());
 
 			devices.Add(item);
 		}
@@ -264,7 +279,7 @@ namespace Cavrnus
 		for (int i = 0; i < devices_field.devices_size(); ++i)
 		{
 			const ServerData::RtcAudioOutputDevice& device = devices_field.devices(i);
-			FCavrnusOutputDevice item = { device.name().c_str(), device.id().c_str() };
+			FCavrnusOutputDevice item = FCavrnusOutputDevice(device.name().c_str(), device.id().c_str());
 
 			devices.Add(item);
 		}
@@ -290,7 +305,7 @@ namespace Cavrnus
 		for (int i = 0; i < devices_field.devices_size(); ++i)
 		{
 			const ServerData::RtcVideoInputDevice& device = devices_field.devices(i);
-			FCavrnusVideoInputDevice item = { device.name().c_str(), device.id().c_str() };
+			FCavrnusVideoInputDevice item = FCavrnusVideoInputDevice(device.name().c_str(), device.id().c_str());
 
 			devices.Add(item);
 		}

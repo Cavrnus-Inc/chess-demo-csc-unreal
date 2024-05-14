@@ -36,6 +36,8 @@ typedef TFunction<void(FLinearColor, FString, FString)> CavrnusColorFunction;
 typedef TFunction<void(FVector4, FString, FString)> CavrnusVectorFunction;
 typedef TFunction<void(FTransform, FString, FString)> CavrnusTransformFunction;
 
+typedef TFunction<void(FCavrnusUser user)> CavrnusSpaceUserEvent;
+
 typedef TFunction<void(UTexture2D*)> VideoFrameUpdateFunction;
 
 typedef TFunction<void(FString, bool)> CavrnusPolicyUpdated;

@@ -3,10 +3,12 @@
 #include "CavrnusSpatialConnector.h"
 #include "SpawnedObjectsManager.h"
 #include "CavrnusAvatarManager.h"
-#include "CavrnusLocalUser.h"
+#include "FlagComponents/CavrnusLocalUserFlag.h"
+#include "Types\CavrnusUser.h"
 #include "TimerManager.h"
 #include "Engine/World.h" 
 #include "UI/CavrnusUIManager.h"
+#include "CavrnusPropertiesContainer.h"
 
 #include <GameFramework/Pawn.h>
 #include <GameFramework/PlayerController.h>
@@ -20,7 +22,8 @@ UCavrnusSpatialConnectorSubSystemProxy::UCavrnusSpatialConnectorSubSystemProxy()
 UCavrnusSpatialConnectorSubSystemProxy::~UCavrnusSpatialConnectorSubSystemProxy()
 {
 	AvatarManager = nullptr;
-	SpawnedObjectsManager = nullptr;
+	SpawnManager = nullptr;
+	hasSpaceConn = false;
 }
 
 void UCavrnusSpatialConnectorSubSystemProxy::Initialize()
@@ -32,7 +35,7 @@ void UCavrnusSpatialConnectorSubSystemProxy::Initialize()
 	SpaceConnectionSuccess.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnSpaceConnectionSuccess));
 	SpaceConnectionFailure.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UCavrnusSpatialConnectorSubSystemProxy, OnSpaceConnectionFailure));
 
-	SpawnedObjectsManager = new USpawnedObjectsManager();
+	SpawnManager = new SpawnedObjectsManager();
 
 	TFunction<void(FCavrnusSpawnedObject, FString)> onObjectCreation = [this](const FCavrnusSpawnedObject& ob, FString uniqueId)
 	{
@@ -41,13 +44,13 @@ void UCavrnusSpatialConnectorSubSystemProxy::Initialize()
 			UE_LOG(LogCavrnusConnector, Error, TEXT("Could not find spawnable object with Unique ID %s in the Cavrnus Spatial Connector"), *uniqueId);
 			return;
 		}
-		SpawnedObjectsManager->RegisterSpawnedObject(ob, &GetCavrnusSpatialConnector()->SpawnableIdentifiers[uniqueId], GetWorld());
+		SpawnManager->RegisterSpawnedObject(ob, GetCavrnusSpatialConnector()->SpawnableIdentifiers[uniqueId], GetWorld());
 	};
 	UCavrnusFunctionLibrary::GetDataModel()->RegisterObjectCreationCallback(onObjectCreation);
 
 	TFunction<void(FCavrnusSpawnedObject)> onObjectDestruction = [this](const FCavrnusSpawnedObject& ob)
 	{
-		SpawnedObjectsManager->UnregisterSpawnedObject(ob, GetWorld());
+		SpawnManager->UnregisterSpawnedObject(ob, GetWorld());
 	};
 	UCavrnusFunctionLibrary::GetDataModel()->RegisterObjectDestructionCallback(onObjectDestruction);
 }
@@ -55,7 +58,8 @@ void UCavrnusSpatialConnectorSubSystemProxy::Initialize()
 void UCavrnusSpatialConnectorSubSystemProxy::Deinitialize()
 {
 	AvatarManager = nullptr;
-	SpawnedObjectsManager = nullptr;
+	SpawnManager = nullptr;
+	hasSpaceConn = false;
 	UCavrnusFunctionLibrary::KillDataModel();
 }
 
@@ -135,14 +139,9 @@ void UCavrnusSpatialConnectorSubSystemProxy::AuthenticateAndJoin()
 			UE_LOG(LogCavrnusConnector, Error, TEXT("No authentication method selected in CavrnusSpatialConnector actor!"));
 		}
 	}
-	else if (!bHasSpaceConnection) // Authenticated but not in a space
+	else if (!hasSpaceConn) // Authenticated but not in a space
 	{
 		OnAuthSuccess(Authentication);
-	}
-
-	if (!AvatarManager)
-	{
-		AvatarManager = NewObject<UCavrnusAvatarManager>(ObjectOwner.Get());
 	}
 }
 
@@ -178,7 +177,18 @@ void UCavrnusSpatialConnectorSubSystemProxy::OnAuthFailure(FString ErrorMessage)
 
 void UCavrnusSpatialConnectorSubSystemProxy::OnSpaceConnectionSuccess(FCavrnusSpaceConnection SpaceConnection)
 {
-	bHasSpaceConnection = true;
+	AvatarManager = new CavrnusAvatarManager();
+	CavrnusSpaceUserEvent userAdded = [this, SpaceConnection](const FCavrnusUser& user) {
+		AvatarManager->RegisterUser(user, GetCavrnusSpatialConnector()->RemoteAvatarClass, GetWorld(), SpaceConnection);
+	};
+	CavrnusSpaceUserEvent userRemoved = [this](const FCavrnusUser& user) {
+		AvatarManager->UnregisterUser(user, GetWorld());
+	};
+
+	UCavrnusFunctionLibrary::BindSpaceUsers(SpaceConnection, userAdded, userRemoved);
+
+	SpaceConn = SpaceConnection;
+	hasSpaceConn = true;
 
 	// Listen for future controller or pawn changes
 	if (GameInstance.IsValid())
@@ -190,7 +200,7 @@ void UCavrnusSpatialConnectorSubSystemProxy::OnSpaceConnectionSuccess(FCavrnusSp
 		}
 	}
 
-	AttachLocalUserComponentToPawn();
+	SetupLocalUserPawn();
 
 	ACavrnusSpatialConnector* CavrnusSpatialConnector = GetCavrnusSpatialConnector();
 	UE_LOG(LogCavrnusConnector, Log, TEXT("Successfully joined space!"));
@@ -207,7 +217,7 @@ void UCavrnusSpatialConnectorSubSystemProxy::OnPawnControllerChanged(APawn* InPa
 {
 	if (InController && InController->IsLocalPlayerController() && InPawn)
 	{
-		AttachLocalUserComponentToPawn();
+		SetupLocalUserPawn();
 	}
 }
 
@@ -215,7 +225,7 @@ void UCavrnusSpatialConnectorSubSystemProxy::OnPossessedPawnChanged(APawn* OldPa
 {
 	if (NewPawn)
 	{
-		AttachLocalUserComponentToPawn();
+		SetupLocalUserPawn();
 	}
 
 	if (OldPawn)
@@ -224,7 +234,7 @@ void UCavrnusSpatialConnectorSubSystemProxy::OnPossessedPawnChanged(APawn* OldPa
 	}
 }
 
-void UCavrnusSpatialConnectorSubSystemProxy::AttachLocalUserComponentToPawn()
+void UCavrnusSpatialConnectorSubSystemProxy::SetupLocalUserPawn()
 {
 	if (GameInstance == nullptr)
 	{
@@ -238,12 +248,12 @@ void UCavrnusSpatialConnectorSubSystemProxy::AttachLocalUserComponentToPawn()
 	}
 
 	APawn* Pawn = PlayerController->GetPawn();
-	if (Pawn && !Pawn->GetComponentByClass(UCavrnusLocalUser::StaticClass()))
+	if (Pawn && !Pawn->GetComponentByClass(UCavrnusLocalUserFlag::StaticClass()))
 	{
 		USceneComponent* PawnRootComponent = Pawn->GetRootComponent();
 		ensureAlwaysMsgf(PawnRootComponent != nullptr, TEXT("No root component on pawn when attaching local user component"));
-		UCavrnusLocalUser* LocalUserComponent = Cast<UCavrnusLocalUser>(Pawn->AddComponentByClass(
-			UCavrnusLocalUser::StaticClass(),
+		UCavrnusLocalUserFlag* LocalUserComponent = Cast<UCavrnusLocalUserFlag>(Pawn->AddComponentByClass(
+			UCavrnusLocalUserFlag::StaticClass(),
 			true,
 			FTransform::Identity,
 			false));
@@ -251,18 +261,23 @@ void UCavrnusSpatialConnectorSubSystemProxy::AttachLocalUserComponentToPawn()
 		ensureAlwaysMsgf(LocalUserComponent != nullptr, TEXT("No local user component to attach"));
 		LocalUserComponent->AttachToComponent(PawnRootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 		LocalUserComponent->RegisterComponent();
+
+		FString PropertyPath = TEXT("users/") + SpaceConn.LocalUserConnectionId;
+		UCavrnusPropertiesContainer::ResetLiveHierarchyRootName(Pawn, PropertyPath);
+
+		CavrnusSpaceUserEvent evt = [LocalUserComponent](const FCavrnusUser& user) {
+			LocalUserComponent->LocalUser = user;
+		};
+
+		UCavrnusFunctionLibrary::AwaitLocalUser(SpaceConn, evt);
 	}
 }
 
 void UCavrnusSpatialConnectorSubSystemProxy::OnSpaceConnectionFailure(FString ErrorMessage)
 {
-	bHasSpaceConnection = false;
+	hasSpaceConn = false;
 
 	UE_LOG(LogCavrnusConnector, Error, TEXT("Failed to join space, error: %s"), *ErrorMessage);
-}
-
-UCavrnusAvatarManager* UCavrnusSpatialConnectorSubSystemProxy::GetAvatarManager() {
-	return AvatarManager;
 }
 
 void UCavrnusSpatialConnectorSubSystemProxy::AttemptToJoinSpace(FString JoinSpaceId)

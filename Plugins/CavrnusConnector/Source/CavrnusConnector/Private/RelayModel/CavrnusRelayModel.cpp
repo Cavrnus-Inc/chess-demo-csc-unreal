@@ -35,6 +35,18 @@ namespace Cavrnus
 	{
 		delete interopLayer;
 		delete callbackModel;
+
+		for (const auto& kvp : spacePermissionsModelLookup)
+		{
+			delete kvp.Value;
+		}
+		spacePermissionsModelLookup.Empty();
+
+		for (const auto& kvp : spacePropertyModelLookup)
+		{
+			delete kvp.Value;
+		}
+		spacePropertyModelLookup.Empty();
 	}
 
 	bool CavrnusRelayModel::IsTickableInEditor() const
@@ -98,10 +110,6 @@ namespace Cavrnus
 		return dataState;
 	}
 
-	void CavrnusRelayModel::SetPDFManager(UPDFManager* PDFMan)
-	{
-		PDFManager = PDFMan;
-	}
 
 	void CavrnusRelayModel::SendMessage(const ServerData::RelayClientMessage& msg)
 	{
@@ -243,7 +251,7 @@ namespace Cavrnus
 		if (!spacePropertyModelLookup.Contains(spaceConn.spaceconnectionid()))
 			spacePropertyModelLookup.Add(spaceConn.spaceconnectionid(), new SpacePropertyModel());
 
-		spacePropertyModelLookup[spaceConn.spaceconnectionid()]->AddSpaceUser(CavrnusProtoTranslation::ToCavrnusUser(user));
+		spacePropertyModelLookup[spaceConn.spaceconnectionid()]->AddSpaceUser(CavrnusProtoTranslation::ToCavrnusUser(user, CavrnusProtoTranslation::FromPb(spaceConn)));
 	}
 
 	void CavrnusRelayModel::HandleSpaceUserRemoved(ServerData::CavrnusSpaceConnection spaceConn, std::string userId)

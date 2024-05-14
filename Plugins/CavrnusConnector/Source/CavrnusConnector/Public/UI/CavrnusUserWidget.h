@@ -7,7 +7,6 @@
 #include <Blueprint/UserWidget.h>
 #include "Types/CavrnusBinding.h"
 #include "Types/CavrnusCallbackTypes.h"
-#include "CavrnusConnectorVideoRequest.h"
 #include "UI/CavrnusWidgetBase.h"
 
 #include "CavrnusUserWidget.generated.h"
@@ -48,4 +47,6 @@ private:
 	void UnbindUserVideo();
 
 	FCavrnusBinding UserVideoFrameBinding;
+
+	bool StreamImageSizeSet = false;
 };

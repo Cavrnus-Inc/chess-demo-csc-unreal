@@ -177,7 +177,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusCallbackTypes() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_CavrnusConnector_CavrnusSpaceUserEvent__DelegateSignature_Statics::NewProp_User = { "User", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_CavrnusConnector_eventCavrnusSpaceUserEvent_Parms, User), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(nullptr, 0) }; // 3947004159
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_CavrnusConnector_CavrnusSpaceUserEvent__DelegateSignature_Statics::NewProp_User = { "User", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_CavrnusConnector_eventCavrnusSpaceUserEvent_Parms, User), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(nullptr, 0) }; // 884232857
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_CavrnusConnector_CavrnusSpaceUserEvent__DelegateSignature_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_CavrnusConnector_CavrnusSpaceUserEvent__DelegateSignature_Statics::NewProp_User,
 	};

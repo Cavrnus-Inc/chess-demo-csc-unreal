@@ -12,7 +12,7 @@ namespace Cavrnus
 		DataState();
 		virtual ~DataState();
 
-		FCavrnusAuthentication* CurrentAuthentication;
+		FCavrnusAuthentication* CurrentAuthentication = nullptr;
 
 		TArray<FCavrnusSpaceConnection> GetCurrentSpaceConnections();
 
