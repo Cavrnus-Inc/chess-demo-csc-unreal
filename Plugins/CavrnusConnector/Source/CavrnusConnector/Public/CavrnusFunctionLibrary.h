@@ -68,6 +68,8 @@ public:
 	// Authentication Functions
 	// ============================================
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusError, FString, Error);
+
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus")
 	static class UCavrnusSpatialConnectorSubSystemProxy* GetCavrnusSpatialConnectorSubSystemProxy();
 
@@ -78,6 +80,7 @@ public:
 		meta = (ToolTip = "Checks if you are logged in", ShortToolTip = "Checks if you are logged in"))
 	static bool IsLoggedIn();
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusAuthRecv, FCavrnusAuthentication, Auth);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Authentication",
 		meta = (ToolTip = "Gets guest user credentials, allowing you to join valid spaces and make other requests", ShortToolTip = "Gets guest user credentials"))
 	static void AuthenticateWithPassword(const FString& Server, const FString& Email, const FString& Password, FCavrnusAuthRecv OnSuccess, FCavrnusError OnFailure);
@@ -104,24 +107,33 @@ public:
 	// Space Functions
 	// ============================================
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusAllSpacesInfoEvent, TArray<FCavrnusSpaceInfo>, SpacesInfo);
+
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Spaces",
 		meta = (ToolTip = "Gets a list of all current spaces which can be joined", ShortToolTip = "Gets a list of all current spaces which can be joined"))
 	static void FetchJoinableSpaces(FCavrnusAllSpacesInfoEvent OnRecvCurrentJoinableSpaces);
 
+	static void FetchJoinableSpaces(CavrnusAllSpacesInfoEvent OnRecvCurrentJoinableSpaces);
+
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusSpaceInfoEvent, FCavrnusSpaceInfo, SpaceInfo);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Spaces",
 		meta = (ToolTip = "Triggers when spaces become available to you that you can join, or when their metadata changes", ShortToolTip = "Maintains a list of spaces"))
 	static UPARAM(DisplayName = "Disposable") FCavrnusBinding BindJoinableSpaces(FCavrnusSpaceInfoEvent SpaceAdded, FCavrnusSpaceInfoEvent SpaceUpdated, FCavrnusSpaceInfoEvent SpaceRemoved);
+
+	static FCavrnusBinding BindJoinableSpaces(CavrnusSpaceInfoEvent SpaceAdded, CavrnusSpaceInfoEvent SpaceUpdated, CavrnusSpaceInfoEvent SpaceRemoved);
 
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Spaces",
 		meta = (ToolTip = "Checks if there is any active connection to a space", ShortToolTip = "Checks if you are connected to a space"))
 	static bool IsConnectedToAnySpace();
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusSpaceConnected, FCavrnusSpaceConnection, SpaceConnection);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Spaces",
 		meta = (ToolTip = "Connects to a Space; joining voice & video and recieving/processing the journal", ShortToolTip = "Connects to a Space"))
 	static void JoinSpace(FString SpaceId, FCavrnusSpaceConnected OnConnected, FCavrnusError OnFailure);
 
 	static void JoinSpace(FString SpaceId, CavrnusSpaceConnected OnConnected, CavrnusError OnFailure);
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusSpaceBeginLoading, FString, SpaceIdBeingLoaded);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Spaces",
 		meta = (ToolTip = "Triggers when you begin attempting to join a space, returning the ID of the space being joined", ShortToolTip = "Triggers when you begin attempting to join a space"))
 	static void AwaitAnySpaceBeginLoading(FCavrnusSpaceBeginLoading OnConnected);
@@ -349,6 +361,7 @@ public:
 	// Space Users
 	// ============================================
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusSpaceUserEvent, FCavrnusUser, User);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Users",
 		meta = (ToolTip = "Returns all users currently in the space", ShortToolTip = "Returns all users currently in the space"))
 	static void AwaitLocalUser(FCavrnusSpaceConnection SpaceConnection, FCavrnusSpaceUserEvent LocalUserArrived);
@@ -365,6 +378,7 @@ public:
 
 	static FCavrnusBinding BindSpaceUsers(FCavrnusSpaceConnection SpaceConnection, CavrnusSpaceUserEvent UserAdded, CavrnusSpaceUserEvent UserRemoved);
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusUserVideoFrameEvent, UTexture2D*, UserVideoFrame);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Properties",
 		meta = (ToolTip = "Triggers an Event when the property changes, plus an inital event when first bound", ShortToolTip = "Triggers an Event when the property changes"))
 	static UPARAM(DisplayName = "Disposable") FCavrnusBinding BindUserVideoFrames(FCavrnusSpaceConnection SpaceConnection, const FCavrnusUser& User, FCavrnusUserVideoFrameEvent OnVideoFrameUpdate);
@@ -386,25 +400,34 @@ public:
 		meta = (ToolTip = "Sets streaming state for local user", ShortToolTip = "Set my streaming state"))
 	static void SetLocalUserStreamingState(FCavrnusSpaceConnection SpaceConnection, bool bIsStreaming);
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusAvailableInputDevices, const TArray<FCavrnusInputDevice>&, InputDevices);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Gets available microphones", ShortToolTip = "Gets available microphones"))
 	static void FetchAudioInputs(FCavrnusAvailableInputDevices OnReceiveDevices);
+
+	static void FetchAudioInputs(CavrnusAvailableInputDevices OnReceiveDevices);
 
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Sets which microphone to use", ShortToolTip = "Sets which microphone to use"))
 	static void UpdateAudioInput(FCavrnusInputDevice Device);
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusAvailableOutputDevices, const TArray<FCavrnusOutputDevice>&, OutputDevices);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Gets available speakers", ShortToolTip = "Gets available speakers"))
 	static void FetchAudioOutputs(FCavrnusAvailableOutputDevices OnReceiveDevices);
+
+	static void FetchAudioOutputs(CavrnusAvailableOutputDevices OnReceiveDevices);
 
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Sets which speaker to use", ShortToolTip = "Sets which speaker to use"))
 	static void UpdateAudioOutput(FCavrnusOutputDevice Device);
 
+	DECLARE_DYNAMIC_DELEGATE_OneParam(FCavrnusAvailableVideoInputDevices, const TArray<FCavrnusVideoInputDevice>&, VideoInputDevices);
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Gets available camera/stream sources", ShortToolTip = "Gets available camera/stream sources"))
 	static void FetchVideoInputs(FCavrnusAvailableVideoInputDevices OnReceiveDevices);
+
+	static void FetchVideoInputs(CavrnusAvailableVideoInputDevices OnReceiveDevices);
 
 	UFUNCTION(BlueprintCallable, CallInEditor, Exec, Category = "Cavrnus|Voice and Video",
 		meta = (ToolTip = "Sets which camera/stream source to use", ShortToolTip = "Sets which camera/stream source to use"))

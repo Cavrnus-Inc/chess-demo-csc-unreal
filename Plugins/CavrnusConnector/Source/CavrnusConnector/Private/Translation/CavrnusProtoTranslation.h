@@ -36,7 +36,7 @@ namespace Cavrnus
 
 #pragma region Message Builders
 		static const ServerData::RelayClientMessage BuildKeepAliveMsg();
-		static const ServerData::RelayClientMessage BuildUpdateTimeMsg(float currTime);
+		static const ServerData::RelayClientMessage BuildUpdateTimeMsg(double currTime);
 
 		static const ServerData::RelayClientMessage BuildAuthenticateGuest(int callbackId, const FString& server, const FString& screenName);
 		static const ServerData::RelayClientMessage BuildAuthenticateWithPassword(int callbackId, const FString& server, const FString& email, const FString& password);

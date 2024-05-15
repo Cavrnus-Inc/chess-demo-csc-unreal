@@ -162,7 +162,7 @@ namespace Cavrnus
 
 	void RelayCallbackModel::RegisterBeginLoadingSpaceCallback(CavrnusSpaceBeginLoading onBeginLoading)
 	{
-		TSharedPtr<const CavrnusSpaceBeginLoading> CallbackPtr = MakeShareable(new const CavrnusSpaceBeginLoading(onBeginLoading));
+		CavrnusSpaceBeginLoading* CallbackPtr = new CavrnusSpaceBeginLoading(onBeginLoading);
 		BeginLoadingSpaceCallbacks.Add(CallbackPtr);
 	}
 
@@ -179,8 +179,8 @@ namespace Cavrnus
 	{
 		int reqId = ++currReqId;
 
-		TSharedPtr<const CavrnusSpaceConnected> CallbackPtr = MakeShareable(new const CavrnusSpaceConnected(onConnected));
-		TSharedPtr<const CavrnusError> ErrorPtr = MakeShareable(new const CavrnusError(onFailure));
+		CavrnusSpaceConnected* CallbackPtr = new CavrnusSpaceConnected(onConnected);
+		CavrnusError* ErrorPtr = new CavrnusError(onFailure);
 
 		JoinSpaceSuccessCallbacks.Add(reqId, CallbackPtr);
 		JoinSpaceErrorCallbacks.Add(reqId, ErrorPtr);
@@ -188,11 +188,12 @@ namespace Cavrnus
 		return reqId;
 	}
 
-	int RelayCallbackModel::RegisterFetchAvailableSpacesCallback(FCavrnusAllSpacesInfoEvent onAllSpacesArrived)
+	int RelayCallbackModel::RegisterFetchAvailableSpacesCallback(CavrnusAllSpacesInfoEvent onAllSpacesArrived)
 	{
 		int reqId = ++currReqId;
 
-		AllSpacesInfoCallbacks.Add(reqId, onAllSpacesArrived);
+		CavrnusAllSpacesInfoEvent* callback = new CavrnusAllSpacesInfoEvent(onAllSpacesArrived);
+		AllSpacesInfoCallbacks.Add(reqId, callback);
 
 		return reqId;
 	}
@@ -207,7 +208,7 @@ namespace Cavrnus
 		}
 
 		if (AllSpacesInfoCallbacks.Contains(callbackId))
-			AllSpacesInfoCallbacks[callbackId].ExecuteIfBound(AvailableSpaces);
+			(*AllSpacesInfoCallbacks[callbackId])(AvailableSpaces);
 
 		AllSpacesInfoCallbacks.Remove(callbackId);
 	}
@@ -236,11 +237,12 @@ namespace Cavrnus
 		JoinSpaceErrorCallbacks.Remove(callbackId);
 	}
 
-	int RelayCallbackModel::RegisterFetchAudioInputs(FCavrnusAvailableInputDevices onRecvDevices)
+	int RelayCallbackModel::RegisterFetchAudioInputs(CavrnusAvailableInputDevices onRecvDevices)
 	{
 		int reqId = ++currReqId;
 
-		FetchAudioInputsCallbacks.Add(reqId, onRecvDevices);
+		CavrnusAvailableInputDevices* callback = new CavrnusAvailableInputDevices(onRecvDevices);
+		FetchAudioInputsCallbacks.Add(reqId, callback);
 
 		return reqId;
 	}
@@ -259,14 +261,15 @@ namespace Cavrnus
 		}
 
 		if (FetchAudioInputsCallbacks.Contains(callbackId))
-			FetchAudioInputsCallbacks[callbackId].ExecuteIfBound(devices);
+			(*FetchAudioInputsCallbacks[callbackId])(devices);
 	}
 
-	int RelayCallbackModel::RegisterFetchAudioOutputs(FCavrnusAvailableOutputDevices onRecvDevices)
+	int RelayCallbackModel::RegisterFetchAudioOutputs(CavrnusAvailableOutputDevices onRecvDevices)
 	{
 		int reqId = ++currReqId;
 
-		FetchAudioOutputsCallbacks.Add(reqId, onRecvDevices);
+		CavrnusAvailableOutputDevices* callback = new CavrnusAvailableOutputDevices(onRecvDevices);
+		FetchAudioOutputsCallbacks.Add(reqId, callback);
 
 		return reqId;
 	}
@@ -285,14 +288,15 @@ namespace Cavrnus
 		}
 
 		if (FetchAudioOutputsCallbacks.Contains(callbackId))
-			FetchAudioOutputsCallbacks[callbackId].ExecuteIfBound(devices);
+			(*FetchAudioOutputsCallbacks[callbackId])(devices);
 	}
 
-	int RelayCallbackModel::RegisterFetchVideoInputs(FCavrnusAvailableVideoInputDevices onRecvDevices)
+	int RelayCallbackModel::RegisterFetchVideoInputs(CavrnusAvailableVideoInputDevices onRecvDevices)
 	{
 		int reqId = ++currReqId;
 
-		FetchVideoInputsCallbacks.Add(reqId, onRecvDevices);
+		CavrnusAvailableVideoInputDevices* callback = new CavrnusAvailableVideoInputDevices(onRecvDevices);
+		FetchVideoInputsCallbacks.Add(reqId, callback);
 
 		return reqId;
 	}
@@ -311,15 +315,14 @@ namespace Cavrnus
 		}
 
 		if (FetchVideoInputsCallbacks.Contains(callbackId))
-			FetchVideoInputsCallbacks[callbackId].ExecuteIfBound(devices);
+			(*FetchVideoInputsCallbacks[callbackId])(devices);
 	}
 
 	int RelayCallbackModel::RegisterFetchAllAvailableContent(CavrnusRemoteContentFunction onfetchedContent)
 	{
 		int reqId = ++currReqId;
 
-		using contentFunction = const CavrnusRemoteContentFunction;
-		TSharedPtr<contentFunction> CallbackPtr = MakeShareable(new contentFunction(onfetchedContent));
+		CavrnusRemoteContentFunction* CallbackPtr = new CavrnusRemoteContentFunction(onfetchedContent);
 
 		AllRemoteContentCallbacks.Add(reqId, CallbackPtr);
 
@@ -351,8 +354,7 @@ namespace Cavrnus
 	{
 		int reqId = ++currReqId;
 
-		using contentFunction = const CavrnusUploadCompleteFunction;
-		TSharedPtr<contentFunction> CallbackPtr = MakeShareable(new contentFunction(onUploadComplete));
+		CavrnusUploadCompleteFunction* CallbackPtr = new CavrnusUploadCompleteFunction(onUploadComplete);
 
 		AllUploadContentCallbacks.Add(reqId, CallbackPtr);
 

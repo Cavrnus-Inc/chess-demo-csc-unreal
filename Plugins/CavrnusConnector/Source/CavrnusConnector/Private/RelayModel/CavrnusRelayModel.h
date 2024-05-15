@@ -53,7 +53,7 @@ namespace Cavrnus
 
 		CavrnusContentModel ContentModel;
 
-		CaseSensitiveMap<FString, TSharedPtr<const CavrnusSpawnedObjectFunction>> ObjectCreationCallbacks;
+		CaseSensitiveMap<FString, const CavrnusSpawnedObjectFunction*> ObjectCreationCallbacks;
 
 		void RegisterObjectCreationCallback(TFunction<void(FCavrnusSpawnedObject, FString)> cb);
 		void RegisterObjectDestructionCallback(TFunction<void(FCavrnusSpawnedObject)> cb);
@@ -67,8 +67,8 @@ namespace Cavrnus
 		TMap<int, SpacePropertyModel*> spacePropertyModelLookup;
 		void HandleServerMsg(const ServerData::RelayRemoteMessage& msg);
 
-		TSharedPtr<const TFunction<void(FCavrnusSpawnedObject, FString)>> ObjectCreationCallback = nullptr;
-		TSharedPtr<const TFunction<void(FCavrnusSpawnedObject)>> ObjectDestructionCallback = nullptr;
+		const TFunction<void(FCavrnusSpawnedObject, FString)>* ObjectCreationCallback = nullptr;
+		const TFunction<void(FCavrnusSpawnedObject)>* ObjectDestructionCallback = nullptr;
 
 		void HandleLogging(const ServerData::StatusMessage& message);
 		void HandleSpaceUserAdded(ServerData::CavrnusSpaceConnection spaceConn, ServerData::CavrnusUser userId);

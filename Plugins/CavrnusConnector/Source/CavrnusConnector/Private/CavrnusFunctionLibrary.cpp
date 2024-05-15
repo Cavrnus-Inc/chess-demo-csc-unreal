@@ -170,11 +170,38 @@ void UCavrnusFunctionLibrary::AwaitAuthentication(CavrnusAuthRecv OnAuth)
 
 void UCavrnusFunctionLibrary::FetchJoinableSpaces(FCavrnusAllSpacesInfoEvent onRecvCurrentJoinableSpaces)
 {
-	int RequestId = GetDataModel()->GetCallbackModel()->RegisterFetchAvailableSpacesCallback(onRecvCurrentJoinableSpaces);
+	CavrnusAllSpacesInfoEvent callback = [onRecvCurrentJoinableSpaces](const TArray<FCavrnusSpaceInfo>& val)
+	{
+		onRecvCurrentJoinableSpaces.ExecuteIfBound(val);
+	};
+	FetchJoinableSpaces(callback);
+}
+
+void UCavrnusFunctionLibrary::FetchJoinableSpaces(CavrnusAllSpacesInfoEvent OnRecvCurrentJoinableSpaces)
+{
+	int RequestId = GetDataModel()->GetCallbackModel()->RegisterFetchAvailableSpacesCallback(OnRecvCurrentJoinableSpaces);
 	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildFetchAvailableSpaces(RequestId));
 }
 
 FCavrnusBinding UCavrnusFunctionLibrary::BindJoinableSpaces(FCavrnusSpaceInfoEvent SpaceAdded, FCavrnusSpaceInfoEvent SpaceUpdated, FCavrnusSpaceInfoEvent SpaceRemoved)
+{
+	CavrnusSpaceInfoEvent added = [SpaceAdded](const FCavrnusSpaceInfo& val)
+	{
+		SpaceAdded.ExecuteIfBound(val);
+	};
+	CavrnusSpaceInfoEvent updated = [SpaceUpdated](const FCavrnusSpaceInfo& val)
+	{
+		SpaceUpdated.ExecuteIfBound(val);
+	};
+	CavrnusSpaceInfoEvent removed = [SpaceRemoved](const FCavrnusSpaceInfo& val)
+	{
+		SpaceRemoved.ExecuteIfBound(val);
+	};
+
+	return BindJoinableSpaces(added, updated, removed);
+}
+
+FCavrnusBinding UCavrnusFunctionLibrary::BindJoinableSpaces(CavrnusSpaceInfoEvent SpaceAdded, CavrnusSpaceInfoEvent SpaceUpdated, CavrnusSpaceInfoEvent SpaceRemoved)
 {
 	return GetDataModel()->GetDataState()->BindJoinableSpaces(SpaceAdded, SpaceUpdated, SpaceRemoved);
 }
@@ -641,7 +668,7 @@ FString UCavrnusFunctionLibrary::SpawnObject(FCavrnusSpaceConnection SpaceConnec
 
 	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildCreateOp(SpaceConnection, UniqueIdentifier, InstanceId));
 
-	TSharedPtr<CavrnusSpawnedObjectFunction> CallbackPtr = MakeShareable(new CavrnusSpawnedObjectFunction(spawnedObjectArrived));
+	CavrnusSpawnedObjectFunction* CallbackPtr = new CavrnusSpawnedObjectFunction(spawnedObjectArrived);
 	RelayModel->ObjectCreationCallbacks.Add(InstanceId, CallbackPtr);
 
 	return InstanceId;
@@ -745,6 +772,15 @@ void UCavrnusFunctionLibrary::SetLocalUserStreamingState(FCavrnusSpaceConnection
 
 void UCavrnusFunctionLibrary::FetchAudioInputs(FCavrnusAvailableInputDevices OnReceiveDevices)
 {
+	const CavrnusAvailableInputDevices callback = [OnReceiveDevices](const TArray<FCavrnusInputDevice>& devices)
+	{
+		OnReceiveDevices.ExecuteIfBound(devices);
+	};
+	FetchAudioInputs(callback);
+}
+
+void UCavrnusFunctionLibrary::FetchAudioInputs(CavrnusAvailableInputDevices OnReceiveDevices)
+{
 	int RequestId = GetDataModel()->GetCallbackModel()->RegisterFetchAudioInputs(OnReceiveDevices);
 
 	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildRequestAudioInputs(RequestId));
@@ -757,6 +793,15 @@ void UCavrnusFunctionLibrary::UpdateAudioInput(FCavrnusInputDevice Device)
 
 void UCavrnusFunctionLibrary::FetchAudioOutputs(FCavrnusAvailableOutputDevices OnReceiveDevices)
 {
+	const CavrnusAvailableOutputDevices callback = [OnReceiveDevices](const TArray<FCavrnusOutputDevice>& devices)
+	{
+		OnReceiveDevices.ExecuteIfBound(devices);
+	};
+	FetchAudioOutputs(callback);
+}
+
+void UCavrnusFunctionLibrary::FetchAudioOutputs(CavrnusAvailableOutputDevices OnReceiveDevices)
+{
 	int RequestId = GetDataModel()->GetCallbackModel()->RegisterFetchAudioOutputs(OnReceiveDevices);
 
 	GetDataModel()->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildRequestAudioOutputs(RequestId));
@@ -768,6 +813,15 @@ void UCavrnusFunctionLibrary::UpdateAudioOutput(FCavrnusOutputDevice Device)
 }
 
 void UCavrnusFunctionLibrary::FetchVideoInputs(FCavrnusAvailableVideoInputDevices OnReceiveDevices)
+{
+	const CavrnusAvailableVideoInputDevices callback = [OnReceiveDevices](const TArray<FCavrnusVideoInputDevice>& devices)
+	{
+		OnReceiveDevices.ExecuteIfBound(devices);
+	};
+	FetchVideoInputs(callback);
+}
+
+void UCavrnusFunctionLibrary::FetchVideoInputs(CavrnusAvailableVideoInputDevices OnReceiveDevices)
 {
 	int RequestId = GetDataModel()->GetCallbackModel()->RegisterFetchVideoInputs(OnReceiveDevices);
 

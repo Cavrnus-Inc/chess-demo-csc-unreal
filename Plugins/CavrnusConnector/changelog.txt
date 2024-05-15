@@ -1,15 +1,8 @@
-Cavrnus-UE5.0-RelayPlugin-2023.2.640-Dev
-bhaddad5: ue - master [51999958b2bd505676acef2fb34ec8f67f8ce080]
-Replacing more of the old callbacks with TFuncs
+Cavrnus-UE5.0-RelayPlugin-2023.2.656-Dev
+josh.criz: ue - master [110ac6cd3e47f3dbf7e1d21bb44b4dfe74b655f2]
+Build Fix
 
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/DataState.h
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/RelayCallbackModel.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/RelayCallbackModel.h
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusFunctionLibrary.h
+Scope editor headers to WITH_EDITOR
 
-ben: common - master [bca7cfce4a0c6d6bd270b6b8681f0507f9602a98]
-Added EvUserDeviceState.V2 to support ClientIntegrationInfo
-
-	protos/transient_events_common.proto
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusSpatialConnectorSubSystem.cpp
 

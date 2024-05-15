@@ -7,7 +7,6 @@
 #include <Blueprint/UserWidget.h>
 #include "Types/CavrnusBinding.h"
 #include "Types/CavrnusCallbackTypes.h"
-#include "UI/CavrnusWidgetBase.h"
 
 #include "CavrnusUserWidget.generated.h"
 
@@ -20,7 +19,7 @@ class UTexture2D;
  */
 
 UCLASS(Abstract)
-class CAVRNUSCONNECTOR_API UCavrnusUserWidget : public UCavrnusWidgetBase
+class CAVRNUSCONNECTOR_API UCavrnusUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
 

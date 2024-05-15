@@ -60,7 +60,9 @@ namespace Cavrnus
 
 		double CurrentTime = FPlatformTime::Seconds();
 
-		interopLayer->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildUpdateTimeMsg((float)CurrentTime));
+		auto msg = Cavrnus::CavrnusProtoTranslation::BuildUpdateTimeMsg(CurrentTime);
+
+		interopLayer->SendMessage(msg);
 
 		interopLayer->DoTick();
 
@@ -118,12 +120,12 @@ namespace Cavrnus
 
 	void CavrnusRelayModel::RegisterObjectCreationCallback(TFunction<void(FCavrnusSpawnedObject, FString)> cb)
 	{
-		ObjectCreationCallback = MakeShareable(new TFunction<void(FCavrnusSpawnedObject, FString)>(cb));
+		ObjectCreationCallback = new TFunction<void(FCavrnusSpawnedObject, FString)>(cb);
 	}
 
 	void CavrnusRelayModel::RegisterObjectDestructionCallback(TFunction<void(FCavrnusSpawnedObject)> cb)
 	{
-		ObjectDestructionCallback = MakeShareable(new TFunction<void(FCavrnusSpawnedObject)>(cb));
+		ObjectDestructionCallback = new TFunction<void(FCavrnusSpawnedObject)>(cb);
 	}
 
 	void CavrnusRelayModel::HandleServerMsg(const ServerData::RelayRemoteMessage& msg)

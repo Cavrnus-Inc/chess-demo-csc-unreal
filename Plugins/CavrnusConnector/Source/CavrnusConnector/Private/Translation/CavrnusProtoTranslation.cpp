@@ -23,7 +23,7 @@ namespace Cavrnus
 		return msg;
 	}
 
-	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildUpdateTimeMsg(float currTime)
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildUpdateTimeMsg(double currTime)
 	{
 		ServerData::UpdateTime t;
 		t.set_time(currTime);

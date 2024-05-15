@@ -109,7 +109,7 @@ public:
 
 	// Space Join Manual
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cavrnus", META = (EditCondition = "SpaceJoinMethod == ECavrnusSpaceJoinMethod::SpacesList", EditConditionHides))
-	TSubclassOf<UCavrnusSpaceListWidget> SpaceJoinMenu;
+	TSubclassOf<UUserWidget> SpaceJoinMenu;
 
 	// ------------------------------------------- Avatar Management ----------------------------------------------------------------------------
 
@@ -120,10 +120,10 @@ public:
 	// ------------------------------------------- In Space UI ----------------------------------------------------------------------------------
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cavrnus")
-	TSubclassOf<class UCavrnusWidgetBase> LoadingWidgetClass;
+	TSubclassOf<class UUserWidget> LoadingWidgetClass;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cavrnus")
-	TArray<TSubclassOf<class UCavrnusWidgetBase>> WidgetsToLoad;
+	TArray<TSubclassOf<class UUserWidget>> WidgetsToLoad;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Cavrnus")
 	TMap<FString, TSubclassOf<AActor>> SpawnableIdentifiers;

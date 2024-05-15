@@ -2369,13 +2369,13 @@ class UpdateTime final :
   enum : int {
     kTimeFieldNumber = 1,
   };
-  // float time = 1;
+  // double time = 1;
   void clear_time();
-  float time() const;
-  void set_time(float value);
+  double time() const;
+  void set_time(double value);
   private:
-  float _internal_time() const;
-  void _internal_set_time(float value);
+  double _internal_time() const;
+  void _internal_set_time(double value);
   public:
 
   // @@protoc_insertion_point(class_scope:ServerData.UpdateTime)
@@ -2386,7 +2386,7 @@ class UpdateTime final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    float time_;
+    double time_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -16865,22 +16865,22 @@ inline RelayRemoteMessage::MsgCase RelayRemoteMessage::Msg_case() const {
 
 // UpdateTime
 
-// float time = 1;
+// double time = 1;
 inline void UpdateTime::clear_time() {
   _impl_.time_ = 0;
 }
-inline float UpdateTime::_internal_time() const {
+inline double UpdateTime::_internal_time() const {
   return _impl_.time_;
 }
-inline float UpdateTime::time() const {
+inline double UpdateTime::time() const {
   // @@protoc_insertion_point(field_get:ServerData.UpdateTime.time)
   return _internal_time();
 }
-inline void UpdateTime::_internal_set_time(float value) {
+inline void UpdateTime::_internal_set_time(double value) {
   
   _impl_.time_ = value;
 }
-inline void UpdateTime::set_time(float value) {
+inline void UpdateTime::set_time(double value) {
   _internal_set_time(value);
   // @@protoc_insertion_point(field_set:ServerData.UpdateTime.time)
 }
