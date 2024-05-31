@@ -1,11 +1,6 @@
-Cavrnus-UE5.0-RelayPlugin-2023.2.697-Dev
-cody.tedrick: ue - master [e8b98d750f91f315b0fc2fd4cc6bd223e9b25d64]
-Lots of fixes to welcome modal. Auto opening still doesn't work quite right.
+Cavrnus-UE5.0-RelayPlugin-2023.2.711-Dev
+bhaddad5: ue - master [0ed6ebd47676d12f7a4ad2e0c8bc4265ae8b682f]
+const ref'd all our events
 
-	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/EditorMenus/EUW_SplashScreen.uasset
-	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/Icons/T_Welcome_Header.uasset
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnectorEditor/Private/CavrnusConnectorEditorModule.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnectorEditor/Private/CavrnusSplashScreenWidget.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnectorEditor/Public/CavrnusConnectorEditorModule.h
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnectorEditor/Public/CavrnusSplashScreenWidget.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Types/CavrnusCallbackTypes.h
 
