@@ -1,11 +1,17 @@
-Cavrnus-UE5.0-RelayPlugin-1.0.0
-josh.criz: ue - prod [fe065b5a90c43bd714362245341624b12b9ca682]
-Moving BP_CavrnusLocalCharacter Bindings
+Cavrnus-Spatial-Connector-UE5.0-2023.2.737-Dev
+bhaddad5: ue - master [117c50849ee120e89255d8e0d21de8ff49d9b9e4]
+Fixed file download destination assuming user knows/includes file name
 
-Put local character bindings in new C++ base class, to fix inputs not working when opening the sample level in someone else's project.
-
-	CavrnusPlugin/Config/DefaultInput.ini
-	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/BP_CavrnusLocalCharacter.uasset
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusLocalCharacter.cpp
-	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusLocalCharacter.h
+	CavrnusPlugin/Content/InternalTesting/Blueprints/BP_DownloaderCube.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/journal_operations_client.pb.cc.generated
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/journal_operations_client.pb.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/relay.pb.cc.generated
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/relay.pb.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusContentModel.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusContentModel.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusRelayModel.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusFunctionLibrary.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Types/CavrnusCallbackTypes.h
 

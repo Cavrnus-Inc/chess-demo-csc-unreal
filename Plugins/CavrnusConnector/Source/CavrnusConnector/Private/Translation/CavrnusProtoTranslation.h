@@ -1,3 +1,4 @@
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
 #include "Comm/relay.pb.h"
 #include "CoreMinimal.h"
@@ -8,8 +9,9 @@
 #include "Types/CavrnusOutputDevice.h"
 #include "Types/CavrnusVideoInputDevice.h"
 #include "Types/CavrnusUser.h"
-#include "Types/PropertyId.h"
+#include "Types/AbsolutePropertyId.h"
 #include "Types/CavrnusPropertyValue.h"
+#include "Types/PropertyPostOptions.h"
 
 namespace Cavrnus
 {
@@ -45,11 +47,11 @@ namespace Cavrnus
 		static const ServerData::RelayClientMessage BuildJoinSpaceWithId(int callbackId, const FString& spaceId);
 		static const ServerData::RelayClientMessage BuildExitSpaceMsg(const FCavrnusSpaceConnection& spaceConn);
 
-		static const ServerData::RelayClientMessage BuildDefinePropMsg(const FCavrnusSpaceConnection& spaceConn, const FPropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
-		static const ServerData::RelayClientMessage BuildUpdatePropMsg(const FCavrnusSpaceConnection& spaceConn, const FPropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
-		static const ServerData::RelayClientMessage BuildBeginLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FPropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
-		static const ServerData::RelayClientMessage BuildContinueLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FPropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
-		static const ServerData::RelayClientMessage BuildFinalizeLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FPropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
+		static const ServerData::RelayClientMessage BuildDefinePropMsg(const FCavrnusSpaceConnection& spaceConn, const FAbsolutePropertyId& propertyId, const FPropertyValue& value, const int localChangeId);
+		static const ServerData::RelayClientMessage BuildUpdatePropMsg(const FCavrnusSpaceConnection& spaceConn, const FAbsolutePropertyId& propertyId, const FPropertyValue& value, const int localChangeId, const FPropertyPostOptions& options);
+		static const ServerData::RelayClientMessage BuildBeginLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FAbsolutePropertyId& propertyId, const FPropertyValue& value, const int localChangeId, const FPropertyPostOptions& options);
+		static const ServerData::RelayClientMessage BuildContinueLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FAbsolutePropertyId& propertyId, const FPropertyValue& value, const int localChangeId, const FPropertyPostOptions& options);
+		static const ServerData::RelayClientMessage BuildFinalizeLivePropertyUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId, const FAbsolutePropertyId& propertyId, const FPropertyValue& value, const int localChangeId, const FPropertyPostOptions& options);
 		static const ServerData::RelayClientMessage BuildCancelLiveUpdateMsg(const FCavrnusSpaceConnection& spaceConn, const FString& liveUpdaterId);
 
 		static const ServerData::RelayClientMessage BuildSetLocalUserMuted(FCavrnusSpaceConnection spaceConn, bool muted);

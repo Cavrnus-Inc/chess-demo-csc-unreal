@@ -5520,6 +5520,7 @@ class PostPropertyUpdate final :
     kSpaceConnFieldNumber = 1,
     kPropertyValueFieldNumber = 10,
     kLocalChangeIdFieldNumber = 4,
+    kSmoothFieldNumber = 20,
   };
   // string PropertyId = 3;
   void clear_propertyid();
@@ -5580,6 +5581,15 @@ class PostPropertyUpdate final :
   void _internal_set_localchangeid(int32_t value);
   public:
 
+  // bool smooth = 20;
+  void clear_smooth();
+  bool smooth() const;
+  void set_smooth(bool value);
+  private:
+  bool _internal_smooth() const;
+  void _internal_set_smooth(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ServerData.PostPropertyUpdate)
  private:
   class _Internal;
@@ -5592,6 +5602,7 @@ class PostPropertyUpdate final :
     ::ServerData::CavrnusSpaceConnection* spaceconn_;
     ::ServerData::PropertyValue* propertyvalue_;
     int32_t localchangeid_;
+    bool smooth_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -5725,6 +5736,7 @@ class BeginTransientPropertyUpdate final :
     kSpaceConnFieldNumber = 1,
     kPropertyValueFieldNumber = 10,
     kLocalChangeIdFieldNumber = 4,
+    kSmoothFieldNumber = 20,
   };
   // string LiveUpdaterId = 2;
   void clear_liveupdaterid();
@@ -5799,6 +5811,15 @@ class BeginTransientPropertyUpdate final :
   void _internal_set_localchangeid(int32_t value);
   public:
 
+  // bool smooth = 20;
+  void clear_smooth();
+  bool smooth() const;
+  void set_smooth(bool value);
+  private:
+  bool _internal_smooth() const;
+  void _internal_set_smooth(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ServerData.BeginTransientPropertyUpdate)
  private:
   class _Internal;
@@ -5812,6 +5833,7 @@ class BeginTransientPropertyUpdate final :
     ::ServerData::CavrnusSpaceConnection* spaceconn_;
     ::ServerData::PropertyValue* propertyvalue_;
     int32_t localchangeid_;
+    bool smooth_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -5945,6 +5967,7 @@ class ContinueTransientPropertyUpdate final :
     kSpaceConnFieldNumber = 1,
     kPropertyValueFieldNumber = 10,
     kLocalChangeIdFieldNumber = 4,
+    kSmoothFieldNumber = 20,
   };
   // string LiveUpdaterId = 2;
   void clear_liveupdaterid();
@@ -6019,6 +6042,15 @@ class ContinueTransientPropertyUpdate final :
   void _internal_set_localchangeid(int32_t value);
   public:
 
+  // bool smooth = 20;
+  void clear_smooth();
+  bool smooth() const;
+  void set_smooth(bool value);
+  private:
+  bool _internal_smooth() const;
+  void _internal_set_smooth(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ServerData.ContinueTransientPropertyUpdate)
  private:
   class _Internal;
@@ -6032,6 +6064,7 @@ class ContinueTransientPropertyUpdate final :
     ::ServerData::CavrnusSpaceConnection* spaceconn_;
     ::ServerData::PropertyValue* propertyvalue_;
     int32_t localchangeid_;
+    bool smooth_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -6165,6 +6198,7 @@ class FinalizeTransientPropertyUpdate final :
     kSpaceConnFieldNumber = 1,
     kPropertyValueFieldNumber = 10,
     kLocalChangeIdFieldNumber = 4,
+    kSmoothFieldNumber = 20,
   };
   // string LiveUpdaterId = 2;
   void clear_liveupdaterid();
@@ -6239,6 +6273,15 @@ class FinalizeTransientPropertyUpdate final :
   void _internal_set_localchangeid(int32_t value);
   public:
 
+  // bool smooth = 20;
+  void clear_smooth();
+  bool smooth() const;
+  void set_smooth(bool value);
+  private:
+  bool _internal_smooth() const;
+  void _internal_set_smooth(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ServerData.FinalizeTransientPropertyUpdate)
  private:
   class _Internal;
@@ -6252,6 +6295,7 @@ class FinalizeTransientPropertyUpdate final :
     ::ServerData::CavrnusSpaceConnection* spaceconn_;
     ::ServerData::PropertyValue* propertyvalue_;
     int32_t localchangeid_;
+    bool smooth_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -9016,6 +9060,7 @@ class FetchFileByIdCompletedResp final :
   enum : int {
     kContentIdFieldNumber = 1,
     kFilePathFieldNumber = 10,
+    kFinalFileNameWithExtensionFieldNumber = 11,
   };
   // string contentId = 1;
   void clear_contentid();
@@ -9045,6 +9090,20 @@ class FetchFileByIdCompletedResp final :
   std::string* _internal_mutable_filepath();
   public:
 
+  // string finalFileNameWithExtension = 11;
+  void clear_finalfilenamewithextension();
+  const std::string& finalfilenamewithextension() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_finalfilenamewithextension(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_finalfilenamewithextension();
+  PROTOBUF_NODISCARD std::string* release_finalfilenamewithextension();
+  void set_allocated_finalfilenamewithextension(std::string* finalfilenamewithextension);
+  private:
+  const std::string& _internal_finalfilenamewithextension() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_finalfilenamewithextension(const std::string& value);
+  std::string* _internal_mutable_finalfilenamewithextension();
+  public:
+
   // @@protoc_insertion_point(class_scope:ServerData.FetchFileByIdCompletedResp)
  private:
   class _Internal;
@@ -9055,6 +9114,7 @@ class FetchFileByIdCompletedResp final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contentid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filepath_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr finalfilenamewithextension_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -19740,6 +19800,26 @@ inline void PostPropertyUpdate::set_allocated_propertyvalue(::ServerData::Proper
   // @@protoc_insertion_point(field_set_allocated:ServerData.PostPropertyUpdate.PropertyValue)
 }
 
+// bool smooth = 20;
+inline void PostPropertyUpdate::clear_smooth() {
+  _impl_.smooth_ = false;
+}
+inline bool PostPropertyUpdate::_internal_smooth() const {
+  return _impl_.smooth_;
+}
+inline bool PostPropertyUpdate::smooth() const {
+  // @@protoc_insertion_point(field_get:ServerData.PostPropertyUpdate.smooth)
+  return _internal_smooth();
+}
+inline void PostPropertyUpdate::_internal_set_smooth(bool value) {
+  
+  _impl_.smooth_ = value;
+}
+inline void PostPropertyUpdate::set_smooth(bool value) {
+  _internal_set_smooth(value);
+  // @@protoc_insertion_point(field_set:ServerData.PostPropertyUpdate.smooth)
+}
+
 // -------------------------------------------------------------------
 
 // BeginTransientPropertyUpdate
@@ -20037,6 +20117,26 @@ inline void BeginTransientPropertyUpdate::set_allocated_propertyvalue(::ServerDa
   }
   _impl_.propertyvalue_ = propertyvalue;
   // @@protoc_insertion_point(field_set_allocated:ServerData.BeginTransientPropertyUpdate.PropertyValue)
+}
+
+// bool smooth = 20;
+inline void BeginTransientPropertyUpdate::clear_smooth() {
+  _impl_.smooth_ = false;
+}
+inline bool BeginTransientPropertyUpdate::_internal_smooth() const {
+  return _impl_.smooth_;
+}
+inline bool BeginTransientPropertyUpdate::smooth() const {
+  // @@protoc_insertion_point(field_get:ServerData.BeginTransientPropertyUpdate.smooth)
+  return _internal_smooth();
+}
+inline void BeginTransientPropertyUpdate::_internal_set_smooth(bool value) {
+  
+  _impl_.smooth_ = value;
+}
+inline void BeginTransientPropertyUpdate::set_smooth(bool value) {
+  _internal_set_smooth(value);
+  // @@protoc_insertion_point(field_set:ServerData.BeginTransientPropertyUpdate.smooth)
 }
 
 // -------------------------------------------------------------------
@@ -20338,6 +20438,26 @@ inline void ContinueTransientPropertyUpdate::set_allocated_propertyvalue(::Serve
   // @@protoc_insertion_point(field_set_allocated:ServerData.ContinueTransientPropertyUpdate.PropertyValue)
 }
 
+// bool smooth = 20;
+inline void ContinueTransientPropertyUpdate::clear_smooth() {
+  _impl_.smooth_ = false;
+}
+inline bool ContinueTransientPropertyUpdate::_internal_smooth() const {
+  return _impl_.smooth_;
+}
+inline bool ContinueTransientPropertyUpdate::smooth() const {
+  // @@protoc_insertion_point(field_get:ServerData.ContinueTransientPropertyUpdate.smooth)
+  return _internal_smooth();
+}
+inline void ContinueTransientPropertyUpdate::_internal_set_smooth(bool value) {
+  
+  _impl_.smooth_ = value;
+}
+inline void ContinueTransientPropertyUpdate::set_smooth(bool value) {
+  _internal_set_smooth(value);
+  // @@protoc_insertion_point(field_set:ServerData.ContinueTransientPropertyUpdate.smooth)
+}
+
 // -------------------------------------------------------------------
 
 // FinalizeTransientPropertyUpdate
@@ -20635,6 +20755,26 @@ inline void FinalizeTransientPropertyUpdate::set_allocated_propertyvalue(::Serve
   }
   _impl_.propertyvalue_ = propertyvalue;
   // @@protoc_insertion_point(field_set_allocated:ServerData.FinalizeTransientPropertyUpdate.PropertyValue)
+}
+
+// bool smooth = 20;
+inline void FinalizeTransientPropertyUpdate::clear_smooth() {
+  _impl_.smooth_ = false;
+}
+inline bool FinalizeTransientPropertyUpdate::_internal_smooth() const {
+  return _impl_.smooth_;
+}
+inline bool FinalizeTransientPropertyUpdate::smooth() const {
+  // @@protoc_insertion_point(field_get:ServerData.FinalizeTransientPropertyUpdate.smooth)
+  return _internal_smooth();
+}
+inline void FinalizeTransientPropertyUpdate::_internal_set_smooth(bool value) {
+  
+  _impl_.smooth_ = value;
+}
+inline void FinalizeTransientPropertyUpdate::set_smooth(bool value) {
+  _internal_set_smooth(value);
+  // @@protoc_insertion_point(field_set:ServerData.FinalizeTransientPropertyUpdate.smooth)
 }
 
 // -------------------------------------------------------------------
@@ -22570,6 +22710,56 @@ inline void FetchFileByIdCompletedResp::set_allocated_filepath(std::string* file
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdCompletedResp.filePath)
+}
+
+// string finalFileNameWithExtension = 11;
+inline void FetchFileByIdCompletedResp::clear_finalfilenamewithextension() {
+  _impl_.finalfilenamewithextension_.ClearToEmpty();
+}
+inline const std::string& FetchFileByIdCompletedResp::finalfilenamewithextension() const {
+  // @@protoc_insertion_point(field_get:ServerData.FetchFileByIdCompletedResp.finalFileNameWithExtension)
+  return _internal_finalfilenamewithextension();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FetchFileByIdCompletedResp::set_finalfilenamewithextension(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.finalfilenamewithextension_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:ServerData.FetchFileByIdCompletedResp.finalFileNameWithExtension)
+}
+inline std::string* FetchFileByIdCompletedResp::mutable_finalfilenamewithextension() {
+  std::string* _s = _internal_mutable_finalfilenamewithextension();
+  // @@protoc_insertion_point(field_mutable:ServerData.FetchFileByIdCompletedResp.finalFileNameWithExtension)
+  return _s;
+}
+inline const std::string& FetchFileByIdCompletedResp::_internal_finalfilenamewithextension() const {
+  return _impl_.finalfilenamewithextension_.Get();
+}
+inline void FetchFileByIdCompletedResp::_internal_set_finalfilenamewithextension(const std::string& value) {
+  
+  _impl_.finalfilenamewithextension_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::_internal_mutable_finalfilenamewithextension() {
+  
+  return _impl_.finalfilenamewithextension_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FetchFileByIdCompletedResp::release_finalfilenamewithextension() {
+  // @@protoc_insertion_point(field_release:ServerData.FetchFileByIdCompletedResp.finalFileNameWithExtension)
+  return _impl_.finalfilenamewithextension_.Release();
+}
+inline void FetchFileByIdCompletedResp::set_allocated_finalfilenamewithextension(std::string* finalfilenamewithextension) {
+  if (finalfilenamewithextension != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.finalfilenamewithextension_.SetAllocated(finalfilenamewithextension, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.finalfilenamewithextension_.IsDefault()) {
+    _impl_.finalfilenamewithextension_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:ServerData.FetchFileByIdCompletedResp.finalFileNameWithExtension)
 }
 
 // -------------------------------------------------------------------

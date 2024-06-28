@@ -61,13 +61,13 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusUserWidget() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection = { "InSpaceConnection", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CavrnusUserWidget_eventInitializeUserConnection_Parms, InSpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection_MetaData)) }; // 3908145014
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection = { "InSpaceConnection", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CavrnusUserWidget_eventInitializeUserConnection_Parms, InSpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection_MetaData)) }; // 423510165
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser = { "InUser", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CavrnusUserWidget_eventInitializeUserConnection_Parms, InUser), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser_MetaData)) }; // 884232857
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser = { "InUser", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CavrnusUserWidget_eventInitializeUserConnection_Parms, InUser), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser_MetaData)) }; // 933787263
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InSpaceConnection,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::NewProp_InUser,
@@ -75,7 +75,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusUserWidget() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Cavrnus|UI" },
+		{ "Comment", "/**\n\x09 * @brief Initializes the user connection with the given space connection and user data.\n\x09 * @param InSpaceConnection The space connection associated with the user.\n\x09 * @param InUser The user data to initialize the connection.\n\x09 */" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief Initializes the user connection with the given space connection and user data.\n@param InSpaceConnection The space connection associated with the user.\n@param InUser The user data to initialize the connection." },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCavrnusUserWidget, nullptr, "InitializeUserConnection", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::CavrnusUserWidget_eventInitializeUserConnection_Parms), Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection_Statics::Function_MetaDataParams)) };
@@ -129,22 +131,24 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusUserWidget() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CavrnusConnector,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCavrnusUserWidget_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection, "InitializeUserConnection" }, // 1665122257
+		{ &Z_Construct_UFunction_UCavrnusUserWidget_InitializeUserConnection, "InitializeUserConnection" }, // 1431131556
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n *\n * Base class for widget representing a Cavrnus User in the UI\n *\n */" },
+		{ "Comment", "/**\n * @brief Base class for widget representing a Cavrnus User in the UI.\n *\n * This class provides the necessary functionality to display user-related information and\n * handle user-specific actions within the Cavrnus platform's UI.\n */" },
 		{ "IncludePath", "UI/CavrnusUserWidget.h" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
-		{ "ToolTip", "Base class for widget representing a Cavrnus User in the UI" },
+		{ "ToolTip", "@brief Base class for widget representing a Cavrnus User in the UI.\n\nThis class provides the necessary functionality to display user-related information and\nhandle user-specific actions within the Cavrnus platform's UI." },
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_RtcStreamImage_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "Category", "Cavrnus" },
+		{ "Comment", "/** @brief Image widget to display the RTC stream of the user. */" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief Image widget to display the RTC stream of the user." },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_RtcStreamImage = { "RtcStreamImage", nullptr, (EPropertyFlags)0x002008000008001c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, RtcStreamImage), Z_Construct_UClass_UImage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_RtcStreamImage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_RtcStreamImage_MetaData)) };
@@ -152,28 +156,36 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusUserWidget() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_ProfileImage_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "Category", "Cavrnus" },
+		{ "Comment", "/** @brief Image widget to display the profile picture of the user. */" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief Image widget to display the profile picture of the user." },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_ProfileImage = { "ProfileImage", nullptr, (EPropertyFlags)0x002008000008001c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, ProfileImage), Z_Construct_UClass_UImage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_ProfileImage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_ProfileImage_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection_MetaData[] = {
 		{ "Category", "Cavrnus" },
+		{ "Comment", "/** @brief Space connection associated with the user. */" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief Space connection associated with the user." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection_MetaData)) }; // 3908145014
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_SpaceConnection_MetaData)) }; // 423510165
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User_MetaData[] = {
 		{ "Category", "Cavrnus" },
+		{ "Comment", "/** @brief User data associated with the widget. */" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief User data associated with the widget." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User = { "User", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, User), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User_MetaData)) }; // 884232857
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User = { "User", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, User), Z_Construct_UScriptStruct_FCavrnusUser, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_User_MetaData)) }; // 933787263
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_UserVideoFrameBinding_MetaData[] = {
+		{ "Comment", "/** @brief Binding for the user's video frame updates. */" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusUserWidget.h" },
+		{ "ToolTip", "@brief Binding for the user's video frame updates." },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_UserVideoFrameBinding = { "UserVideoFrameBinding", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusUserWidget, UserVideoFrameBinding), Z_Construct_UClass_UCavrnusBinding_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_UserVideoFrameBinding_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusUserWidget_Statics::NewProp_UserVideoFrameBinding_MetaData)) };
@@ -220,9 +232,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusUserWidget() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusUserWidget_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusUserWidget, UCavrnusUserWidget::StaticClass, TEXT("UCavrnusUserWidget"), &Z_Registration_Info_UClass_UCavrnusUserWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusUserWidget), 2963839759U) },
+		{ Z_Construct_UClass_UCavrnusUserWidget, UCavrnusUserWidget::StaticClass, TEXT("UCavrnusUserWidget"), &Z_Registration_Info_UClass_UCavrnusUserWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusUserWidget), 4134581792U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusUserWidget_h_1449670944(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusUserWidget_h_965186218(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusUserWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusUserWidget_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

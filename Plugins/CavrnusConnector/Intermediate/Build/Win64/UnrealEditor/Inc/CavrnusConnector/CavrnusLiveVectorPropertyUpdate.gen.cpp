@@ -15,6 +15,13 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLiveVectorPropertyUpdate() {}
 	UPackage* Z_Construct_UPackage__Script_CavrnusConnector();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 // End Cross Module References
+	DEFINE_FUNCTION(UCavrnusLiveVectorPropertyUpdate::execFinalizeCurrentValue)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->FinalizeCurrentValue();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UCavrnusLiveVectorPropertyUpdate::execFinalize)
 	{
 		P_GET_STRUCT(FVector,Z_Param_PropertyValue);
@@ -36,6 +43,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLiveVectorPropertyUpdate() {}
 		UClass* Class = UCavrnusLiveVectorPropertyUpdate::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "Finalize", &UCavrnusLiveVectorPropertyUpdate::execFinalize },
+			{ "FinalizeCurrentValue", &UCavrnusLiveVectorPropertyUpdate::execFinalizeCurrentValue },
 			{ "UpdateWithNewData", &UCavrnusLiveVectorPropertyUpdate::execUpdateWithNewData },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -73,6 +81,32 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLiveVectorPropertyUpdate() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_Finalize_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics::Function_MetaDataParams[] = {
+		{ "CallInEditor", "true" },
+		{ "Category", "Cavrnus|Properties" },
+		{ "ModuleRelativePath", "Public/LivePropertyUpdates/CavrnusLiveVectorPropertyUpdate.h" },
+		{ "ShortToolTip", "Posts and finalizes the most recent data to the server" },
+		{ "ToolTip", "Posts and finalizes the most recent data to the server.  This object will no longer be valid to use afterwards." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate, nullptr, "FinalizeCurrentValue", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020601, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -133,13 +167,16 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLiveVectorPropertyUpdate() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_Finalize, "Finalize" }, // 684277789
+		{ &Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_FinalizeCurrentValue, "FinalizeCurrentValue" }, // 43098029
 		{ &Z_Construct_UFunction_UCavrnusLiveVectorPropertyUpdate_UpdateWithNewData, "UpdateWithNewData" }, // 2086098493
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
+		{ "Comment", "/**\n * @brief UCavrnusLiveVectorPropertyUpdate class for handling live vector property updates in Cavrnus.\n *\n * This class provides functionality to initialize, update, and finalize vector property values within the Cavrnus system.\n * It ensures that the temporary values are sent to the server and can be finalized to persist the changes.\n */" },
 		{ "IncludePath", "LivePropertyUpdates/CavrnusLiveVectorPropertyUpdate.h" },
 		{ "ModuleRelativePath", "Public/LivePropertyUpdates/CavrnusLiveVectorPropertyUpdate.h" },
+		{ "ToolTip", "@brief UCavrnusLiveVectorPropertyUpdate class for handling live vector property updates in Cavrnus.\n\nThis class provides functionality to initialize, update, and finalize vector property values within the Cavrnus system.\nIt ensures that the temporary values are sent to the server and can be finalized to persist the changes." },
 	};
 #endif
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate_Statics::StaticCppClassTypeInfo = {
@@ -178,9 +215,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLiveVectorPropertyUpdate() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_LivePropertyUpdates_CavrnusLiveVectorPropertyUpdate_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate, UCavrnusLiveVectorPropertyUpdate::StaticClass, TEXT("UCavrnusLiveVectorPropertyUpdate"), &Z_Registration_Info_UClass_UCavrnusLiveVectorPropertyUpdate, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusLiveVectorPropertyUpdate), 3303281517U) },
+		{ Z_Construct_UClass_UCavrnusLiveVectorPropertyUpdate, UCavrnusLiveVectorPropertyUpdate::StaticClass, TEXT("UCavrnusLiveVectorPropertyUpdate"), &Z_Registration_Info_UClass_UCavrnusLiveVectorPropertyUpdate, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusLiveVectorPropertyUpdate), 3976132960U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_LivePropertyUpdates_CavrnusLiveVectorPropertyUpdate_h_1695894932(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_LivePropertyUpdates_CavrnusLiveVectorPropertyUpdate_h_2037820394(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_LivePropertyUpdates_CavrnusLiveVectorPropertyUpdate_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_LivePropertyUpdates_CavrnusLiveVectorPropertyUpdate_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

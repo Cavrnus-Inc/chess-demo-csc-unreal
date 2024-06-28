@@ -71,13 +71,13 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusConnector_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x1BFED221,
-				0x38D2CE85,
+				0xDD53FD9C,
+				0x383AF1CE,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_CavrnusConnector.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_CavrnusConnector.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CavrnusConnector(Z_Construct_UPackage__Script_CavrnusConnector, TEXT("/Script/CavrnusConnector"), Z_Registration_Info_UPackage__Script_CavrnusConnector, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x1BFED221, 0x38D2CE85));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CavrnusConnector(Z_Construct_UPackage__Script_CavrnusConnector, TEXT("/Script/CavrnusConnector"), Z_Registration_Info_UPackage__Script_CavrnusConnector, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xDD53FD9C, 0x383AF1CE));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
