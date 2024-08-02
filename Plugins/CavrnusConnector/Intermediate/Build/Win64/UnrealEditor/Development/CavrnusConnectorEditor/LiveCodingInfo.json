@@ -1,0 +1,13 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.CavrnusConnectorEditor.cpp.obj": [
+			"CavrnusConnectorEditorModule.cpp.obj",
+			"CavrnusSplashScreenWidget.cpp.obj"
+		],
+		"Module.CavrnusConnectorEditor.gen.cpp.obj": [
+			"CavrnusConnectorEditor.init.gen.cpp.obj",
+			"CavrnusSplashScreenWidget.gen.cpp.obj"
+		]
+	}
+}

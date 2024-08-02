@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-CavrnusConnectorEditor.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\_DEV\GIT\cavrnus-unreal\CavrnusPlugin\Intermediate\Build\Win64\CavrnusUEEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.ShadowErrors.h.obj"
+"C:\_DEV\GIT\cavrnus-unreal\CavrnusPlugin\Plugins\CavrnusConnector\Intermediate\Build\Win64\UnrealEditor\Development\CavrnusConnectorEditor\Module.CavrnusConnectorEditor.cpp.obj"
+"C:\_DEV\GIT\cavrnus-unreal\CavrnusPlugin\Plugins\CavrnusConnector\Intermediate\Build\Win64\UnrealEditor\Development\CavrnusConnectorEditor\Module.CavrnusConnectorEditor.gen.cpp.obj"
+"C:\_DEV\GIT\cavrnus-unreal\CavrnusPlugin\Plugins\CavrnusConnector\Intermediate\Build\Win64\UnrealEditor\Development\CavrnusConnectorEditor\Default.rc2.res"
+/OUT:"C:\_DEV\GIT\cavrnus-unreal\CavrnusPlugin\Plugins\CavrnusConnector\Intermediate\Build\Win64\UnrealEditor\Development\CavrnusConnectorEditor\UnrealEditor-CavrnusConnectorEditor.lib"
