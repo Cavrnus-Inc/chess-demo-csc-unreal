@@ -1,15 +1,15 @@
 # # Visual Studio 2015 user specific files
-# .vs/
+ .vs/
 # 
 # # Compiled Object files
-# *.slo
-# *.lo
-# *.o
-# *.obj
+ *.slo
+ *.lo
+ *.o
+ *.obj
 # 
 # # Precompiled Headers
-# *.gch
-# *.pch
+ *.gch
+ *.pch
 # 
 # # Compiled Dynamic libraries
 # *.so
@@ -46,7 +46,7 @@
 # SourceArt/**/*.tga
 # 
 # # Binary Files
-# Binaries/*
+ Binaries/*
 # Plugins/*/Binaries/*
 # 
 # # Builds
@@ -68,7 +68,7 @@ Saved/*
 Script/*
 # 
 # # Compiled source files for the engine to use
-# Intermediate/*
+ Intermediate/*
 # Plugins/*/Intermediate/*
 # 
 # # Cache files for the editor to use

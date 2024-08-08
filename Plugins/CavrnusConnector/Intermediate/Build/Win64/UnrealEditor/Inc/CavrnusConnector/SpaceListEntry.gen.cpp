@@ -37,8 +37,10 @@ void EmptyLinkFunctionForGeneratedCodeSpaceListEntry() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USpaceListEntry_Statics::Class_MetaDataParams[] = {
+		{ "Comment", "/**\n * @brief Abstract base class for an entry in a space list within the CavrnusConnector plugin.\n *\n * This class provides the base functionality for a widget representing an entry in a list of spaces.\n * It is intended to be extended with additional functionality specific to the application.\n */" },
 		{ "IncludePath", "UI/SpaceList/SpaceListEntry.h" },
 		{ "ModuleRelativePath", "Public/UI/SpaceList/SpaceListEntry.h" },
+		{ "ToolTip", "@brief Abstract base class for an entry in a space list within the CavrnusConnector plugin.\n\nThis class provides the base functionality for a widget representing an entry in a list of spaces.\nIt is intended to be extended with additional functionality specific to the application." },
 	};
 #endif
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USpaceListEntry_Statics::StaticCppClassTypeInfo = {
@@ -72,15 +74,15 @@ void EmptyLinkFunctionForGeneratedCodeSpaceListEntry() {}
 		return USpaceListEntry::StaticClass();
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(USpaceListEntry);
-	struct Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics
+	struct Z_CompiledInDeferFile_FID_CavrnusPlugin_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_USpaceListEntry, USpaceListEntry::StaticClass, TEXT("USpaceListEntry"), &Z_Registration_Info_UClass_USpaceListEntry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USpaceListEntry), 840479106U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CavrnusPlugin_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_USpaceListEntry, USpaceListEntry::StaticClass, TEXT("USpaceListEntry"), &Z_Registration_Info_UClass_USpaceListEntry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USpaceListEntry), 1869248409U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_2043389052(TEXT("/Script/CavrnusConnector"),
-		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CavrnusPlugin_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_657001552(TEXT("/Script/CavrnusConnector"),
+		Z_CompiledInDeferFile_FID_CavrnusPlugin_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CavrnusPlugin_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListEntry_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
