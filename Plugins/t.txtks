@@ -1,0 +1,3 @@
+void UCavrnusUserWidget::InitializeUserConnection(const FCavrnusSpaceConnection& InSpaceConnection, const FCavrnusUser& InUser)
+{
+	d
