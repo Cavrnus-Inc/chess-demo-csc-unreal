@@ -243,6 +243,9 @@ namespace Cavrnus
 		case ServerData::RelayRemoteMessage::kUploadLocalFileResp:
 			callbackModel->HandleServerCallback(msg.uploadlocalfileresp().reqid(), msg);
 			break;
+		case ServerData::RelayRemoteMessage::kCreateSpaceResp:
+			callbackModel->HandleServerCallback(msg.createspaceresp().reqid(), msg);
+			break;
 		case ServerData::RelayRemoteMessage::kChatAdded:
 			HandleChatAdded(msg.chatadded());
 			break;

@@ -60,7 +60,17 @@ void UCavrnusUserMenu::NativeDestruct()
 {
 	Super::NativeDestruct();
 
-	UsersBinding->Unbind();
+	if (UsersBinding)
+		UsersBinding->Unbind();
+	
+	for (auto Entry : Entries)
+	{
+		if (Entry.Value->IsValidLowLevel())
+		{
+			ScrollBox->RemoveChild(Entry.Value);
+		}
+	}
+	Entries.Empty();
 }
 
 void UCavrnusUserMenu::MaximizeUserSelected(const FCavrnusUser& MaximizedUser)

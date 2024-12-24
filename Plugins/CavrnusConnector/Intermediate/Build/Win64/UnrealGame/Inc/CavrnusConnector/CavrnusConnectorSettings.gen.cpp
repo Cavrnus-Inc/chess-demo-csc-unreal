@@ -162,9 +162,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusConnectorSettings() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusConnectorSettings_Statics::NewProp_RelayNetDisableRTC_MetaData[] = {
 		{ "Category", "Configuration" },
-		{ "Comment", "//   \"-f\" or \"-F\": Logging in the CavrnusRelayNet process saved to a file\n" },
+		{ "Comment", "//   \"-d\" or \"-D\": Disables voice and video communication\n" },
 		{ "ModuleRelativePath", "Public/CavrnusConnectorSettings.h" },
-		{ "ToolTip", "\"-f\" or \"-F\": Logging in the CavrnusRelayNet process saved to a file" },
+		{ "ToolTip", "\"-d\" or \"-D\": Disables voice and video communication" },
 	};
 #endif
 	void Z_Construct_UClass_UCavrnusConnectorSettings_Statics::NewProp_RelayNetDisableRTC_SetBit(void* Obj)
@@ -187,7 +187,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusConnectorSettings() {}
 	};
 	const UECodeGen_Private::FClassParams Z_Construct_UClass_UCavrnusConnectorSettings_Statics::ClassParams = {
 		&UCavrnusConnectorSettings::StaticClass,
-		"Engine",
+		"Cavrnus",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
@@ -218,9 +218,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusConnectorSettings() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusConnectorSettings_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusConnectorSettings, UCavrnusConnectorSettings::StaticClass, TEXT("UCavrnusConnectorSettings"), &Z_Registration_Info_UClass_UCavrnusConnectorSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusConnectorSettings), 1729686635U) },
+		{ Z_Construct_UClass_UCavrnusConnectorSettings, UCavrnusConnectorSettings::StaticClass, TEXT("UCavrnusConnectorSettings"), &Z_Registration_Info_UClass_UCavrnusConnectorSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusConnectorSettings), 2822489725U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusConnectorSettings_h_2116970987(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusConnectorSettings_h_676796833(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusConnectorSettings_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusConnectorSettings_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

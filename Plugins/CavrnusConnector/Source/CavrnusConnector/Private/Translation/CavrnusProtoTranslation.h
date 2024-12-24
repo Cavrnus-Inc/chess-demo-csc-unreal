@@ -47,6 +47,7 @@ namespace Cavrnus
 		static const ServerData::RelayClientMessage BuildAuthenticateWithPassword(int callbackId, const FString& server, const FString& email, const FString& password);
 
 		static const ServerData::RelayClientMessage BuildFetchAvailableSpaces(int callbackId);
+		static const ServerData::RelayClientMessage BuildCreateSpaceMsg(int callbackId, const FString& spaceName);
 		static const ServerData::RelayClientMessage BuildJoinSpaceWithId(int callbackId, const FString& spaceId);
 		static const ServerData::RelayClientMessage BuildExitSpaceMsg(const FCavrnusSpaceConnection& spaceConn);
 

@@ -48,6 +48,9 @@ void UCavrnusMessageMenuBase::NativeDestruct()
 
 	if (GetWorld())
 		GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+
+	SortedChatWidgets.Empty();
+	AllWidgetsMap.Empty();
 }
 
 void UCavrnusMessageMenuBase::ResetPositionButtonClicked()

@@ -23,7 +23,7 @@ private: \
 public: \
 	DECLARE_CLASS(UCavrnusConnectorSettings, UObject, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/CavrnusConnector"), NO_API) \
 	DECLARE_SERIALIZER(UCavrnusConnectorSettings) \
-	static const TCHAR* StaticConfigName() {return TEXT("Engine");} \
+	static const TCHAR* StaticConfigName() {return TEXT("Cavrnus");} \
 
 
 
@@ -34,7 +34,7 @@ private: \
 public: \
 	DECLARE_CLASS(UCavrnusConnectorSettings, UObject, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/CavrnusConnector"), NO_API) \
 	DECLARE_SERIALIZER(UCavrnusConnectorSettings) \
-	static const TCHAR* StaticConfigName() {return TEXT("Engine");} \
+	static const TCHAR* StaticConfigName() {return TEXT("Cavrnus");} \
 
 
 

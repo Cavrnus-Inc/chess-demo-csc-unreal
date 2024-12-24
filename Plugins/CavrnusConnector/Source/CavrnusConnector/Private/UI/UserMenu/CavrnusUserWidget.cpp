@@ -12,8 +12,6 @@ void UCavrnusUserWidget::NativeDestruct()
 	Super::NativeDestruct();
 
 	UnbindUserVideo();
-	if (UserVideoFrameBinding)
-		UserVideoFrameBinding->Unbind();
 
 	RtcStreamImage = nullptr;
 }
@@ -82,6 +80,6 @@ bool UCavrnusUserWidget::TextureSizeChanged(const FVector2D NewSize) const
 
 void UCavrnusUserWidget::UnbindUserVideo()
 {
-	if(UserVideoFrameBinding)
+	if (UserVideoFrameBinding)
 		UserVideoFrameBinding->Unbind();
 }

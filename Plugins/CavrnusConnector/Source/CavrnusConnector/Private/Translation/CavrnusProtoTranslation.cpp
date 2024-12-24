@@ -70,6 +70,18 @@ namespace Cavrnus
 		return msg;
 	}
 
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildCreateSpaceMsg(int callbackId, const FString& spaceName)
+	{
+		ServerData::CreateSpaceReq req;
+		req.set_reqid(callbackId);
+		req.set_newspacename(TCHAR_TO_UTF8(*spaceName));
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_createspacereq()->CopyFrom(req);
+
+		return msg;
+	}
+
 	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildJoinSpaceWithId(int callbackId, const FString& spaceId)
 	{
 		ServerData::JoinSpaceFromIdReq req;

@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FCavrnusSpaceInfo;
 #ifdef CAVRNUSCONNECTOR_CavrnusSpaceListWidget_generated_h
 #error "CavrnusSpaceListWidget.generated.h already included, missing '#pragma once' in CavrnusSpaceListWidget.h"
 #endif
@@ -16,12 +17,12 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusSpaceListWidget_h_18_DELEGATE \
 struct _Script_CavrnusConnector_eventOnCavrnusSpaceSelected_Parms \
 { \
-	FString SpaceId; \
+	FCavrnusSpaceInfo SpaceInfo; \
 }; \
-static inline void FOnCavrnusSpaceSelected_DelegateWrapper(const FMulticastScriptDelegate& OnCavrnusSpaceSelected, const FString& SpaceId) \
+static inline void FOnCavrnusSpaceSelected_DelegateWrapper(const FMulticastScriptDelegate& OnCavrnusSpaceSelected, FCavrnusSpaceInfo SpaceInfo) \
 { \
 	_Script_CavrnusConnector_eventOnCavrnusSpaceSelected_Parms Parms; \
-	Parms.SpaceId=SpaceId; \
+	Parms.SpaceInfo=SpaceInfo; \
 	OnCavrnusSpaceSelected.ProcessMulticastDelegate<UObject>(&Parms); \
 }
 
@@ -29,14 +30,14 @@ static inline void FOnCavrnusSpaceSelected_DelegateWrapper(const FMulticastScrip
 #define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusSpaceListWidget_h_33_SPARSE_DATA
 #define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusSpaceListWidget_h_33_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execSearch); \
-	DECLARE_FUNCTION(execSetup);
+	DECLARE_FUNCTION(execBlueprintSelectedSpaceToJoin); \
+	DECLARE_FUNCTION(execSearch);
 
 
 #define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusSpaceListWidget_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execSearch); \
-	DECLARE_FUNCTION(execSetup);
+	DECLARE_FUNCTION(execBlueprintSelectedSpaceToJoin); \
+	DECLARE_FUNCTION(execSearch);
 
 
 #define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusSpaceListWidget_h_33_INCLASS_NO_PURE_DECLS \
