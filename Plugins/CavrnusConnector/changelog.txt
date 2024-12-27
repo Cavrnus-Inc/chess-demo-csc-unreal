@@ -1,1 +1,298 @@
-Cavrnus-Spatial-Connector-UE5.0-2024.2.946-Dev
+Cavrnus-Spatial-Connector-UE5.0-2024.3.0 (1)
+josh.criz: ue - prod [978c104ac90ce209d5259f4d71fed629bba46d44]
+Project Corruption Fix
+
+Moving CavrnusConnector module loading phase to PreDefault so referencing classes can find it at launch
+
+	CavrnusPlugin/Plugins/CavrnusConnector/CavrnusConnector.uplugin
+
+josh.criz: ue - prod [9237215252e98ba0e3f85867ba00f485a0724bb8]
+CavrnusConnectorSettings Improvements
+
+- Moved our settings from Category "Engine" to "Cavrnus". Now our settings are in independent DefaultCavrnus.ini file
+- Added registration of CavrnusConnectorSettings to the settings module. Now our settings appear in Project Settings window under Plugins
+- Updated CavrnusRelayNet.exe - current one was ignoring Verbose for no apparent reason
+- Added new settings to settings ctor. Fixed copy/paste error in comment.
+
+	CavrnusPlugin/Config/DefaultEngine.ini
+	CavrnusPlugin/Plugins/CavrnusConnector/Config/DefaultCavrnus.ini
+	CavrnusPlugin/Plugins/CavrnusConnector/Config/DefaultEngine.ini
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusConnectorModule.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusConnectorSettings.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusConnectorSettings.h
+
+josh.criz: ue - prod [fd088cd8f9aedeefbd1008129e20357e52f8ba71]
+Adding an extra build log line to help us to ID build errors as ours.
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusConnector.Build.cs
+
+bhaddad5: ue - prod [e07dddf979c2a613e9dd256a8bab24497bfae631]
+Fixed callbacks not firing for initial journal values when those values are Unset
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/SpacePropertyModel.cpp
+
+cody.tedrick: ue - prod [aa4b556f519e7d7af88c97589d23691eb8c5c198]
+Fixes to local and remote avatars
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_Cavrnus_SyncAvatarTransform.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_NewSyncHeadRotation.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Local/BP_BasePawn_Local.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Local/BP_Cavrnus_Local_Fly.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Remote/BP_BasePawn_Remote.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleToggleVisiblity.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Environment/A_Table.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/L_SampleCavrnusConnectedSpaced.umap
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncAvatarTransform.h
+
+cody.tedrick: ue - prod [ac3f0d0ade366ea4e13f83d22b34a52ba4489e15]
+Fixes to sample scene blueprints
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_DirectionalLight.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_ProgressBoard.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleLightingAffectors.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleMaterialSelector.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleMoveObject.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SamplePostProcessing.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleSphereColor.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleSpotLight.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleStepsMenu.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleStringSync.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/Blueprints/BP_SampleToggleVisiblity.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/L_SampleCavrnusConnectedSpaced.umap
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/UI/SampleStepMenu/WBP_SampleStepsMenu.uasset
+
+josh.criz: ue - prod [092b33b0612110004577e8eb2278d5b90a5e3989]
+Fix User Widget copies
+
+User Menu removes user widgets from parent before throwing them away.
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/UserMenu/CavrnusUserMenu.cpp
+
+bhaddad5: ue - prod [967a364b90aa8c2f91c52062a01fe1d34a862ff8]
+pushing RelayNet scheduler fix
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [0cbaa390322831932cf037cff97152d4020f3f3a]
+Removed most logging from RelayNet for perf
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [b80c12f2c3273317c1688af51f0ca687fc109ee8]
+Performance improvements to interop batching
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Interop/CavrnusInteropLayer.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Interop/CavrnusInteropLayer.h
+
+bhaddad5: ue - prod [64fd7f509200992d2be92dd81cf93250cfadce78]
+More fixes to core modules journal code
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+josh.criz: ue - prod [c1a42c956b70cb1bd06cfb001d776138d8162bb2]
+Build Fix
+
+Missing header that was only giving me build errors in 5.3 for some reason?
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+
+cody.tedrick: ue - prod [81996fa856edbbec322ef2bb0a24a5a7b8828362]
+Add valid check in SyncAvatarTransform
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_Cavrnus_SyncAvatarTransform.uasset
+
+bhaddad5: ue - prod [407b0c400fa0c543354a0af702ccf48bc7a120d6]
+Fixed local transient time offset to remove potential value gap
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+cody.tedrick: ue - prod [d6e7fe0dfaba78bbdaeb2e6c69f69cc779defc10]
+Fix missing skeleton rig for pawn hand
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Avatar/Mesh/SK_Hand.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Avatar/Mesh/SK_Hand_Skeleton.uasset
+
+ventare: ue - prod [86db483b57d873a0f92e9123ee65da80d0e71323]
+Updated RelayNet for CSC UE project.
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [bc29ed6a37c49edf912f151af86539c9a0e23b54]
+Extended local transient timeout, curious if this fixes the paint issue in TM?
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [dabd0a263f9cdb4d496ab96013809b2eb947a44a]
+More RelayNet updates
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [da9bb1ca89b250a2b495be0b8e66f9feb10cc377]
+Fixed local prop handling logic in RelayNet
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+
+bhaddad5: ue - prod [ccb83ba7213e3d4c082d68804e126e0fc897f47c]
+Fixed prop local change invalidation logic
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusVirtualPropertyUpdate.cpp
+
+josh.criz: ue - prod [3ca977b7a0b73b6dd026db97370b01501150e8ba]
+Build Fix
+
+Missing headers
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusPawnAnimationAccessor.h
+
+bhaddad5: ue - prod [83336fab8f24995e092c2a741b78b571ea39c4d9]
+Fixed to local prop handling logic to prevent unnessesary callbacks and bugs
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Interop/CavrnusInteropLayer.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusVirtualPropertyUpdate.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/SpacePropertyModel.cpp
+
+78107955+markvrepo: ue - prod [af76c23993bfb65e8e5208a538ee1bcc0a66b0cc]
+Added CAVRNUSCONNECTOR_API for access
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+78107955+markvrepo: ue - prod [c0c60211e984459a2258e813a8c79b4cedbd826a]
+Minor updates to CavrnusSyncHeadRotation
+
+Removed Unused vars
+Removed Abstract limitation
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusPawnAnimationAccessor.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+cody.tedrick: ue - prod [be6c39549a8b1b5e576534ed80aa18536b8941e6]
+Add accessor to base pawn
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Remote/BP_BasePawn_Remote.uasset
+
+cody.tedrick: ue - prod [41bef05162a27dae1b78bd4cd824a3208a1572ed]
+Fixes to accessor
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_CavrnusAnimationAccessor.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_CavrnusPawnAnimationAccessor.uasset
+
+78107955+markvrepo: ue - prod [6d13d5079a91a4a3b22d6e39eb9225c92fb9199d]
+Head rotation fix
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_CavrnusPawnAnimationAccessor.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+
+78107955+markvrepo: ue - prod [5e84295bb3c622d5d8441adfb0a3644a401efdee]
+Stuck bCanEverTick into Constructor instead of BeginPlay
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+cody.tedrick: ue - prod [86c8063c3cc40f71e73c5f7dd117e45dacab3e2b]
+Remove RegisterTickFunction call
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+
+cody.tedrick: ue - prod [96ea443d47abcfaf78d6a301e2a8c0984d961a56]
+Fixes to headRot script - canTick now
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_NewSyncHeadRotation.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Local/BP_BasePawn_Local.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Remote/BP_BasePawn_Remote.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/L_SampleCavrnusConnectedSpaced.umap
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+
+cody.tedrick: ue - prod [cfada6135a59b13a472d6d9ff2d9a47a08d0d729]
+Make HeadRot script blueprintable
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+cody.tedrick: ue - prod [4be1bf47b5579c90d2d908ea9392fbf88210fb92]
+Add AnimationAccessor actor component
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Blueprints/AC_CavrnusPawnAnimationAccessor.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Local/BP_BasePawn_Local.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/Pawns/Remote/BP_BasePawn_Remote.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/SampleLevel/L_SampleCavrnusConnectedSpaced.umap
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusPawnAnimationAccessor.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncAvatarTransform.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusPawnAnimationAccessor.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+cody.tedrick: ue - prod [a6398d34b7befe2128d4e684522a094c9c3f0019]
+Add rotation script
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Avatar/CavrnusSyncHeadRotation.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Avatar/CavrnusSyncHeadRotation.h
+
+cody.tedrick: ue - prod [cc686694d2daecc5f87fb3c2ff914a330d573d83]
+Converted several widget Construct events to OnInit
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/Menus/LoginMenus/WBP_GuestLogin.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/Menus/LoginMenus/WBP_MemberLogin.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/MinimalUI/CustomComboBox/WBP_MinimalAudioSettings.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/MinimalUI/CustomComboBox/WBP_MinimalVideoSettings.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/MinimalUI/SideMenu/MessageMenus/ChatMenu/WBP_Cavrnus_ChatWindow.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/MinimalUI/UserJoinNotification/WBP_Cavrnus_UserJoinNotifications.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/MinimalUI/WBP_Cavrnus_MinimalUI.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/MessageMenus/CavrnusMessageMenuBase.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/MessageMenus/ChatMenu/CavrnusChatWindow.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/UserMenu/CavrnusUserMenu.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/UserMenu/CavrnusUserWidget.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/UI/MessageMenus/ChatMenu/CavrnusChatWindow.h
+
+cody.tedrick: ue - prod [bb7792ad7945f726659efc8f12739b64642d54ad]
+Add create space ui
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/Menus/SpaceListMenu/WBP_Cavrnus_CreateSpacePopup.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Content/UI/Menus/SpaceListMenu/WBP_SpaceSelection.uasset
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/CavrnusSpaceListWidget.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/SpaceList/CavrnusCreateSpacePopup.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/SpaceList/CavrnusCreateSpacePopup.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/UI/CavrnusSpaceListWidget.h
+
+bhaddad5: ue - prod [c99b61d0613fdddcaea26a76b5d5611e03a08b5f]
+Fixed missing proto msg handler
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/CavrnusRelayModel.cpp
+
+bhaddad5: ue - prod [e88824425387e24868583c8e8e5012c15daa5939]
+Added Create Space functions to CSC/Relay
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/CavrnusRelayNet/net6.0-windows/CavrnusRelayNet.exe
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusFunctionLibrary.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/relay.pb.cc.generated
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Comm/relay.pb.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/RelayCallbackModel.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/RelayModel/RelayCallbackModel.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Translation/CavrnusProtoTranslation.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/Translation/CavrnusProtoTranslation.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/CavrnusFunctionLibrary.h
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Public/Types/CavrnusCallbackTypes.h
+
+josh.criz: ue - prod [a9fea4b514877221d33520a46b1a81f20d53303e]
+Build Fix Again
+
+Missing headers
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusSpatialConnectorSubSystem.cpp
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/SpawnObjectHelpers.cpp
+
+josh.criz: ue - prod [309fecb8cd43beccd240732f882f21202bb8d61a]
+Compile Warnings
+
+Appeasing some deprecation warnings in UMG class accessors
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/UI/MessageMenus/ChatMenu/CavrnusChatWindow.cpp
+
+josh.criz: ue - prod [179a6d42b0845da59ff4bbd5c030b066b90c2213]
+Build Fix
+
+5.3 Build didn't like this implicit cast for some reason
+
+	CavrnusPlugin/Plugins/CavrnusConnector/Source/CavrnusConnector/Private/CavrnusSpatialConnectorSubSystem.cpp
+

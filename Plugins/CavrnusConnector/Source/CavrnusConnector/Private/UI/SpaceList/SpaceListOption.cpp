@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "UI/SpaceList/SpaceListOption.h"
 #include "Blueprint/AsyncTaskDownloadImage.h"
 #include "Components/Button.h"

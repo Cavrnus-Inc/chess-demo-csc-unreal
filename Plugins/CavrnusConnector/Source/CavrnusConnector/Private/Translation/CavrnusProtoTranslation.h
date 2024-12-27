@@ -1,7 +1,5 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
-
 #include "Comm/relay.pb.h"
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
@@ -44,17 +42,12 @@ namespace Cavrnus
 #pragma region Message Builders
 		static const ServerData::RelayClientMessage BuildKeepAliveMsg();
 		static const ServerData::RelayClientMessage BuildUpdateTimeMsg(double currTime);
-		static const ServerData::RelayClientMessage BuildSetForceKeepAlive();
-		static const ServerData::RelayClientMessage BuildEndForceKeepAlive();
-		static const ServerData::RelayClientMessage BuildPostDataCacheUpdate(FString key, FString val);
 
 		static const ServerData::RelayClientMessage BuildAuthenticateGuest(int callbackId, const FString& server, const FString& screenName);
 		static const ServerData::RelayClientMessage BuildAuthenticateWithPassword(int callbackId, const FString& server, const FString& email, const FString& password);
-		static const ServerData::RelayClientMessage BuildAuthenticateToken(int callbackId, const FString& server, const FString& token);
 
 		static const ServerData::RelayClientMessage BuildFetchAvailableSpaces(int callbackId);
-		static const ServerData::RelayClientMessage BuildFetchSpaceInfo(int callbackId, const FString& spaceId);
-		static const ServerData::RelayClientMessage BuildCreateSpaceMsg(int callbackId, const FString& spaceName, const TArray<FString>& keywords);
+		static const ServerData::RelayClientMessage BuildCreateSpaceMsg(int callbackId, const FString& spaceName);
 		static const ServerData::RelayClientMessage BuildJoinSpaceWithId(int callbackId, const FString& spaceId);
 		static const ServerData::RelayClientMessage BuildExitSpaceMsg(const FCavrnusSpaceConnection& spaceConn);
 
@@ -84,11 +77,9 @@ namespace Cavrnus
 		static const ServerData::RelayClientMessage BuildRequestGlobalPermission(const FString& permission);
 		static const ServerData::RelayClientMessage BuildRequestSpacePermission(const FCavrnusSpaceConnection& spaceConn, const FString& permission);
 
-		static const ServerData::RelayClientMessage BuildRequestFileInfoById(int callbackId, const FString& contentId);
 		static const ServerData::RelayClientMessage BuildRequestFileById(const FString& contentId);
 		static const ServerData::RelayClientMessage BuildRequestAllUploadedContent(int callbackId);
 		static const ServerData::RelayClientMessage BuildUploadContent(int callbackId, const FString& filePath, const TMap<FString, FString>& tags);
-		static const ServerData::RelayClientMessage BuildFolderReq(int callbackId, const FString& folderName);
 #pragma endregion
 
 		static FString CreateTransientId()
@@ -132,4 +123,5 @@ namespace Cavrnus
 			return propVal;
 		}
 	};
-} // namespace Cavrnus
+
+} // namespace CavrnusRelay

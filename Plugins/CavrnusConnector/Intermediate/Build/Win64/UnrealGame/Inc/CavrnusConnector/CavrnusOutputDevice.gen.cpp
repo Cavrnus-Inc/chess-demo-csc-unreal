@@ -66,9 +66,9 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusOutputDevice
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewProp_DeviceId_MetaData[] = {
 		{ "Category", "Cavrnus|Input" },
-		{ "Comment", "/** The unique identifier for the audio output device. */" },
+		{ "Comment", "/** The name of the audio output device. Useful for displaying the device in a UI selector. */" },
 		{ "ModuleRelativePath", "Public/Types/CavrnusOutputDevice.h" },
-		{ "ToolTip", "The unique identifier for the audio output device." },
+		{ "ToolTip", "The name of the audio output device. Useful for displaying the device in a UI selector." },
 	};
 #endif
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewProp_DeviceId = { "DeviceId", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FCavrnusOutputDevice, DeviceId), METADATA_PARAMS(Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewProp_DeviceId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewProp_DeviceId_MetaData)) };
@@ -102,9 +102,9 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusOutputDevice
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusOutputDevice_h_Statics::ScriptStructInfo[] = {
-		{ FCavrnusOutputDevice::StaticStruct, Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewStructOps, TEXT("CavrnusOutputDevice"), &Z_Registration_Info_UScriptStruct_CavrnusOutputDevice, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusOutputDevice), 1158045540U) },
+		{ FCavrnusOutputDevice::StaticStruct, Z_Construct_UScriptStruct_FCavrnusOutputDevice_Statics::NewStructOps, TEXT("CavrnusOutputDevice"), &Z_Registration_Info_UScriptStruct_CavrnusOutputDevice, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusOutputDevice), 3188096901U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusOutputDevice_h_3274822403(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusOutputDevice_h_2738777291(TEXT("/Script/CavrnusConnector"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusOutputDevice_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusOutputDevice_h_Statics::ScriptStructInfo),
 		nullptr, 0);

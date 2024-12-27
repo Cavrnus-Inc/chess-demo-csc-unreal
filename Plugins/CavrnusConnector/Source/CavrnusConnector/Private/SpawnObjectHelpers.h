@@ -1,7 +1,5 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
-
 #include "CoreMinimal.h"
 #include "../Public/CavrnusPropertiesContainer.h"
 #include "Types/CavrnusUser.h"
@@ -44,7 +42,6 @@ public:
 	 * @return A pointer to the newly spawned actor.
 	 */
 	AActor* SpawnUserAndSetup(UWorld* World, TSubclassOf<AActor> ActorClass, const FCavrnusUser& User);
-
 	/**
 	 * @brief Spawns an object actor and sets it up with the provided object data.
 	 *

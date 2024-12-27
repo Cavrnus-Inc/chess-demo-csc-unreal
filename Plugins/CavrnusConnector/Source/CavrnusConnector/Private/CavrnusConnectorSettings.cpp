@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "CavrnusConnectorSettings.h"
 #include "Engine/Engine.h"
 
@@ -9,8 +8,7 @@ UCavrnusConnectorSettings::UCavrnusConnectorSettings(const FObjectInitializer& o
 	// Init default values
 	RelayNetPort = 36045;
 	RelayNetIPAddress = "127.0.0.1";
-	RelayNetRelativeLocation = "Source\\ThirdParty\\CavrnusRelayNet\\net6.0-windows";
-	RelayNetSilent = true;
+	RelayNetExecutableRelativeLocation = "CavrnusRelayNet\\net6.0-windows\\CavrnusRelayNet.exe";
 	RelayNetVerboseLogging = false;
 	RelayNetLogOutputToFile = false;
 	RelayNetDisableRTC = false;

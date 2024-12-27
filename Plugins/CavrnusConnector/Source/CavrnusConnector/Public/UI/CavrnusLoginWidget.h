@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// Copyright(c) Cavrnus. All rights reserved.
 
 #pragma once
 
@@ -7,11 +7,7 @@
 #include "CavrnusBaseUserWidget.h"
 #include "CavrnusLoginWidget.generated.h"
 
-class UButton;
-class UEditableTextBox;
 class UTexture2D;
-
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnLoginClicked, FString, FString);
 
 /**
  * @brief Base class for widget for obtaining login credentials.
@@ -19,6 +15,8 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FOnLoginClicked, FString, FString);
  * This widget provides a user interface for inputting email and password credentials,
  * and handles the login process within the Cavrnus platform.
  */
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnLoginClicked, FString, FString);
 
 UCLASS(Abstract)
 class CAVRNUSCONNECTOR_API UCavrnusLoginWidget : public UCavrnusBaseUserWidget
@@ -46,15 +44,15 @@ public:
 
 	/** The text box for entering the email address. */
 	UPROPERTY(BlueprintReadOnly, Category = "Cavrnus|Login", meta = (BindWidget))
-	UEditableTextBox* EmailInput = nullptr;
+	class UEditableTextBox* EmailInput = nullptr;
 
 	/** The text box for entering the password. */
 	UPROPERTY(BlueprintReadOnly, Category = "Cavrnus|Login", meta = (BindWidget))
-	UEditableTextBox* PasswordInput = nullptr;
+	class UEditableTextBox* PasswordInput = nullptr;
 
 	/** The button for initiating the login process. */
 	UPROPERTY(BlueprintReadOnly, Category = "Cavrnus|Login", meta = (BindWidget))
-	UButton* LoginButton = nullptr;
+	class UButton* LoginButton = nullptr;
 
 	/** Delegate for handling the login click event. */
 	FOnLoginClicked OnLogin;

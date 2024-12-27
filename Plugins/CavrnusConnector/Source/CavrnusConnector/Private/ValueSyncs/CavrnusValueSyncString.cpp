@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "ValueSyncs/CavrnusValueSyncString.h"
 #include <Kismet/KismetSystemLibrary.h>
 
@@ -8,6 +7,7 @@ UCavrnusValueSyncString::UCavrnusValueSyncString()
 {
 	PropertyName = TEXT("Text");
 }
+
 
 //===========================================================
 UCavrnusValueSyncString::~UCavrnusValueSyncString()

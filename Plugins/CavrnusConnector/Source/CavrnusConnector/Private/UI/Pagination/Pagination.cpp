@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "UI/Pagination/Pagination.h"
 #include "CavrnusConnectorModule.h"
 #include "Blueprint/WidgetTree.h"
@@ -86,13 +85,12 @@ void UPagination::LoadPage(const int Page)
 	if (Page == TotalPages)
 		ButtonNext->SetIsEnabled(false);
 
-	// Release current items
 	if (CurrentItems.Num() > 0)
 	{
 		for (const auto Item : CurrentItems)
-			Item.Key->RemoveFromParent();
+			Item.Key->RemoveFromParent(); // Also here...
 
-		CurrentItems.Reset();
+		CurrentItems.Reset(); // Reset? I need a clear...
 	}
 
 	int start = (Page - 1) * ItemsPerPage;

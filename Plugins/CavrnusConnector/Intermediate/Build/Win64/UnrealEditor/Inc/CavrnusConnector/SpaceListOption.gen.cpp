@@ -217,7 +217,7 @@ void EmptyLinkFunctionForGeneratedCodeSpaceListOption() {}
 		{ "ToolTip", "Information about the space." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo = { "SpaceInfo", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USpaceListOption, SpaceInfo), Z_Construct_UScriptStruct_FCavrnusSpaceInfo, METADATA_PARAMS(Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo_MetaData)) }; // 1870856471
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo = { "SpaceInfo", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USpaceListOption, SpaceInfo), Z_Construct_UScriptStruct_FCavrnusSpaceInfo, METADATA_PARAMS(Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_USpaceListOption_Statics::NewProp_SpaceInfo_MetaData)) }; // 25966878
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USpaceListOption_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USpaceListOption_Statics::NewProp_ThumbnailDefault,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USpaceListOption_Statics::NewProp_Thumbnail,
@@ -262,9 +262,9 @@ void EmptyLinkFunctionForGeneratedCodeSpaceListOption() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListOption_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_USpaceListOption, USpaceListOption::StaticClass, TEXT("USpaceListOption"), &Z_Registration_Info_UClass_USpaceListOption, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USpaceListOption), 3334980485U) },
+		{ Z_Construct_UClass_USpaceListOption, USpaceListOption::StaticClass, TEXT("USpaceListOption"), &Z_Registration_Info_UClass_USpaceListOption, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USpaceListOption), 39845868U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListOption_h_317927393(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListOption_h_598661820(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListOption_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_SpaceList_SpaceListOption_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

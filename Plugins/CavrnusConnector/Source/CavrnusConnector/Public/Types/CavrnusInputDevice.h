@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 /**
  * @file CavrnusInputDevice.h
  * @brief This file defines the FCavrnusInputDevice structure used for representing audio input devices (microphones) in Cavrnus.
@@ -8,7 +7,6 @@
  * This structure includes information such as the device name and device ID, which can be used to display available microphones in a user interface and select a specific device for audio input.
  * The DeviceName field is particularly useful for displaying this microphone in a UI selector.
  */
-
 #pragma once
 
 #include "CoreMinimal.h"

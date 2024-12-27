@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// Copyright(c) Cavrnus. All rights reserved.
 
 /**
  * @file CavrnusAuthentication.h
@@ -9,7 +9,6 @@
  * component already handles this functionality, so direct interaction with FCavrnusAuthentication is generally
  * unnecessary unless custom functionality is required.
  */
-
 #pragma once
 
 #include "CoreMinimal.h"

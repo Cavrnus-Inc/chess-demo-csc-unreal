@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "SpawnObjectHelpers.h"
 #include "CavrnusConnectorModule.h"
 #include "CavrnusFunctionLibrary.h"
@@ -154,7 +153,7 @@ AActor* USpawnObjectHelpers::SetupObjectPropsContainers(AActor* spawnedActor, co
 
 void USpawnObjectHelpers::ResetLiveHierarchyRootName(AActor* Actor, const FString& NewRootName)
 {
-	//What is the ContainerName of the top-level props container? That is what we'll be replacing.
+	//What is the ContainerName of the top-level props container?  That is what we'll be replacing.
 	TArray<UCavrnusPropertiesContainer*> RootComponent;
 	Actor->GetComponents(RootComponent);
 	//If nothing on the root, do nothing

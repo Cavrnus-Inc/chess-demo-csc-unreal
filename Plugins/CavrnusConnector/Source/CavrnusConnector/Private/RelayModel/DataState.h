@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+﻿// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
 
 #include <Containers/Map.h>
@@ -39,4 +38,5 @@ namespace Cavrnus
 		TArray<CavrnusSpaceInfoEvent*> JoinableSpaceUpdatedBindings;
 		TArray<CavrnusSpaceInfoEvent*> JoinableSpaceRemovedBindings;
 	};
-} // namespace Cavrnus
+
+} // namespace CavrnusRelay

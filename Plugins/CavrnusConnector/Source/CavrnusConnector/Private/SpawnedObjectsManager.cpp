@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "SpawnedObjectsManager.h"
 #include "CavrnusConnectorModule.h"
 #include "CavrnusSpatialConnector.h"

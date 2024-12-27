@@ -48,11 +48,6 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusSpaceInfo>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LastAccess_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_LastAccess;
-		static const UECodeGen_Private::FStrPropertyParams NewProp_Keywords_Inner;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Keywords_MetaData[];
-#endif
-		static const UECodeGen_Private::FArrayPropertyParams NewProp_Keywords;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const UECodeGen_Private::FStructParams ReturnStructParams;
 	};
@@ -104,21 +99,11 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusSpaceInfo>()
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_LastAccess = { "LastAccess", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FCavrnusSpaceInfo, LastAccess), Z_Construct_UScriptStruct_FDateTime, METADATA_PARAMS(Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_LastAccess_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_LastAccess_MetaData)) };
-	const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords_Inner = { "Keywords", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords_MetaData[] = {
-		{ "Category", "Cavrnus|Spaces" },
-		{ "ModuleRelativePath", "Public/Types/CavrnusSpaceInfo.h" },
-	};
-#endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords = { "Keywords", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FCavrnusSpaceInfo, Keywords), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_SpaceId,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_SpaceName,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_SpaceThumbnail,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_LastAccess,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords_Inner,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewProp_Keywords,
 	};
 	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::ReturnStructParams = {
 		(UObject* (*)())Z_Construct_UPackage__Script_CavrnusConnector,
@@ -146,9 +131,9 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusSpaceInfo>()
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpaceInfo_h_Statics::ScriptStructInfo[] = {
-		{ FCavrnusSpaceInfo::StaticStruct, Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewStructOps, TEXT("CavrnusSpaceInfo"), &Z_Registration_Info_UScriptStruct_CavrnusSpaceInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusSpaceInfo), 1870856471U) },
+		{ FCavrnusSpaceInfo::StaticStruct, Z_Construct_UScriptStruct_FCavrnusSpaceInfo_Statics::NewStructOps, TEXT("CavrnusSpaceInfo"), &Z_Registration_Info_UScriptStruct_CavrnusSpaceInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusSpaceInfo), 25966878U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpaceInfo_h_452019015(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpaceInfo_h_2189511379(TEXT("/Script/CavrnusConnector"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpaceInfo_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpaceInfo_h_Statics::ScriptStructInfo),
 		nullptr, 0);

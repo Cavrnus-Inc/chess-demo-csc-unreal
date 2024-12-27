@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 /**
  * @file CavrnusUser.h
  * @brief This file defines the FCavrnusUser structure used for representing users present in a given space.

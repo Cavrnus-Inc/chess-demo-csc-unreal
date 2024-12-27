@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// Copyright(c) Cavrnus. All rights reserved.
 /**
  * @file CavrnusLiveVectorPropertyUpdate.h
  * @brief This file defines the UCavrnusLiveVectorPropertyUpdate class used for live vector property updates in Cavrnus.
@@ -11,6 +11,9 @@
 #include "LivePropertyUpdates/CavrnusLivePropertyUpdate.h"
 
 #include "CavrnusLiveVectorPropertyUpdate.generated.h"		// Always last
+/**
+ *
+ */
 
 /**
  * @brief UCavrnusLiveVectorPropertyUpdate class for handling live vector property updates in Cavrnus.

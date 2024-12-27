@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+﻿// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
 
 #include "Relay/RelayClient.h"
@@ -79,4 +78,5 @@ namespace Cavrnus
 
 		std::map<int, int> PropertiesSentPerSecond;
 	};
-} // namespace Cavrnus
+
+} // namespace CavrnusRelay

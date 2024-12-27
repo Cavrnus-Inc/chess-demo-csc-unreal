@@ -126,10 +126,8 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLoginWidget() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusLoginWidget_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * @brief Base class for widget for obtaining login credentials.\n *\n * This widget provides a user interface for inputting email and password credentials,\n * and handles the login process within the Cavrnus platform.\n */" },
 		{ "IncludePath", "UI/CavrnusLoginWidget.h" },
 		{ "ModuleRelativePath", "Public/UI/CavrnusLoginWidget.h" },
-		{ "ToolTip", "@brief Base class for widget for obtaining login credentials.\n\nThis widget provides a user interface for inputting email and password credentials,\nand handles the login process within the Cavrnus platform." },
 	};
 #endif
 #if WITH_METADATA
@@ -206,9 +204,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusLoginWidget() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusLoginWidget_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusLoginWidget, UCavrnusLoginWidget::StaticClass, TEXT("UCavrnusLoginWidget"), &Z_Registration_Info_UClass_UCavrnusLoginWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusLoginWidget), 589066284U) },
+		{ Z_Construct_UClass_UCavrnusLoginWidget, UCavrnusLoginWidget::StaticClass, TEXT("UCavrnusLoginWidget"), &Z_Registration_Info_UClass_UCavrnusLoginWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusLoginWidget), 1167415618U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusLoginWidget_h_1282180918(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusLoginWidget_h_1839487979(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusLoginWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_CavrnusLoginWidget_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

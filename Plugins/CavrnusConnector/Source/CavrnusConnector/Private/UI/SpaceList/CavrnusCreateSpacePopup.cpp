@@ -1,4 +1,5 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// // Copyright (c), Cavrnus. All rights reserved.
+
 
 #include "UI/SpaceList/CavrnusCreateSpacePopup.h"
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// // Copyright (c), Cavrnus. All rights reserved.
 
 #pragma once
 
@@ -58,4 +58,5 @@ private:
 	virtual void HandleChatRemoved(FString ChatRemoved) override;
 
 	virtual void LocalUserArrived() override;
+
 };

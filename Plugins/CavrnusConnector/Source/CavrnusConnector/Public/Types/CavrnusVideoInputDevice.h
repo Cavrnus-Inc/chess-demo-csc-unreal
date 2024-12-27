@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 /**
  * @file CavrnusVideoInputDevice.h
  * @brief This file defines the FCavrnusVideoInputDevice structure used for representing available camera/video stream sources.

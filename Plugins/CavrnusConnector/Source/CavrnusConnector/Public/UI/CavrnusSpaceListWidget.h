@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
 
 #include "CoreMinimal.h"
@@ -67,6 +66,7 @@ protected:
 	virtual void NativeDestruct() override;
 
 public:
+	FSpaceSelectedEvent SpaceSelected;
 	
 	/**
 	 * @brief Searches the space list based on the input search value.
@@ -113,4 +113,7 @@ private:
 	 * @param Spaces The list of spaces to display.
 	 */
 	void UpdatePagination(TArray<FCavrnusSpaceInfo>& Spaces);
+
+	UFUNCTION()
+	void BlueprintSelectedSpaceToJoin(FCavrnusSpaceInfo SpaceInfo);
 };

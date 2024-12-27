@@ -68,7 +68,7 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusSpawnedObjec
 		{ "ToolTip", "The connection to the space where this object is spawned." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FCavrnusSpawnedObject, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection_MetaData)) }; // 3159036460
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FCavrnusSpawnedObject, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_SpaceConnection_MetaData)) }; // 423510165
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewProp_PropertiesContainerName_MetaData[] = {
 		{ "Category", "Cavrnus|Objects" },
@@ -118,9 +118,9 @@ template<> CAVRNUSCONNECTOR_API UScriptStruct* StaticStruct<FCavrnusSpawnedObjec
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpawnedObject_h_Statics::ScriptStructInfo[] = {
-		{ FCavrnusSpawnedObject::StaticStruct, Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewStructOps, TEXT("CavrnusSpawnedObject"), &Z_Registration_Info_UScriptStruct_CavrnusSpawnedObject, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusSpawnedObject), 1726333171U) },
+		{ FCavrnusSpawnedObject::StaticStruct, Z_Construct_UScriptStruct_FCavrnusSpawnedObject_Statics::NewStructOps, TEXT("CavrnusSpawnedObject"), &Z_Registration_Info_UScriptStruct_CavrnusSpawnedObject, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCavrnusSpawnedObject), 2817399961U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpawnedObject_h_4202191868(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpawnedObject_h_2096382731(TEXT("/Script/CavrnusConnector"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpawnedObject_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_Types_CavrnusSpawnedObject_h_Statics::ScriptStructInfo),
 		nullptr, 0);

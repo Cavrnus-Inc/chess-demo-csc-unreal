@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
 using System;

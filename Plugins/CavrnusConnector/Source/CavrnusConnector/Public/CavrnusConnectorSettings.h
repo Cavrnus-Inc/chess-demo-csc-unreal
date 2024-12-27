@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
 
 #include "CoreMinimal.h"
@@ -43,9 +42,10 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = "Configuration")
 	FString RelayNetIPAddress;
 
-	// Relative location of the RelayNet binaries from the plugin root dir
+	// Relative location of the RelayNet .exe from the project root dir
+	// \todo make a version of this for plugin relative dir when we start shipping relaynet with plugin 
 	UPROPERTY(Config, EditAnywhere, Category = "Configuration")
-	FString RelayNetRelativeLocation;
+	FString RelayNetExecutableRelativeLocation;
 
 	// Prevents the console window from being visible to users
 	UPROPERTY(Config, EditAnywhere, Category = "Configuration")

@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+﻿// Copyright(c) Cavrnus. All rights reserved.
 #include "CavrnusInteropLayer.h"
 #include "CavrnusConnectorModule.h"
 #include "CavrnusConnectorSettings.h"
@@ -247,24 +246,17 @@ namespace Cavrnus
 				return;
 			}
 
-			// Location where .exe or .dll is expected
-			FString BinaryLocation = GetPluginPath() / settings->RelayNetRelativeLocation;
-
-			FString ExecutablePath = BinaryLocation / "CavrnusRelayNet.exe";
-
-			if (!IFileManager::Get().FileExists(*ExecutablePath))
-			{
-				UE_LOG(LogCavrnusConnector, Warning, TEXT("CavrnusRelayNet.exe not found. dotnet.exe 6.0 installation is required."));
-				ExecutablePath = "dotnet.exe " + BinaryLocation / "CavrnusRelayNet.dll";
-			}
+			// Get path to exe
+			// \todo fix for packaged builds
+			FString exeLocation = FPaths::Combine(GetPluginPath(), TEXT("Source"), TEXT("CavrnusConnector")) / settings->RelayNetExecutableRelativeLocation;
 
 #if UE_BUILD_SHIPPING
 			bool bSilent = true;
 #else
-			bool bSilent = settings->RelayNetSilent;
+			bool bSilent = settings->RelayNetVerboseLogging ? settings->RelayNetSilent : true;
 #endif
 
-			if (RelayNetRunner_.startService(Client_.GetServerPort(), bSilent, TCHAR_TO_UTF8(*ExecutablePath), TCHAR_TO_UTF8(*settings->GetRelayNetOptionalParameters())))
+			if (RelayNetRunner_.startService(Client_.GetServerPort(), false, TCHAR_TO_UTF8(*exeLocation), TCHAR_TO_UTF8(*settings->GetRelayNetOptionalParameters())))
 			{
 				RelayNetRunner_.runAsync();
 				ServiceIsStarted = true;
@@ -299,4 +291,4 @@ namespace Cavrnus
 
 		return PluginPath;
 	}
-} // namespace Cavrnus
+}

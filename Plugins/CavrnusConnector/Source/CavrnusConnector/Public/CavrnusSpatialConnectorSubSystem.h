@@ -1,7 +1,5 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #pragma once
-
 #include "CoreMinimal.h"
 #include <Blueprint/UserWidget.h>
 #include <Engine/GameInstance.h>
@@ -44,9 +42,8 @@ public:
 		/**
 		 * @brief Initializes the UI manager with the provided spatial connector.
 		 * @param Connector Pointer to the spatial connector.
-		 * @param InCavrnusSubSystem Pointer to CavrnusSubSystem
 		 */
-		void Initialize(ACavrnusSpatialConnector* Connector, UCavrnusSpatialConnectorSubSystemProxy* InCavrnusSubSystem);
+		void Initialize(ACavrnusSpatialConnector* Connector);
 
 		/**
 		 * @brief Spawns a widget of the specified class.
@@ -66,13 +63,6 @@ public:
 		 */
 		void RemoveAllWidgets();
 
-
-		/**
-		* @brief Shows the Server widget and waits for response
-		* &param ServerDelegate Delegate for completed entry
-		*/
-		void ShowServerSelectionWidget();
-
 		/**
 		 * @brief Shows or hides the authentication widget.
 		 * @param bShowWidget Boolean to show or hide the widget.
@@ -84,14 +74,14 @@ public:
 		 * @param SuccessDelegate Delegate for successful authentication.
 		 * @param FailureDelegate Delegate for authentication failure.
 		 */
-		void ShowGuestLoginWidget();
+		void ShowGuestLoginWidget(CavrnusAuthRecv SuccessDelegate, CavrnusError FailureDelegate);
 
 		/**
 		 * @brief Shows the member login widget.
 		 * @param SuccessDelegate Delegate for successful authentication.
 		 * @param FailureDelegate Delegate for authentication failure.
 		 */
-		void ShowLoginWidget();
+		void ShowLoginWidget(CavrnusAuthRecv SuccessDelegate, CavrnusError FailureDelegate);
 
 		/**
 		 * @brief Shows or hides the loading widget.
@@ -105,11 +95,6 @@ public:
 		void ShowSpaceList();
 
 		/**
-		 * @brief Shows the JoinId login widget.
-		 */
-		void ShowJoinIdLoginWidget();
-
-		/**
 		 * @brief Gets the current spatial connector.
 		 * @return A pointer to the current spatial connector.
 		 */
@@ -117,19 +102,16 @@ public:
 
 		/** Array of weak pointers to Cavrnus widgets. */
 		TArray<TWeakObjectPtr<UUserWidget>> CavrnusWidgets;
-	
+
 	private:
 		/** Pointer to the world context. */
 		UWorld* World = nullptr;
-		/** Weak pointer to the server selection widget. */
-		TWeakObjectPtr<UUserWidget> ServerSelectionWidget;
 		/** Weak pointer to the loading widget. */
 		TWeakObjectPtr<UUserWidget> LoadingWidget;
 		/** Weak pointer to the authentication widget. */
 		TWeakObjectPtr<UUserWidget> AuthWidget;
 		/** Weak pointer to the current spatial connector. */
 		TWeakObjectPtr<ACavrnusSpatialConnector> CurrentCavrnusSpatialConnector;
-		TWeakObjectPtr<UCavrnusSpatialConnectorSubSystemProxy> CavrnusSpatialConnectorSubSystem;
 	};
 	/**
 	 * @brief Gets the UI manager instance.
@@ -168,14 +150,6 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Cavrnus")
 	ACavrnusSpatialConnector* GetCavrnusSpatialConnector() const;
-
-	/**
-	* @brief Checks for Server Setting prior to Authentication
-	*/
-	void BeginAuthenticationProcess();
-
-	typedef TFunction<void(bool)> TokenValidReturn;
-	void CheckTokenValid(const FString& server, const FString& token, const TokenValidReturn& tokenValid);
 
 	/**
 	 * @brief Authenticates and joins a space.
@@ -221,9 +195,6 @@ public:
 	 * @param CavrnusActor Pointer to the Cavrnus actor.
 	 */
 	void InitializeCavrnusActor(AActor* CavrnusActor);
-
-	void ShowAuthWidget(bool bShow);
-	void ShowLoadingWidget(bool bShow);
 
 private:
 	/**
@@ -287,6 +258,11 @@ private:
 	TWeakObjectPtr<UGameInstance> GameInstance;
 	/** Weak pointer to the object owner. */
 	TWeakObjectPtr<UObject> ObjectOwner;
+
+public:
+	/** Boolean indicating if the subsystem is in editor mode. */
+	UPROPERTY(BlueprintReadOnly, Category = "Cavrnus")
+	bool bInEditorMode = false;
 };
 
 /**

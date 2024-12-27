@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+﻿// Copyright(c) Cavrnus. All rights reserved.
 #include "RelayModel/DataState.h"
 
 namespace Cavrnus
 {
+
 	DataState::DataState()
 	{
 	}
@@ -102,4 +102,5 @@ namespace Cavrnus
 
 		return binding;
 	}
-} // namespace Cavrnus
+
+}

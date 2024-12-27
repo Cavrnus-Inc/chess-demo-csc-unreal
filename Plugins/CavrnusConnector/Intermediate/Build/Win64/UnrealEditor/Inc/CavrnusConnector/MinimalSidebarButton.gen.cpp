@@ -37,6 +37,7 @@ void EmptyLinkFunctionForGeneratedCodeMinimalSidebarButton() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMinimalSidebarButton_Statics::Class_MetaDataParams[] = {
+		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "UI/MinimalMenu/SidebarMenu/MinimalSidebarButton.h" },
 		{ "ModuleRelativePath", "Public/UI/MinimalMenu/SidebarMenu/MinimalSidebarButton.h" },
 	};
@@ -77,9 +78,9 @@ void EmptyLinkFunctionForGeneratedCodeMinimalSidebarButton() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_MinimalSidebarButton_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UMinimalSidebarButton, UMinimalSidebarButton::StaticClass, TEXT("UMinimalSidebarButton"), &Z_Registration_Info_UClass_UMinimalSidebarButton, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMinimalSidebarButton), 1069306406U) },
+		{ Z_Construct_UClass_UMinimalSidebarButton, UMinimalSidebarButton::StaticClass, TEXT("UMinimalSidebarButton"), &Z_Registration_Info_UClass_UMinimalSidebarButton, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMinimalSidebarButton), 242098125U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_MinimalSidebarButton_h_1877859884(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_MinimalSidebarButton_h_1229714271(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_MinimalSidebarButton_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_MinimalSidebarButton_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

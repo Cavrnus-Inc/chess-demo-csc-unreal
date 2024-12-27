@@ -1,9 +1,7 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "UI/CavrnusSpaceListWidget.h"
 
 #include "CavrnusSpatialConnectorSubSystem.h"
-#include "CavrnusSpatialConnector.h"
 #include "CavrnusFunctionLibrary.h"
 #include "Components/Button.h"
 #include "UI/SpaceList/SpaceListOption.h"
@@ -17,6 +15,8 @@ void UCavrnusSpaceListWidget::NativeConstruct()
 	
 	SpacePagination->Setup(PaginationItemWidget);
 
+	OnCavrnusSpaceSelected.AddDynamic(this, &UCavrnusSpaceListWidget::BlueprintSelectedSpaceToJoin);
+
 	FetchSpaces();
 }
 
@@ -25,6 +25,7 @@ void UCavrnusSpaceListWidget::NativeDestruct()
 	Super::NativeDestruct();
 
 	SearchTextBox->OnTextChanged.RemoveDynamic(this, &UCavrnusSpaceListWidget::Search);
+	OnCavrnusSpaceSelected.RemoveDynamic(this, &UCavrnusSpaceListWidget::BlueprintSelectedSpaceToJoin);
 }
 
 void UCavrnusSpaceListWidget::Search(const FText& SearchValue)
@@ -72,16 +73,22 @@ void UCavrnusSpaceListWidget::UpdatePagination(TArray<FCavrnusSpaceInfo>& Spaces
 
 	for (const FCavrnusSpaceInfo& Space : Spaces)
 	{
-		const FSpaceSelectedEvent SpaceSelectedEvent = [this](const FCavrnusSpaceInfo& SpaceInfo)
+		const FSpaceSelectedEvent Callback = [this](const FCavrnusSpaceInfo& space)
 		{
-			UCavrnusFunctionLibrary::JoinSpace(SpaceInfo.SpaceId, [](const FCavrnusSpaceConnection&) {  }, [](const FString&) {});
-			this->RemoveFromParent();
+			if (SpaceSelected)
+				SpaceSelected(space);
 		};
 
-		Options.Add(new FSpaceListOption(Space, SpaceSelectedEvent));
+		Options.Add(new FSpaceListOption(Space, Callback));
 	}
 	
 	SpacePagination->NewPagination(PaginationItemWidget, Options);
+}
+
+void UCavrnusSpaceListWidget::BlueprintSelectedSpaceToJoin(FCavrnusSpaceInfo SpaceInfo)
+{
+	if (SpaceSelected)
+		SpaceSelected(SpaceInfo);
 }
 
 UCavrnusSpaceListWidget::FSpaceListOption::FSpaceListOption(const FCavrnusSpaceInfo& SpaceInfo, const FSpaceSelectedEvent& OnSelectSpace)

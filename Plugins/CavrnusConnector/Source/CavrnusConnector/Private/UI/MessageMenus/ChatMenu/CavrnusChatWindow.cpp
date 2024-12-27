@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
+// // Copyright (c), Cavrnus. All rights reserved.
 
 #include "UI/MessageMenus/ChatMenu/CavrnusChatWindow.h"
 
@@ -31,7 +31,11 @@ void UCavrnusChatWindow::NativeDestruct()
 
 void UCavrnusChatWindow::SubmitButtonClicked()
 {
+#if UE_VERSION_OLDER_THAN(5, 1, 0)
+	if (!InputTextBox->Text.IsEmptyOrWhitespace())
+#else
 	if (!InputTextBox->GetText().IsEmptyOrWhitespace())
+#endif
 		SubmitChat();
 }
 
@@ -50,7 +54,11 @@ void UCavrnusChatWindow::TextInputFieldSubmit(const FText&, ETextCommit::Type Co
 
 void UCavrnusChatWindow::SubmitChat()
 {
+#if UE_VERSION_OLDER_THAN(5, 1, 0)
+	UCavrnusFunctionLibrary::PostChatMessage(SpaceConnection, InputTextBox->Text.ToString());
+#else
 	UCavrnusFunctionLibrary::PostChatMessage(SpaceConnection, InputTextBox->GetText().ToString());
+#endif
 
 	InputTextBox->SetText(FText::FromString(""));
 	InputTextBox->SetKeyboardFocus();

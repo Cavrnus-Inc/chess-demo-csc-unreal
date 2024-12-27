@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 #include "CavrnusAvatarManager.h"
 #include "CavrnusConnectorModule.h"
 #include "SpawnObjectHelpers.h"

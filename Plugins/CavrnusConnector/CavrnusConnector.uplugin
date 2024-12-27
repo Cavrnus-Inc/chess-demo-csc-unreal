@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "2024.3.1",
-	"FriendlyName": "Cavrnus Spatial Connector",
+	"VersionName": "2024.3.0",
+	"FriendlyName": "Cavrnus",
 	"Description": "Cavrnus enhances 3D workflows by providing developers a seamless drag-and-drop toolkit for embedding collaborative features directly into Unreal Engine projects.",
 	"Category": "Multi-user Collaboration Plugin",
 	"CreatedBy": "Cavrnus, Inc.",
@@ -21,21 +21,19 @@
 		{
 			"Name": "CavrnusConnector",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault",
-			"PlatformAllowList": [
-				"Win64"
-			]
+			"LoadingPhase": "PreDefault"
 		},
 		{
 			"Name": "CavrnusConnectorEditor",
 			"Type": "Editor",
-			"LoadingPhase": "Default",
-			"PlatformAllowList": [
-				"Win64"
-			]
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
+		{
+			"Name": "ProceduralMeshComponent",
+			"Enabled": true
+		},
 		{
 			"Name": "JsonBlueprintUtilities",
 			"Enabled": true

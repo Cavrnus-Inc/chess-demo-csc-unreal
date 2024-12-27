@@ -1,5 +1,4 @@
-// Copyright (c) 2024 Cavrnus. All rights reserved.
-
+// Copyright(c) Cavrnus. All rights reserved.
 /**
  * @file CavrnusLiveStringPropertyUpdate.h
  * @brief This file defines the UCavrnusLiveStringPropertyUpdate class used for live string property updates in Cavrnus.
