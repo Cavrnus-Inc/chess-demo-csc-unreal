@@ -1,9 +1,9 @@
-// Copyright(c) Cavrnus. All rights reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "CavrnusProtoTranslation.h"
 
 namespace Cavrnus
 {
-
 	CavrnusProtoTranslation::CavrnusProtoTranslation()
 	{
 	}
@@ -34,6 +34,35 @@ namespace Cavrnus
 		return msg;
 	}
 
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildSetForceKeepAlive()
+	{
+		ServerData::SetForceKeepAlive keepAlive;
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_setforcekeepalive()->CopyFrom(keepAlive);
+		return msg;
+	}
+
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildEndForceKeepAlive()
+	{
+		ServerData::EndForceKeepAlive keepAlive;
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_endforcekeepalive()->CopyFrom(keepAlive);
+		return msg;
+	}
+
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildPostDataCacheUpdate(FString key, FString val)
+	{
+		ServerData::PostDataCacheUpdate req;
+		req.set_key(TCHAR_TO_UTF8(*key));
+		req.set_stringval(TCHAR_TO_UTF8(*val));
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_postdatacacheupdate()->CopyFrom(req);
+		return msg;
+	}
+
 	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildAuthenticateWithPassword(int callbackId, const FString& server, const FString& email, const FString& password)
 	{
 		ServerData::AuthenticateReq req;
@@ -44,6 +73,18 @@ namespace Cavrnus
 
 		ServerData::RelayClientMessage msg;
 		msg.mutable_authenticatereq()->CopyFrom(req);
+		return msg;
+	}
+
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildAuthenticateToken(int callbackId, const FString& server, const FString& token)
+	{
+		ServerData::AuthenticateTokenReq req;
+		req.set_reqid(callbackId);
+		req.set_server(TCHAR_TO_UTF8(*server));
+		req.set_token(TCHAR_TO_UTF8(*token));
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_authenticatetokenreq()->CopyFrom(req);
 		return msg;
 	}
 
@@ -70,11 +111,28 @@ namespace Cavrnus
 		return msg;
 	}
 
-	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildCreateSpaceMsg(int callbackId, const FString& spaceName)
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildFetchSpaceInfo(int callbackId, const FString& spaceId)
+	{
+		ServerData::GetSpaceInfoReq req;
+		req.set_reqid(callbackId);
+		req.set_spaceid(TCHAR_TO_UTF8(*spaceId));
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_getspaceinforeq()->CopyFrom(req);
+
+		return msg;
+	}
+
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildCreateSpaceMsg(int callbackId, const FString& spaceName, const TArray<FString>& keywords)
 	{
 		ServerData::CreateSpaceReq req;
 		req.set_reqid(callbackId);
 		req.set_newspacename(TCHAR_TO_UTF8(*spaceName));
+		
+		for (const FString& keyword : keywords)
+		{
+			req.add_keywords(TCHAR_TO_UTF8(*keyword));
+		}
 
 		ServerData::RelayClientMessage msg;
 		msg.mutable_createspacereq()->CopyFrom(req);
@@ -338,6 +396,16 @@ namespace Cavrnus
 		msg.mutable_permissionstatusreq()->CopyFrom(req);
 		return msg;
 	}
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildRequestFileInfoById(int callbackId, const FString& contentId)
+	{
+		ServerData::FetchRemoteContentInfoReq req;
+		req.set_reqid(callbackId);
+		req.set_contentid(TCHAR_TO_UTF8(*contentId));
+
+		ServerData::RelayClientMessage msg;
+		msg.mutable_fetchremotecontentinforeq()->CopyFrom(req);
+		return msg;
+	}
 	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildRequestFileById(const FString& contentId)
 	{
 		ServerData::FetchFileByIdReq req;
@@ -372,8 +440,17 @@ namespace Cavrnus
 		msg.mutable_uploadlocalfilereq()->CopyFrom(req);
 		return msg;
 	}
-#pragma endregion
+	const ServerData::RelayClientMessage CavrnusProtoTranslation::BuildFolderReq(int callbackId, const FString& folderName)
+	{
+		ServerData::ContentDestinationFolderReq req;
+		req.set_reqid(callbackId);
+		req.set_foldername(TCHAR_TO_UTF8(*folderName));
 
+		ServerData::RelayClientMessage msg;
+		msg.mutable_contentdestinationfolderreq()->CopyFrom(req);
+		return msg;
+	}
+#pragma endregion
 
 #pragma region Type Conversions
 
@@ -445,7 +522,7 @@ namespace Cavrnus
 	FCavrnusSpaceConnection CavrnusProtoTranslation::FromPb(ServerData::CavrnusSpaceConnection InSpaceConnection)
 	{
 		FString usersContainerPrefix = "users/";
-		return FCavrnusSpaceConnection(InSpaceConnection.spaceconnectionid(), UTF8_TO_TCHAR(InSpaceConnection.localuserconnectionid().c_str()), usersContainerPrefix + UTF8_TO_TCHAR(InSpaceConnection.localuserconnectionid().c_str()));
+		return FCavrnusSpaceConnection(InSpaceConnection.spaceconnectionid(), UTF8_TO_TCHAR(InSpaceConnection.localuserconnectionid().c_str()), usersContainerPrefix + UTF8_TO_TCHAR(InSpaceConnection.localuserconnectionid().c_str()), InSpaceConnection.spaceownedbylocaluser(), ToSpaceInfo(InSpaceConnection.spaceinfo()));
 	}
 
 	ServerData::CavrnusSpaceConnection CavrnusProtoTranslation::ToPb(FCavrnusSpaceConnection InSpaceConnection)
@@ -463,7 +540,13 @@ namespace Cavrnus
 		if (space.has_lastaccess())
 			lastAccess = FDateTime::FromUnixTimestamp(space.lastaccess().seconds());
 
-		return FCavrnusSpaceInfo(UTF8_TO_TCHAR(space.spaceid().c_str()), UTF8_TO_TCHAR(space.spacename().c_str()), UTF8_TO_TCHAR(space.spacethumbnailurl().c_str()), lastAccess);
+		TArray<FString> keywords;
+		for (int i = 0; i < space.keywords().size(); i++)
+		{
+			keywords.Add(UTF8_TO_TCHAR(space.keywords()[i].c_str()));
+		}
+
+		return FCavrnusSpaceInfo(UTF8_TO_TCHAR(space.spaceid().c_str()), UTF8_TO_TCHAR(space.spacename().c_str()), UTF8_TO_TCHAR(space.spacethumbnailurl().c_str()), lastAccess, keywords);
 	}
 
 	FCavrnusUser CavrnusProtoTranslation::ToCavrnusUser(ServerData::CavrnusUser user, const FCavrnusSpaceConnection& spaceConn)
@@ -506,5 +589,4 @@ namespace Cavrnus
 	}
 #pragma endregion
 
-
-} // namespace CavrnusRelay
+} // namespace Cavrnus

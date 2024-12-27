@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define CAVRNUSCONNECTOR_CavrnusSpatialConnector_generated_h
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_SPARSE_DATA
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_RPC_WRAPPERS
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_RPC_WRAPPERS_NO_PURE_DECLS
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_INCLASS_NO_PURE_DECLS \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_SPARSE_DATA
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_RPC_WRAPPERS
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACavrnusSpatialConnector(); \
 	friend struct Z_Construct_UClass_ACavrnusSpatialConnector_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ACavrnusSpatialConnector)
 
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_INCLASS \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_INCLASS \
 private: \
 	static void StaticRegisterNativesACavrnusSpatialConnector(); \
 	friend struct Z_Construct_UClass_ACavrnusSpatialConnector_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ACavrnusSpatialConnector)
 
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_STANDARD_CONSTRUCTORS \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACavrnusSpatialConnector(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACavrnusSpatialConnector) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_ENHANCED_CONSTRUCTORS \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACavrnusSpatialConnector(ACavrnusSpatialConnector&&); \
@@ -58,25 +58,25 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACavrnusSpatialConnector)
 
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_49_PROLOG
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_GENERATED_BODY_LEGACY \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_47_PROLOG
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_SPARSE_DATA \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_RPC_WRAPPERS \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_INCLASS \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_STANDARD_CONSTRUCTORS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_SPARSE_DATA \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_RPC_WRAPPERS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_INCLASS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_GENERATED_BODY \
+#define FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_SPARSE_DATA \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_INCLASS_NO_PURE_DECLS \
-	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_52_ENHANCED_CONSTRUCTORS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_SPARSE_DATA \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_INCLASS_NO_PURE_DECLS \
+	FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_50_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -88,35 +88,36 @@ template<> CAVRNUSCONNECTOR_API UClass* StaticClass<class ACavrnusSpatialConnect
 
 
 #define FOREACH_ENUM_ECAVRNUSAUTHMETHOD(op) \
-	op(ECavrnusAuthMethod::None) \
+	op(ECavrnusAuthMethod::Custom) \
 	op(ECavrnusAuthMethod::JoinAsMember) \
 	op(ECavrnusAuthMethod::JoinAsGuest) 
 
-enum class ECavrnusAuthMethod;
+enum class ECavrnusAuthMethod : uint8;
 template<> CAVRNUSCONNECTOR_API UEnum* StaticEnum<ECavrnusAuthMethod>();
 
 #define FOREACH_ENUM_ECAVRNUSMEMBERLOGINMETHOD(op) \
-	op(ECavrnusMemberLoginMethod::None) \
+	op(ECavrnusMemberLoginMethod::Custom) \
 	op(ECavrnusMemberLoginMethod::EnterMemberLoginCredentials) \
 	op(ECavrnusMemberLoginMethod::PromptMemberToLogin) 
 
-enum class ECavrnusMemberLoginMethod;
+enum class ECavrnusMemberLoginMethod : uint8;
 template<> CAVRNUSCONNECTOR_API UEnum* StaticEnum<ECavrnusMemberLoginMethod>();
 
 #define FOREACH_ENUM_ECAVRNUSGUESTLOGINMETHOD(op) \
-	op(ECavrnusGuestLoginMethod::None) \
+	op(ECavrnusGuestLoginMethod::Custom) \
 	op(ECavrnusGuestLoginMethod::EnterNameBelow) \
 	op(ECavrnusGuestLoginMethod::PromptToEnterName) 
 
-enum class ECavrnusGuestLoginMethod;
+enum class ECavrnusGuestLoginMethod : uint8;
 template<> CAVRNUSCONNECTOR_API UEnum* StaticEnum<ECavrnusGuestLoginMethod>();
 
 #define FOREACH_ENUM_ECAVRNUSSPACEJOINMETHOD(op) \
-	op(ECavrnusSpaceJoinMethod::None) \
+	op(ECavrnusSpaceJoinMethod::Custom) \
 	op(ECavrnusSpaceJoinMethod::EnterSpaceId) \
-	op(ECavrnusSpaceJoinMethod::SpacesList) 
+	op(ECavrnusSpaceJoinMethod::SpacesList) \
+	op(ECavrnusSpaceJoinMethod::JoinId) 
 
-enum class ECavrnusSpaceJoinMethod;
+enum class ECavrnusSpaceJoinMethod : uint8;
 template<> CAVRNUSCONNECTOR_API UEnum* StaticEnum<ECavrnusSpaceJoinMethod>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

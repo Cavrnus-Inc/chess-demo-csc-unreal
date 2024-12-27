@@ -1,4 +1,4 @@
-// Copyright(c) Cavrnus. All rights reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
 
 // Includes
 #include "CavrnusConnectorModule.h"
@@ -11,8 +11,6 @@
 #if WITH_EDITOR
 #include "ISettingsModule.h"
 #include "ISettingsSection.h"
-//#include "UObject/Class.h"
-//#include "UObject/WeakObjectPtr.h"
 #endif
 
 #define LOCTEXT_NAMESPACE "CavrnusConnectorModule"

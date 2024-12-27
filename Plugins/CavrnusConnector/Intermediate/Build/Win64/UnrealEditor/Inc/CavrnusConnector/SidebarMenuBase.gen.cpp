@@ -127,7 +127,6 @@ void EmptyLinkFunctionForGeneratedCodeSidebarMenuBase() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USidebarMenuBase_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "UI/MinimalMenu/SidebarMenu/SidebarMenuBase.h" },
 		{ "ModuleRelativePath", "Public/UI/MinimalMenu/SidebarMenu/SidebarMenuBase.h" },
 	};
@@ -178,9 +177,9 @@ void EmptyLinkFunctionForGeneratedCodeSidebarMenuBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_SidebarMenuBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_USidebarMenuBase, USidebarMenuBase::StaticClass, TEXT("USidebarMenuBase"), &Z_Registration_Info_UClass_USidebarMenuBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USidebarMenuBase), 380561976U) },
+		{ Z_Construct_UClass_USidebarMenuBase, USidebarMenuBase::StaticClass, TEXT("USidebarMenuBase"), &Z_Registration_Info_UClass_USidebarMenuBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USidebarMenuBase), 3534216059U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_SidebarMenuBase_h_1549768992(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_SidebarMenuBase_h_2382878960(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_SidebarMenuBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MinimalMenu_SidebarMenu_SidebarMenuBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

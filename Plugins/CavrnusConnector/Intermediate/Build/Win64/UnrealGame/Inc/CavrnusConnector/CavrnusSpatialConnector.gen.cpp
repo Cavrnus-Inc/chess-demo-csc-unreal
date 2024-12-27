@@ -18,9 +18,8 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 	CAVRNUSCONNECTOR_API UClass* Z_Construct_UClass_ACavrnusSpatialConnector();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	CAVRNUSCONNECTOR_API UClass* Z_Construct_UClass_UCavrnusGuestLoginWidget_NoRegister();
-	CAVRNUSCONNECTOR_API UClass* Z_Construct_UClass_UCavrnusLoginWidget_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
+	CAVRNUSCONNECTOR_API UClass* Z_Construct_UClass_UCavrnusGuestLoginWidget_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 // End Cross Module References
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_ECavrnusAuthMethod;
@@ -45,17 +44,18 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CavrnusConnector_ECavrnusAuthMethod_Statics::Enumerators[] = {
-		{ "ECavrnusAuthMethod::None", (int64)ECavrnusAuthMethod::None },
+		{ "ECavrnusAuthMethod::Custom", (int64)ECavrnusAuthMethod::Custom },
 		{ "ECavrnusAuthMethod::JoinAsMember", (int64)ECavrnusAuthMethod::JoinAsMember },
 		{ "ECavrnusAuthMethod::JoinAsGuest", (int64)ECavrnusAuthMethod::JoinAsGuest },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CavrnusConnector_ECavrnusAuthMethod_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
 		{ "Comment", "/** Define various options for authentication methods, member and guest login methods, and space join methods used by the ACavrnusSpatialConnector class. */" },
+		{ "Custom.Name", "ECavrnusAuthMethod::Custom" },
 		{ "JoinAsGuest.Name", "ECavrnusAuthMethod::JoinAsGuest" },
 		{ "JoinAsMember.Name", "ECavrnusAuthMethod::JoinAsMember" },
 		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
-		{ "None.Name", "ECavrnusAuthMethod::None" },
 		{ "ToolTip", "Define various options for authentication methods, member and guest login methods, and space join methods used by the ACavrnusSpatialConnector class." },
 	};
 #endif
@@ -101,15 +101,16 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CavrnusConnector_ECavrnusMemberLoginMethod_Statics::Enumerators[] = {
-		{ "ECavrnusMemberLoginMethod::None", (int64)ECavrnusMemberLoginMethod::None },
+		{ "ECavrnusMemberLoginMethod::Custom", (int64)ECavrnusMemberLoginMethod::Custom },
 		{ "ECavrnusMemberLoginMethod::EnterMemberLoginCredentials", (int64)ECavrnusMemberLoginMethod::EnterMemberLoginCredentials },
 		{ "ECavrnusMemberLoginMethod::PromptMemberToLogin", (int64)ECavrnusMemberLoginMethod::PromptMemberToLogin },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CavrnusConnector_ECavrnusMemberLoginMethod_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Custom.Name", "ECavrnusMemberLoginMethod::Custom" },
 		{ "EnterMemberLoginCredentials.Name", "ECavrnusMemberLoginMethod::EnterMemberLoginCredentials" },
 		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
-		{ "None.Name", "ECavrnusMemberLoginMethod::None" },
 		{ "PromptMemberToLogin.Name", "ECavrnusMemberLoginMethod::PromptMemberToLogin" },
 	};
 #endif
@@ -155,15 +156,16 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CavrnusConnector_ECavrnusGuestLoginMethod_Statics::Enumerators[] = {
-		{ "ECavrnusGuestLoginMethod::None", (int64)ECavrnusGuestLoginMethod::None },
+		{ "ECavrnusGuestLoginMethod::Custom", (int64)ECavrnusGuestLoginMethod::Custom },
 		{ "ECavrnusGuestLoginMethod::EnterNameBelow", (int64)ECavrnusGuestLoginMethod::EnterNameBelow },
 		{ "ECavrnusGuestLoginMethod::PromptToEnterName", (int64)ECavrnusGuestLoginMethod::PromptToEnterName },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CavrnusConnector_ECavrnusGuestLoginMethod_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Custom.Name", "ECavrnusGuestLoginMethod::Custom" },
 		{ "EnterNameBelow.Name", "ECavrnusGuestLoginMethod::EnterNameBelow" },
 		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
-		{ "None.Name", "ECavrnusGuestLoginMethod::None" },
 		{ "PromptToEnterName.Name", "ECavrnusGuestLoginMethod::PromptToEnterName" },
 	};
 #endif
@@ -209,15 +211,18 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CavrnusConnector_ECavrnusSpaceJoinMethod_Statics::Enumerators[] = {
-		{ "ECavrnusSpaceJoinMethod::None", (int64)ECavrnusSpaceJoinMethod::None },
+		{ "ECavrnusSpaceJoinMethod::Custom", (int64)ECavrnusSpaceJoinMethod::Custom },
 		{ "ECavrnusSpaceJoinMethod::EnterSpaceId", (int64)ECavrnusSpaceJoinMethod::EnterSpaceId },
 		{ "ECavrnusSpaceJoinMethod::SpacesList", (int64)ECavrnusSpaceJoinMethod::SpacesList },
+		{ "ECavrnusSpaceJoinMethod::JoinId", (int64)ECavrnusSpaceJoinMethod::JoinId },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CavrnusConnector_ECavrnusSpaceJoinMethod_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Custom.Name", "ECavrnusSpaceJoinMethod::Custom" },
 		{ "EnterSpaceId.Name", "ECavrnusSpaceJoinMethod::EnterSpaceId" },
+		{ "JoinId.Name", "ECavrnusSpaceJoinMethod::JoinId" },
 		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
-		{ "None.Name", "ECavrnusSpaceJoinMethod::None" },
 		{ "SpacesList.Name", "ECavrnusSpaceJoinMethod::SpacesList" },
 	};
 #endif
@@ -259,17 +264,21 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MyServer_MetaData[];
 #endif
 		static const UECodeGen_Private::FStrPropertyParams NewProp_MyServer;
-		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_AuthMethod_Underlying;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ServerSelectionMenu_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_ServerSelectionMenu;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_AuthMethod_Underlying;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_AuthMethod_MetaData[];
 #endif
 		static const UECodeGen_Private::FEnumPropertyParams NewProp_AuthMethod;
-		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_GuestLoginMethod_Underlying;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_GuestLoginMethod_Underlying;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_GuestLoginMethod_MetaData[];
 #endif
 		static const UECodeGen_Private::FEnumPropertyParams NewProp_GuestLoginMethod;
-		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_MemberLoginMethod_Underlying;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MemberLoginMethod_Underlying;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MemberLoginMethod_MetaData[];
 #endif
@@ -294,7 +303,17 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MemberLoginMenu_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_MemberLoginMenu;
-		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_SpaceJoinMethod_Underlying;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SaveUserToken_MetaData[];
+#endif
+		static void NewProp_SaveUserToken_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_SaveUserToken;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SaveGuestToken_MetaData[];
+#endif
+		static void NewProp_SaveGuestToken_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_SaveGuestToken;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_SpaceJoinMethod_Underlying;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpaceJoinMethod_MetaData[];
 #endif
@@ -307,6 +326,10 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpaceJoinMenu_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_SpaceJoinMenu;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_JoinIdMenu_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_JoinIdMenu;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_RemoteAvatarClass_MetaData[];
 #endif
@@ -353,7 +376,14 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 	};
 #endif
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MyServer = { "MyServer", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, MyServer), METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MyServer_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MyServer_MetaData)) };
-	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_ServerSelectionMenu_MetaData[] = {
+		{ "Category", "Cavrnus" },
+		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_ServerSelectionMenu = { "ServerSelectionMenu", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, ServerSelectionMenu), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_ServerSelectionMenu_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_ServerSelectionMenu_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -363,8 +393,8 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ "ToolTip", "Property for selecting the authentication widget class." },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod = { "AuthMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, AuthMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusAuthMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_MetaData)) }; // 3363427875
-	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod = { "AuthMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, AuthMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusAuthMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_MetaData)) }; // 2681228862
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -375,8 +405,8 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ "ToolTip", "Enum property for selecting the guest login method. Editable only if AuthMethod is JoinAsGuest. Otherwise hidden." },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod = { "GuestLoginMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, GuestLoginMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusGuestLoginMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_MetaData)) }; // 448114272
-	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod = { "GuestLoginMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, GuestLoginMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusGuestLoginMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_MetaData)) }; // 4279150770
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -387,7 +417,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ "ToolTip", "Enum property for selecting the member login method. Editable only if AuthMethod is JoinAsMember. Otherwise hidden." },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod = { "MemberLoginMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, MemberLoginMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusMemberLoginMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_MetaData)) }; // 4187091145
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod = { "MemberLoginMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, MemberLoginMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusMemberLoginMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMethod_MetaData)) }; // 3322167895
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestName_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -443,8 +473,38 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ "ToolTip", "Property for selecting a member login widget class, editable only if AuthMethod is JoinAsMember, and MemberLoginMethod is set to PromptMemberToLogin. Otherwise hidden" },
 	};
 #endif
-	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu = { "MemberLoginMenu", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, MemberLoginMenu), Z_Construct_UClass_UCavrnusLoginWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu_MetaData)) };
-	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu = { "MemberLoginMenu", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, MemberLoginMenu), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken_MetaData[] = {
+		{ "Category", "Cavrnus" },
+		{ "Comment", "/** If true, the user will remain logged-in when they re-launch the app.  Eventually these tokens will time out */" },
+		{ "EditCondition", "AuthMethod == ECavrnusAuthMethod::JoinAsMember" },
+		{ "EditConditionHides", "" },
+		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
+		{ "ToolTip", "If true, the user will remain logged-in when they re-launch the app.  Eventually these tokens will time out" },
+	};
+#endif
+	void Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken_SetBit(void* Obj)
+	{
+		((ACavrnusSpatialConnector*)Obj)->SaveUserToken = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken = { "SaveUserToken", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACavrnusSpatialConnector), &Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken_MetaData[] = {
+		{ "Category", "Cavrnus" },
+		{ "Comment", "/** If true, the user will remain logged-in when they re-launch the app.  Eventually these tokens will time out */" },
+		{ "EditCondition", "AuthMethod == ECavrnusAuthMethod::JoinAsGuest" },
+		{ "EditConditionHides", "" },
+		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
+		{ "ToolTip", "If true, the user will remain logged-in when they re-launch the app.  Eventually these tokens will time out" },
+	};
+#endif
+	void Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken_SetBit(void* Obj)
+	{
+		((ACavrnusSpatialConnector*)Obj)->SaveGuestToken = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken = { "SaveGuestToken", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACavrnusSpatialConnector), &Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -453,7 +513,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		{ "ToolTip", "Enum property for selecting the space join method." },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod = { "SpaceJoinMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, SpaceJoinMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusSpaceJoinMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_MetaData)) }; // 3919926405
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod = { "SpaceJoinMethod", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, SpaceJoinMethod), Z_Construct_UEnum_CavrnusConnector_ECavrnusSpaceJoinMethod, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_MetaData)) }; // 3770053448
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AutomaticSpaceJoinId_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -476,6 +536,17 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMenu = { "SpaceJoinMenu", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, SpaceJoinMenu), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMenu_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMenu_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_JoinIdMenu_MetaData[] = {
+		{ "Category", "Cavrnus" },
+		{ "Comment", "/** Property for selecting a space join menu widget class, editable only if SpaceJoinMethod is SpacesList. */" },
+		{ "EditCondition", "SpaceJoinMethod == ECavrnusSpaceJoinMethod::JoinId" },
+		{ "EditConditionHides", "" },
+		{ "ModuleRelativePath", "Public/CavrnusSpatialConnector.h" },
+		{ "ToolTip", "Property for selecting a space join menu widget class, editable only if SpaceJoinMethod is SpacesList." },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_JoinIdMenu = { "JoinIdMenu", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, JoinIdMenu), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_JoinIdMenu_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_JoinIdMenu_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_RemoteAvatarClass_MetaData[] = {
 		{ "Category", "Cavrnus" },
@@ -526,6 +597,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers = { "SpawnableIdentifiers", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACavrnusSpatialConnector, SpawnableIdentifiers), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpawnableIdentifiers_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACavrnusSpatialConnector_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MyServer,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_ServerSelectionMenu,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthMethod,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_GuestLoginMethod_Underlying,
@@ -537,10 +609,13 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginEmail,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginPassword,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_MemberLoginMenu,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveUserToken,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SaveGuestToken,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMethod,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AutomaticSpaceJoinId,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_SpaceJoinMenu,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_JoinIdMenu,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_RemoteAvatarClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_AuthenticationWidgetClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACavrnusSpatialConnector_Statics::NewProp_LoadingWidgetClass,
@@ -587,15 +662,15 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusSpatialConnector() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::EnumInfo[] = {
-		{ ECavrnusAuthMethod_StaticEnum, TEXT("ECavrnusAuthMethod"), &Z_Registration_Info_UEnum_ECavrnusAuthMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3363427875U) },
-		{ ECavrnusMemberLoginMethod_StaticEnum, TEXT("ECavrnusMemberLoginMethod"), &Z_Registration_Info_UEnum_ECavrnusMemberLoginMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4187091145U) },
-		{ ECavrnusGuestLoginMethod_StaticEnum, TEXT("ECavrnusGuestLoginMethod"), &Z_Registration_Info_UEnum_ECavrnusGuestLoginMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 448114272U) },
-		{ ECavrnusSpaceJoinMethod_StaticEnum, TEXT("ECavrnusSpaceJoinMethod"), &Z_Registration_Info_UEnum_ECavrnusSpaceJoinMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3919926405U) },
+		{ ECavrnusAuthMethod_StaticEnum, TEXT("ECavrnusAuthMethod"), &Z_Registration_Info_UEnum_ECavrnusAuthMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2681228862U) },
+		{ ECavrnusMemberLoginMethod_StaticEnum, TEXT("ECavrnusMemberLoginMethod"), &Z_Registration_Info_UEnum_ECavrnusMemberLoginMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3322167895U) },
+		{ ECavrnusGuestLoginMethod_StaticEnum, TEXT("ECavrnusGuestLoginMethod"), &Z_Registration_Info_UEnum_ECavrnusGuestLoginMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4279150770U) },
+		{ ECavrnusSpaceJoinMethod_StaticEnum, TEXT("ECavrnusSpaceJoinMethod"), &Z_Registration_Info_UEnum_ECavrnusSpaceJoinMethod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3770053448U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACavrnusSpatialConnector, ACavrnusSpatialConnector::StaticClass, TEXT("ACavrnusSpatialConnector"), &Z_Registration_Info_UClass_ACavrnusSpatialConnector, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACavrnusSpatialConnector), 1333990256U) },
+		{ Z_Construct_UClass_ACavrnusSpatialConnector, ACavrnusSpatialConnector::StaticClass, TEXT("ACavrnusSpatialConnector"), &Z_Registration_Info_UClass_ACavrnusSpatialConnector, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACavrnusSpatialConnector), 452116366U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_1550854836(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_203451833(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_CavrnusSpatialConnector_h_Statics::EnumInfo));

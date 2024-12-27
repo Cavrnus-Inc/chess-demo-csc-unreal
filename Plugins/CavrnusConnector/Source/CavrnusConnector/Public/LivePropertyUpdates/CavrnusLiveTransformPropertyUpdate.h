@@ -1,4 +1,5 @@
-// Copyright(c) Cavrnus. All rights reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 /**
  * @file CavrnusLiveTransformPropertyUpdate.h
  * @brief This file defines the UCavrnusLiveTransformPropertyUpdate class used for live transform property updates in Cavrnus.

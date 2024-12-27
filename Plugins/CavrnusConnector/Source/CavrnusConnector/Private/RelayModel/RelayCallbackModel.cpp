@@ -1,4 +1,5 @@
-﻿// Copyright(c) Cavrnus. All rights reserved.
+﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "RelayModel/RelayCallbackModel.h"
 #include "CoreMinimal.h"
 #include "RelayModel/CavrnusRelayModel.h"
@@ -26,6 +27,9 @@ namespace Cavrnus
 		case ServerData::RelayRemoteMessage::kAuthenticateGuestResp:
 			HandleLoginGuestResponse(callbackId, msg.authenticateguestresp());
 			break;
+		case ServerData::RelayRemoteMessage::kAuthenticateTokenResp:
+			HandleLoginTokenResponse(callbackId, msg.authenticatetokenresp());
+			break;
 		case ServerData::RelayRemoteMessage::kCreateSpaceResp:
 			HandleCreateSpaceResponse(callbackId, msg.createspaceresp());
 			break;
@@ -50,10 +54,43 @@ namespace Cavrnus
 		case ServerData::RelayRemoteMessage::kUploadLocalFileResp:
 			HandleUploadComplete(callbackId, msg.uploadlocalfileresp());
 			break;
+		case ServerData::RelayRemoteMessage::kFetchRemoteContentInfoResp:
+			HandleRemoteContentInfoComplete(callbackId, msg.fetchremotecontentinforesp());
+			break;
+		case ServerData::RelayRemoteMessage::kContentDestinationFolderResp:
+			HandleFolderResp(callbackId, msg.contentdestinationfolderresp());
+			break;
+		case ServerData::RelayRemoteMessage::kGetSpaceInfoResp:
+			HandleFetchSpaceInfoComplete(callbackId, msg.getspaceinforesp());
+			break;
 		default:
-			UE_LOG(LogCavrnusConnector, Warning, TEXT("Unhandled server message, message type: %d"), static_cast<int>(msg.Msg_case()));
+			UE_LOG(LogCavrnusConnector, Warning, TEXT("Unhandled server callback, message type: %d"), static_cast<int>(msg.Msg_case()));
 			break;
 		}
+	}
+
+	void RelayCallbackModel::RegisterGotDataCache(TFunction<void()> gotCache)
+	{
+		if (gotDataCache)
+		{
+			gotCache();
+		}
+		else
+		{
+			TFunction<void()>* callback = new TFunction<void()>(gotCache);
+			DataCacheCallbacks.Add(callback);
+		}
+	}
+
+	void RelayCallbackModel::HandleDataCache(const ServerData::RelayDataCache& dataCache)
+	{
+		savedDataCache = dataCache;
+		gotDataCache = true;
+		for (int i = 0; i < DataCacheCallbacks.Num(); i++)
+		{
+			(*DataCacheCallbacks[i])();
+		}
+		DataCacheCallbacks.Empty();
 	}
 
 	void RelayCallbackModel::HandleAuthRecv(FCavrnusAuthentication auth)
@@ -121,6 +158,19 @@ namespace Cavrnus
 		return reqId;
 	}
 
+	int RelayCallbackModel::RegisterLoginTokenCallback(CavrnusAuthRecv onSuccess, CavrnusError onFailure)
+	{
+		int reqId = ++currReqId;
+
+		CavrnusAuthRecv* callback = new CavrnusAuthRecv(onSuccess);
+		LoginTokenSuccessCallbacks.Add(reqId, callback);
+
+		CavrnusError* errorCallback = new CavrnusError(onFailure);
+		LoginTokenErrorCallbacks.Add(reqId, errorCallback);
+
+		return reqId;
+	}
+
 	void RelayCallbackModel::RegisterAuthCallback(CavrnusAuthRecv onAuth)
 	{
 		if (relayModel->GetDataState()->CurrentAuthentication != nullptr)
@@ -162,6 +212,35 @@ namespace Cavrnus
 
 		LoginGuestSuccessCallbacks.Remove(callbackId);
 		LoginGuestErrorCallbacks.Remove(callbackId);
+	}
+
+	void RelayCallbackModel::HandleLoginTokenResponse(int callbackId, ServerData::AuthenticateTokenResp resp)
+	{
+		if (resp.has_auth())
+		{
+			FString token = UTF8_TO_TCHAR(resp.auth().token().c_str());
+
+			FCavrnusAuthentication auth = FCavrnusAuthentication(token);
+			HandleAuthRecv(auth);
+
+			relayModel->GetDataState()->CurrentAuthentication = new FCavrnusAuthentication(token);
+
+			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH SUCCESS]"));
+
+			if (LoginTokenSuccessCallbacks.Contains(callbackId))
+				(*LoginTokenSuccessCallbacks[callbackId])(auth);
+		}
+		else
+		{
+			FString error = UTF8_TO_TCHAR(resp.error().c_str());
+			UE_LOG(LogCavrnusConnector, Log, TEXT("[AUTH FAILURE]: %s"), *error);
+
+			if (LoginTokenErrorCallbacks.Contains(callbackId))
+				(*LoginTokenErrorCallbacks[callbackId])(error);
+		}
+
+		LoginTokenSuccessCallbacks.Remove(callbackId);
+		LoginTokenErrorCallbacks.Remove(callbackId);
 	}
 
 	void RelayCallbackModel::RegisterBeginLoadingSpaceCallback(CavrnusSpaceBeginLoading onBeginLoading)
@@ -228,6 +307,26 @@ namespace Cavrnus
 			(*AllSpacesInfoCallbacks[callbackId])(AvailableSpaces);
 
 		AllSpacesInfoCallbacks.Remove(callbackId);
+	}
+
+	int RelayCallbackModel::RegisterFetchSpaceInfoCallback(CavrnusSpaceInfoEvent onSpaceInfoFetched)
+	{
+		int reqId = ++currReqId;
+
+		CavrnusSpaceInfoEvent* callback = new CavrnusSpaceInfoEvent(onSpaceInfoFetched);
+		FetchSpaceInfoCallbacks.Add(reqId, callback);
+
+		return reqId;
+	}
+
+	void RelayCallbackModel::HandleFetchSpaceInfoComplete(int callbackId, ServerData::GetSpaceInfoResp resp)
+	{
+		FCavrnusSpaceInfo info = CavrnusProtoTranslation::ToSpaceInfo(resp.info());
+
+		if (FetchSpaceInfoCallbacks.Contains(callbackId))
+			(*FetchSpaceInfoCallbacks[callbackId])(info);
+
+		FetchSpaceInfoCallbacks.Remove(callbackId);
 	}
 
 	void RelayCallbackModel::HandleCreateSpaceResponse(int callbackId, ServerData::CreateSpaceResp resp)
@@ -355,6 +454,34 @@ namespace Cavrnus
 			(*FetchVideoInputsCallbacks[callbackId])(devices);
 	}
 
+	int RelayCallbackModel::RegisterFetchRemoteContentInfo(CavrnusRemoteContentInfoFunction onfetchedContentInfo)
+	{
+		int reqId = ++currReqId;
+
+		CavrnusRemoteContentInfoFunction* CallbackPtr = new CavrnusRemoteContentInfoFunction(onfetchedContentInfo);
+
+		AllContentInfoCallbacks.Add(reqId, CallbackPtr);
+
+		return reqId;
+	}
+
+	void RelayCallbackModel::HandleRemoteContentInfoComplete(int callbackId, ServerData::FetchRemoteContentInfoResp resp)
+	{
+		TMap<FString, FString> tags;
+		for (int j = 0; j < resp.uploadedcontent().tagkeys_size(); j++)
+		{
+			tags.Add(UTF8_TO_TCHAR(resp.uploadedcontent().tagkeys()[j].c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().tagvalues()[j].c_str()));
+		}
+
+		FCavrnusRemoteContent remoteContent = FCavrnusRemoteContent(UTF8_TO_TCHAR(resp.uploadedcontent().id().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().name().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().filename().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().thumbnailurl().c_str()), resp.uploadedcontent().filesize(), UTF8_TO_TCHAR(resp.uploadedcontent().filesizestring().c_str()), resp.uploadedcontent().iscachedondisk(), tags);
+
+		if (AllContentInfoCallbacks.Contains(callbackId))
+		{
+			(*AllContentInfoCallbacks[callbackId])(remoteContent);
+			AllContentInfoCallbacks.Remove(callbackId);
+		}
+	}
+
 	int RelayCallbackModel::RegisterFetchAllAvailableContent(CavrnusRemoteContentFunction onfetchedContent)
 	{
 		int reqId = ++currReqId;
@@ -377,7 +504,7 @@ namespace Cavrnus
 				tags.Add(UTF8_TO_TCHAR(resp.availablecontent()[i].tagkeys()[j].c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].tagvalues()[j].c_str()));
 			}
 
-			remoteContent.Add(FCavrnusRemoteContent(UTF8_TO_TCHAR(resp.availablecontent()[i].id().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].name().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].filename().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].thumbnailurl().c_str()), tags));
+			remoteContent.Add(FCavrnusRemoteContent(UTF8_TO_TCHAR(resp.availablecontent()[i].id().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].name().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].filename().c_str()), UTF8_TO_TCHAR(resp.availablecontent()[i].thumbnailurl().c_str()), resp.availablecontent()[i].filesize(), UTF8_TO_TCHAR(resp.availablecontent()[i].filesizestring().c_str()), resp.availablecontent()[i].iscachedondisk(), tags));
 		}
 
 		if (AllRemoteContentCallbacks.Contains(callbackId))
@@ -406,7 +533,7 @@ namespace Cavrnus
 			tags.Add(UTF8_TO_TCHAR(resp.uploadedcontent().tagkeys()[j].c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().tagvalues()[j].c_str()));
 		}
 
-		FCavrnusRemoteContent remoteContent = FCavrnusRemoteContent(UTF8_TO_TCHAR(resp.uploadedcontent().id().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().name().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().filename().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().thumbnailurl().c_str()), tags);
+		FCavrnusRemoteContent remoteContent = FCavrnusRemoteContent(UTF8_TO_TCHAR(resp.uploadedcontent().id().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().name().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().filename().c_str()), UTF8_TO_TCHAR(resp.uploadedcontent().thumbnailurl().c_str()), resp.uploadedcontent().filesize(), UTF8_TO_TCHAR(resp.uploadedcontent().filesizestring().c_str()), resp.uploadedcontent().iscachedondisk(), tags);
 
 		if (AllUploadContentCallbacks.Contains(callbackId))
 		{
@@ -414,4 +541,38 @@ namespace Cavrnus
 			AllUploadContentCallbacks.Remove(callbackId);
 		}
 	}
-}
+
+	int RelayCallbackModel::RegisterFolderReq(const TFunction<void(FString)>& onRecvFullFolderPath)
+	{
+		int reqId = ++currReqId;
+
+		TFunction<void(FString)>* CallbackPtr = new TFunction<void(FString)>(onRecvFullFolderPath);
+
+		AllFolderReqCallbacks.Add(reqId, CallbackPtr);
+
+		return reqId;
+	}
+
+	void RelayCallbackModel::HandleFolderResp(int callbackId, ServerData::ContentDestinationFolderResp resp)
+	{
+		if (resp.has_error()) 
+		{
+			FString error = UTF8_TO_TCHAR(resp.error().c_str());
+
+			UE_LOG(LogCavrnusConnector, Error, TEXT("%s"), *error);
+
+			if (AllFolderReqCallbacks.Contains(callbackId))
+				AllFolderReqCallbacks.Remove(callbackId);
+
+			return;
+		}
+
+		FString fullFolderName = UTF8_TO_TCHAR(resp.fullfoldername().c_str());
+
+		if (AllFolderReqCallbacks.Contains(callbackId))
+		{
+			(*AllFolderReqCallbacks[callbackId])(fullFolderName);
+			AllFolderReqCallbacks.Remove(callbackId);
+		}
+	}
+} // namespace Cavrnus

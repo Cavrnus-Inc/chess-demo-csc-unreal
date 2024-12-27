@@ -1,4 +1,5 @@
-﻿// Copyright(c) Cavrnus. All rights reserved.
+﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #pragma once
 
 #include <Containers/Map.h>
@@ -30,5 +31,4 @@ namespace Cavrnus
 
 		TArray<uint8> CompletionToStream(FString filePath);
 	};
-
-} // namespace CavrnusRelay
+} // namespace Cavrnus

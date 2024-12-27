@@ -1,4 +1,5 @@
-﻿// Copyright(c) Cavrnus. All rights reserved.
+﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "RelayModel/CavrnusRelayModel.h"
 #include "CavrnusConnectorSettings.h"
 #include "RelayModel/SpacePropertyModel.h"
@@ -6,6 +7,7 @@
 #include "../Interop/CavrnusInteropLayer.h"
 #include "RelayModel/RelayCallbackModel.h"
 #include "RelayModel/DataState.h"
+#include "RelayModel/CavrnusDataCache.h"
 #include <HAL/PlatformTime.h>
 #include "CoreMinimal.h"
 #include "Types/CavrnusSpawnedObject.h"
@@ -32,6 +34,7 @@ namespace Cavrnus
 
 		dataState = new DataState();
 		callbackModel = new RelayCallbackModel(this);
+		dataCache = new CavrnusDataCache();
 	}
 
 	CavrnusRelayModel::~CavrnusRelayModel()
@@ -131,6 +134,11 @@ namespace Cavrnus
 		return dataState;
 	}
 
+	CavrnusDataCache* CavrnusRelayModel::GetDataCache()
+	{
+		return dataCache;
+	}
+
 
 	void CavrnusRelayModel::SendMessage(const ServerData::RelayClientMessage& msg)
 	{
@@ -171,6 +179,9 @@ namespace Cavrnus
 
 		switch (msg.Msg_case())
 		{
+		case ServerData::RelayRemoteMessage::kRelayDataCache:
+			HandleInitialDataCache(msg.relaydatacache());
+			break;
 		case ServerData::RelayRemoteMessage::kPropertyValueStatus:
 			HandleServerPropertyUpdate(msg.propertyvaluestatus());
 			break;
@@ -179,6 +190,9 @@ namespace Cavrnus
 			break;
 		case ServerData::RelayRemoteMessage::kAuthenticateGuestResp:
 			callbackModel->HandleServerCallback(msg.authenticateguestresp().reqid(), msg);
+			break;
+		case ServerData::RelayRemoteMessage::kAuthenticateTokenResp:
+			callbackModel->HandleServerCallback(msg.authenticatetokenresp().reqid(), msg);
 			break;
 		case ServerData::RelayRemoteMessage::kJoinSpaceFromIdResp:
 			callbackModel->HandleServerCallback(msg.joinspacefromidresp().reqid(), msg);
@@ -191,6 +205,12 @@ namespace Cavrnus
 			break;
 		case ServerData::RelayRemoteMessage::kGetVideoInputDevicesResp:
 			callbackModel->HandleServerCallback(msg.getvideoinputdevicesresp().reqid(), msg);
+			break;
+		case ServerData::RelayRemoteMessage::kContentDestinationFolderResp:
+			callbackModel->HandleServerCallback(msg.contentdestinationfolderresp().reqid(), msg);
+			break;
+		case ServerData::RelayRemoteMessage::kGetSpaceInfoResp:
+			callbackModel->HandleServerCallback(msg.getspaceinforesp().reqid(), msg);
 			break;
 		case ServerData::RelayRemoteMessage::kMessage:
 			HandleLogging(msg.message());
@@ -237,6 +257,9 @@ namespace Cavrnus
 		case ServerData::RelayRemoteMessage::kFetchFileByIdCompletedResp:
 			ContentModel.HandleCompletionCallback(UTF8_TO_TCHAR(msg.fetchfilebyidcompletedresp().contentid().c_str()), UTF8_TO_TCHAR(msg.fetchfilebyidcompletedresp().filepath().c_str()), UTF8_TO_TCHAR(msg.fetchfilebyidcompletedresp().finalfilenamewithextension().c_str()));
 			break;
+		case ServerData::RelayRemoteMessage::kFetchRemoteContentInfoResp:
+			callbackModel->HandleServerCallback(msg.fetchremotecontentinforesp().reqid(), msg);
+			break;
 		case ServerData::RelayRemoteMessage::kFetchAllUploadedContentResp:
 			callbackModel->HandleServerCallback(msg.fetchalluploadedcontentresp().reqid(), msg);
 			break;
@@ -277,6 +300,20 @@ namespace Cavrnus
 		default:
 			break;
 		}
+	}
+
+	void CavrnusRelayModel::HandleInitialDataCache(const ServerData::RelayDataCache& cache)
+	{
+		TArray<FString> keys;
+		TArray<FString> vals;
+		for (int i = 0; i < cache.stringkeys_size(); i++)
+		{
+			keys.Add(UTF8_TO_TCHAR(cache.stringkeys()[i].c_str()));
+			vals.Add(UTF8_TO_TCHAR(cache.stringvalues()[i].c_str()));
+		}
+		GetDataCache()->Setup(keys, vals);
+
+		callbackModel->HandleDataCache(cache);
 	}
 
 	void CavrnusRelayModel::HandleSpaceUserAdded(ServerData::CavrnusSpaceConnection spaceConn, ServerData::CavrnusUser user)
@@ -446,4 +483,4 @@ namespace Cavrnus
 
 		spacePropertyModelLookup[spaceConnId]->UpdateServerPropVal(propId, val);
 	}
-}
+} // namespace Cavrnus

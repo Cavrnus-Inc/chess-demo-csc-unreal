@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
 
 using UnrealBuildTool;
 using System;
@@ -7,7 +7,7 @@ using System.IO;
 public class CavrnusConnector : ModuleRules
 {
 
-    public string[] CavrnusRelayLibRelease
+    public string[] ProtobufLibRelease
     {
         get
         {
@@ -21,13 +21,17 @@ public class CavrnusConnector : ModuleRules
 
     private string ThirdPartyPath
     {
-        //Wrapping this here because ModuleDir itself is thirdPartyPath
-        get { return Path.Combine(ModuleDirectory, "ThirdParty"); }
+        get { return Path.Combine(PluginDirectory, "Source", "ThirdParty"); }
     }
 
-    private string CavrnusRelayLibPath
+    private string ProtobufPath
     {
-        get { return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib")); }
+        get { return Path.GetFullPath(Path.Combine(ThirdPartyPath, "protobuf")); }
+    }
+	
+    private string CavrnusRelayPath
+    {
+        get { return Path.GetFullPath(Path.Combine(ThirdPartyPath, "CavrnusRelayNet")); }
     }
 
     private void AddDefaultIncludePaths()
@@ -64,10 +68,10 @@ public class CavrnusConnector : ModuleRules
         }
 
         // Add the include directory for Protobuf 
-        string ProtobufDirectory = Path.Combine(PrivateDirectory, "protobuf");
-        if (Directory.Exists(ProtobufDirectory))
+        string ProtobufIncludeDirectory = Path.Combine(ProtobufPath, "include");
+        if (Directory.Exists(ProtobufIncludeDirectory))
         {
-            PrivateIncludePaths.Add(ProtobufDirectory);
+            PrivateIncludePaths.Add(ProtobufIncludeDirectory);
         }
     }
 
@@ -97,8 +101,7 @@ public class CavrnusConnector : ModuleRules
             "SlateCore",
             "RenderCore",
             "RHI",
-			"ProceduralMeshComponent",
-			"Networking",
+            "Networking",
             "Sockets",
             "JsonBlueprintUtilities",
 #if UE_5_4_OR_LATER
@@ -128,17 +131,18 @@ public class CavrnusConnector : ModuleRules
             throw new Exception(string.Format("Unsupported platform {0}", Target.Platform.ToString()));
         }
 
-        foreach (string libFileName in CavrnusRelayLibRelease)
+		string ProtobufLibraryDirectory = Path.Combine(ProtobufPath, "lib");
+        foreach (string libFileName in ProtobufLibRelease)
         {
             string FullPathToLib = "";
             if (Target.WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2022)
             {
-                FullPathToLib = Path.Combine(CavrnusRelayLibPath, Platform, "v143", libFileName);
+                FullPathToLib = Path.Combine(ProtobufLibraryDirectory, Platform, "v143", libFileName);
             }
 #if !UE_5_4_OR_LATER
             else if (Target.WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2019)
             {
-                FullPathToLib = Path.Combine(CavrnusRelayLibPath, Platform, "v142", libFileName);
+                FullPathToLib = Path.Combine(ProtobufLibraryDirectory, Platform, "v142", libFileName);
             }
 #endif
             else
@@ -170,7 +174,7 @@ public class CavrnusConnector : ModuleRules
         //RuntimeDependencies.Add(CavrnusRelayBin);
         //RuntimeDependencies.Add("$(TargetOutputDir)/CavrnusRelay.dll", CavrnusRelayBin, StagedFileType.NonUFS);
 
-        RuntimeDependencies.Add(Path.Combine(ModuleDirectory, "CavrnusRelayNet/..."));
+        RuntimeDependencies.Add(Path.Combine(CavrnusRelayPath, "/..."));
 
         Console.WriteLine("====== Exiting CavrnusConnector.Build.cs ====== ");
     }

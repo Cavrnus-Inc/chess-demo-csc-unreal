@@ -1,10 +1,11 @@
-﻿// Copyright(c) Cavrnus. All rights reserved.
+﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "RelayNetRunner.h"
 
 namespace Cavrnus
 {
 	static const int PORT_DEFAULT = 36045;
-	static const std::string PATH_RELAY_NET_DEFAULT("..\\..\\..\\CavrnusPlugin\\Plugins\\CavrnusConnector\\Source\\CavrnusConnector\\CavrnusRelayNet\\net6.0-windows\\CavrnusRelayNet.exe");
+	static const std::string PATH_RELAY_NET_DEFAULT("..\\..\\..\\CavrnusPlugin\\Plugins\\CavrnusConnector\\Source\\ThirdParty\\CavrnusRelayNet\\net6.0-windows\\CavrnusRelayNet.exe");
 
 	RelayNetRunner::RelayNetRunner()
 	{
@@ -116,7 +117,5 @@ namespace Cavrnus
 		{
 			std::cerr << "RelayNetRunner: Exception caught: " << e.what() << std::endl;
 		}
-
 	}
-
 } // namespace Cavrnus

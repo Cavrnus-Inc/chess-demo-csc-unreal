@@ -1,4 +1,5 @@
-// Copyright(c) Cavrnus. All rights reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "CavrnusSpatialConnector.h"
 
 #include "CavrnusAvatarManager.h"
@@ -16,7 +17,7 @@ ACavrnusSpatialConnector::ACavrnusSpatialConnector()
 	PrimaryActorTick.bCanEverTick = false;
 
 	AuthMethod = ECavrnusAuthMethod::JoinAsMember;	
-	MemberLoginMethod = ECavrnusMemberLoginMethod::EnterMemberLoginCredentials;		
+	MemberLoginMethod = ECavrnusMemberLoginMethod::EnterMemberLoginCredentials;
 	GuestLoginMethod = ECavrnusGuestLoginMethod::EnterNameBelow;
 	SpaceJoinMethod = ECavrnusSpaceJoinMethod::SpacesList;
 }
@@ -40,7 +41,7 @@ void ACavrnusSpatialConnector::BeginPlay()
 
 void ACavrnusSpatialConnector::CavrnusBeginPlay()
 {
-	UWorld* WorldPtr = GetWorld();
+	const UWorld* WorldPtr = GetWorld();
 	if (!WorldPtr)
 	{
 		UE_LOG(LogCavrnusConnector, Error, TEXT("No world in ACavrnusSpatialConnector::BeginPlay()"));
@@ -48,9 +49,7 @@ void ACavrnusSpatialConnector::CavrnusBeginPlay()
 	}
 
 	if (UCavrnusSpatialConnectorSubSystemProxy* SubProxy = UCavrnusFunctionLibrary::GetCavrnusSpatialConnectorSubSystemProxy())
-	{
-		SubProxy->AuthenticateAndJoin();
-	}
+		SubProxy->BeginAuthenticationProcess();
 }
 
 void ACavrnusSpatialConnector::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -61,4 +60,16 @@ void ACavrnusSpatialConnector::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ACavrnusSpatialConnector::CavrnusEndPlay()
 {
+}
+
+UClass* ACavrnusSpatialConnector::GetDefaultBlueprint(const FString& Path, UClass* BaseClass) const
+{
+	// Use BP as default value
+	UClass* LoadedBlueprintClass = StaticLoadClass(BaseClass, nullptr, *Path, nullptr, LOAD_None, nullptr);
+	if (!LoadedBlueprintClass)
+	{
+		UE_LOG(LogCavrnusConnector, Error, TEXT("Blueprint asset failed to load from path: %s, base class name: %s"), *Path, *BaseClass->GetName());
+	}
+
+	return LoadedBlueprintClass;
 }

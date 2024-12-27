@@ -1,4 +1,5 @@
-﻿// Copyright(c) Cavrnus. All rights reserved.
+﻿// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "RelayModel/CavrnusVirtualPropertyUpdate.h"
 #include "RelayModel/CavrnusRelayModel.h"
 #include "Types/CavrnusPropertyValue.h"
@@ -64,5 +65,4 @@ namespace Cavrnus
 	{
 		RelayModel->SendMessage(Cavrnus::CavrnusProtoTranslation::BuildCancelLiveUpdateMsg(SpaceConn, LiveUpdaterId));
 	}
-}
-
+} // namespace Cavrnus

@@ -1,4 +1,5 @@
-// Copyright(c) Cavrnus. All rights reserved.
+// Copyright (c) 2024 Cavrnus. All rights reserved.
+
 #include "LivePropertyUpdates/CavrnusLiveColorPropertyUpdate.h"
 #include "RelayModel/CavrnusVirtualPropertyUpdate.h"
 #include "Translation/CavrnusProtoTranslation.h"

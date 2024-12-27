@@ -37,7 +37,6 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusMaximizedUser() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusMaximizedUser_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "UI/UserMenu/CavrnusMaximizedUser.h" },
 		{ "ModuleRelativePath", "Public/UI/UserMenu/CavrnusMaximizedUser.h" },
 	};
@@ -78,9 +77,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusMaximizedUser() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_UserMenu_CavrnusMaximizedUser_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusMaximizedUser, UCavrnusMaximizedUser::StaticClass, TEXT("UCavrnusMaximizedUser"), &Z_Registration_Info_UClass_UCavrnusMaximizedUser, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusMaximizedUser), 1483357461U) },
+		{ Z_Construct_UClass_UCavrnusMaximizedUser, UCavrnusMaximizedUser::StaticClass, TEXT("UCavrnusMaximizedUser"), &Z_Registration_Info_UClass_UCavrnusMaximizedUser, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusMaximizedUser), 396884294U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_UserMenu_CavrnusMaximizedUser_h_1555880863(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_UserMenu_CavrnusMaximizedUser_h_2577524734(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_UserMenu_CavrnusMaximizedUser_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_UserMenu_CavrnusMaximizedUser_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

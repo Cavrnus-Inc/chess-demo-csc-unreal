@@ -322,7 +322,7 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusMessageMenuBase() {}
 		{ "ModuleRelativePath", "Public/UI/MessageMenus/CavrnusMessageMenuBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusMessageMenuBase, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection_MetaData)) }; // 423510165
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection = { "SpaceConnection", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCavrnusMessageMenuBase, SpaceConnection), Z_Construct_UScriptStruct_FCavrnusSpaceConnection, METADATA_PARAMS(Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_SpaceConnection_MetaData)) }; // 3159036460
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCavrnusMessageMenuBase_Statics::NewProp_AutoScrollToEnd_MetaData[] = {
 		{ "ModuleRelativePath", "Public/UI/MessageMenus/CavrnusMessageMenuBase.h" },
@@ -405,9 +405,9 @@ void EmptyLinkFunctionForGeneratedCodeCavrnusMessageMenuBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MessageMenus_CavrnusMessageMenuBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCavrnusMessageMenuBase, UCavrnusMessageMenuBase::StaticClass, TEXT("UCavrnusMessageMenuBase"), &Z_Registration_Info_UClass_UCavrnusMessageMenuBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusMessageMenuBase), 2422352851U) },
+		{ Z_Construct_UClass_UCavrnusMessageMenuBase, UCavrnusMessageMenuBase::StaticClass, TEXT("UCavrnusMessageMenuBase"), &Z_Registration_Info_UClass_UCavrnusMessageMenuBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCavrnusMessageMenuBase), 3409253393U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MessageMenus_CavrnusMessageMenuBase_h_755502806(TEXT("/Script/CavrnusConnector"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MessageMenus_CavrnusMessageMenuBase_h_1611285348(TEXT("/Script/CavrnusConnector"),
 		Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MessageMenus_CavrnusMessageMenuBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_CavrnusConnector_Source_CavrnusConnector_Public_UI_MessageMenus_CavrnusMessageMenuBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
